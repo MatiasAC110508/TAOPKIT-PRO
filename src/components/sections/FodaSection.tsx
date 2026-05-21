@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FadeIn } from "../Animations";
 import { Table2, X } from "lucide-react";
@@ -232,17 +232,15 @@ function HeaderCell({
   title,
   subtitle,
   gradient,
-  className = "",
 }: {
   title: string;
   subtitle?: string;
   gradient: string;
-  className?: string;
 }) {
   return (
     <th
       colSpan={2}
-      className={`px-4 py-3 text-center uppercase tracking-widest border border-white/10 bg-gradient-to-r ${gradient} ${className}`}
+      className={`sticky top-0 z-10 px-4 py-3 text-center uppercase tracking-wide border border-white/10 bg-gradient-to-r ${gradient}`}
     >
       <div className="text-xs md:text-sm font-extrabold text-white">{title}</div>
       {subtitle && <div className="text-[10px] font-semibold text-white/80 mt-0.5">{subtitle}</div>}
@@ -250,18 +248,12 @@ function HeaderCell({
   );
 }
 
-function EmptyHeaderCell() {
-  return <th colSpan={2} className="border border-white/10 bg-[#061010]/80" aria-hidden="true" />;
-}
-
-function EmptyCell() {
-  return <td className="border border-white/10 bg-[#061010]/60" aria-hidden="true" />;
-}
-
 function IdCell({ value }: { value: string }) {
   return (
-    <td className="w-[92px] border border-white/10 bg-[#061010]/70 text-center align-top px-2 py-2">
-      <span className="font-mono text-[11px] md:text-xs font-extrabold text-white">{value}</span>
+    <td className="w-[86px] border border-white/10 bg-[#061010]/80 text-center align-top px-2 py-3">
+      <span className="inline-flex min-w-12 justify-center rounded-md border border-white/10 bg-white/[0.04] px-2 py-1 font-mono text-[11px] md:text-xs font-extrabold text-white">
+        {value}
+      </span>
     </td>
   );
 }
@@ -276,16 +268,80 @@ function TextCell({
   onOpen: (selected: { section: string; id: string; text: string }) => void;
 }) {
   return (
-    <td className="border border-white/10 bg-[#0a1717]/60 align-top px-3 py-2">
-      <button type="button" onClick={() => onOpen({ section, id: cell.id, text: cell.text })} className="w-full text-left group">
-        <div className="text-[11px] md:text-xs leading-relaxed text-teal-100/80 group-hover:text-white transition-colors">
+    <td className="border border-white/10 bg-[#0a1717]/70 align-top">
+      <button
+        type="button"
+        onClick={() => onOpen({ section, id: cell.id, text: cell.text })}
+        className="w-full min-h-24 px-3 py-3 text-left transition-colors hover:bg-white/[0.045] focus-visible:outline focus-visible:outline-2 focus-visible:outline-teal-300/60"
+        aria-label={`Ampliar ${cell.id}`}
+      >
+        <div className="text-[11px] md:text-xs leading-relaxed text-teal-100/80">
           {cell.text}
-        </div>
-        <div className="mt-1 text-[10px] text-teal-300/50 group-hover:text-amber-300/70 transition-colors">
-          Click para ampliar
         </div>
       </button>
     </td>
+  );
+}
+
+function MobileExcelCell({
+  label,
+  section,
+  cell,
+  gradient,
+  onOpen,
+}: {
+  label: string;
+  section: string;
+  cell: ExcelCell;
+  gradient: string;
+  onOpen: (selected: { section: string; id: string; text: string }) => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onOpen({ section, id: cell.id, text: cell.text })}
+      className="w-full overflow-hidden border border-white/10 bg-[#0a1717]/80 text-left transition-colors active:bg-white/[0.06]"
+      aria-label={`Ampliar ${cell.id}`}
+    >
+      <div className={`px-3 py-2 bg-gradient-to-r ${gradient} border-b border-white/10 flex items-center justify-between gap-3`}>
+        <span className="text-[10px] font-extrabold uppercase tracking-wide text-white">{label}</span>
+        <span className="font-mono text-[11px] font-extrabold text-white">{cell.id}</span>
+      </div>
+      <div className="px-3 py-3 text-[12px] leading-relaxed text-teal-100/80">{cell.text}</div>
+    </button>
+  );
+}
+
+function ExcelFrame({
+  title,
+  label,
+  children,
+}: {
+  title: string;
+  label: string;
+  children: ReactNode;
+}) {
+  return (
+    <div className="glass-card-strong rounded-2xl md:rounded-3xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30">
+      <div className="px-4 sm:px-6 py-4 border-b border-white/10 bg-gradient-to-r from-teal-950/60 via-[#071414]/50 to-amber-950/35 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl md:rounded-2xl bg-teal-500/10 border border-teal-400/20 flex items-center justify-center shrink-0">
+            <Table2 className="w-5 h-5 text-teal-300" />
+          </div>
+          <div>
+            <div className="text-white font-extrabold text-sm md:text-base">{title}</div>
+            <div className="text-teal-200/55 text-[11px] md:text-xs">{label}</div>
+          </div>
+        </div>
+        <a
+          href="#referencias"
+          className="text-[11px] md:text-xs font-semibold text-amber-300/90 hover:text-amber-200 transition-colors"
+        >
+          Referencias APA 7
+        </a>
+      </div>
+      {children}
+    </div>
   );
 }
 
@@ -293,127 +349,214 @@ export default function FodaSection() {
   const [selected, setSelected] = useState<SelectedCell>(null);
 
   return (
-    <section id="foda" className="relative py-28 px-6 dot-pattern bg-[#081313]/60">
+    <section id="foda" className="relative py-20 md:py-28 px-4 sm:px-6 dot-pattern bg-[#081313]/60">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <FadeIn>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-16">
             <span className="inline-block text-sm font-semibold tracking-widest uppercase text-amber-400 mb-3">
               Análisis Estratégico
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">FODA y Plan de Acción</h2>
+            <h2 className="text-3xl md:text-5xl font-bold gradient-text mb-4">FODA y Plan de Acción</h2>
             <p className="text-teal-100/70 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
               Matriz tipo Excel (interactiva) con factores internos/externos y cruce estratégico FO/DO/FA/DA.
             </p>
           </div>
         </FadeIn>
 
-        {/* Excel-like table */}
-        <FadeIn>
-          <div className="glass-card-strong rounded-3xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30">
-            <div className="px-6 py-4 border-b border-white/10 bg-gradient-to-r from-teal-950/60 via-[#071414]/40 to-amber-950/40 flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-teal-500/10 border border-teal-400/20 flex items-center justify-center">
-                  <Table2 className="w-5 h-5 text-teal-300" />
-                </div>
-                <div>
-                  <div className="text-white font-extrabold text-sm md:text-base">Cruce Estratégico (Excel)</div>
-                  <div className="text-teal-200/50 text-[11px] md:text-xs">Desliza para ver todo • Click en una celda para ampliar</div>
-                </div>
-              </div>
-              <a
-                href="#referencias"
-                className="text-[11px] md:text-xs font-semibold text-amber-300/90 hover:text-amber-200 transition-colors"
-              >
-                Ver referencias (APA 7)
-              </a>
-            </div>
-
-            <div className="max-h-[72vh] overflow-auto bg-[#061010]/60">
-              <table className="min-w-[1180px] w-full border-collapse">
-                <colgroup>
-                  <col className="w-[92px]" />
-                  <col className="w-[420px]" />
-                  <col className="w-[92px]" />
-                  <col className="w-[420px]" />
-                  <col className="w-[92px]" />
-                  <col className="w-[420px]" />
-                </colgroup>
-                <thead>
-                  <tr>
-                    <EmptyHeaderCell />
-                    <HeaderCell title="FORTALEZAS" gradient="from-teal-500/90 to-teal-600/80" />
-                    <HeaderCell title="DEBILIDADES" gradient="from-amber-500/90 to-amber-600/80" />
-                  </tr>
-                </thead>
-                <tbody>
-                  {excelFoda.strengths.map((s, idx) => {
-                    const w = excelFoda.weaknesses[idx];
+        <div className="space-y-10">
+          <FadeIn>
+            <ExcelFrame title="Factores Internos" label="Fortalezas y Debilidades">
+              <div className="md:hidden bg-[#061010]/60 p-3">
+                <div className="overflow-hidden rounded-xl border border-white/10">
+                  {excelFoda.strengths.map((strength, idx) => {
+                    const weakness = excelFoda.weaknesses[idx];
                     return (
-                      <tr key={`sw-${s.id}`}>
-                        <EmptyCell />
-                        <EmptyCell />
-                        <IdCell value={s.id} />
-                        <TextCell section="Fortalezas" cell={s} onOpen={(val) => setSelected(val)} />
-                        <IdCell value={w.id} />
-                        <TextCell section="Debilidades" cell={w} onOpen={(val) => setSelected(val)} />
-                      </tr>
+                      <div key={`mobile-internal-${strength.id}`} className="grid grid-cols-1 border-b border-white/10 last:border-b-0">
+                        <MobileExcelCell
+                          label="FORTALEZA"
+                          section="Fortalezas"
+                          cell={strength}
+                          gradient="from-teal-500/95 to-teal-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                        <MobileExcelCell
+                          label="DEBILIDAD"
+                          section="Debilidades"
+                          cell={weakness}
+                          gradient="from-amber-500/95 to-amber-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                      </div>
                     );
                   })}
+                </div>
+              </div>
 
-                  <tr>
-                    <HeaderCell title="OPORTUNIDADES" gradient="from-emerald-500/90 to-emerald-600/80" />
-                    <HeaderCell title="FO" subtitle="ESTRATEGIAS" gradient="from-teal-500/90 to-emerald-600/80" />
-                    <HeaderCell title="DO" subtitle="ESTRATEGIAS" gradient="from-amber-500/90 to-emerald-600/80" />
-                  </tr>
+              <div className="hidden md:block max-h-[58vh] overflow-auto bg-[#061010]/60">
+                <table className="min-w-[920px] w-full border-collapse">
+                  <colgroup>
+                    <col className="w-[86px]" />
+                    <col className="w-[420px]" />
+                    <col className="w-[86px]" />
+                    <col className="w-[420px]" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <HeaderCell title="FORTALEZAS" gradient="from-teal-500/95 to-teal-600/80" />
+                      <HeaderCell title="DEBILIDADES" gradient="from-amber-500/95 to-amber-600/80" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {excelFoda.strengths.map((strength, idx) => {
+                      const weakness = excelFoda.weaknesses[idx];
+                      return (
+                        <tr key={`internal-${strength.id}`}>
+                          <IdCell value={strength.id} />
+                          <TextCell section="Fortalezas" cell={strength} onOpen={(val) => setSelected(val)} />
+                          <IdCell value={weakness.id} />
+                          <TextCell section="Debilidades" cell={weakness} onOpen={(val) => setSelected(val)} />
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </ExcelFrame>
+          </FadeIn>
 
-                  {excelFoda.opportunities.map((o, idx) => {
+          <FadeIn delay={0.15}>
+            <ExcelFrame title="Matriz FODA" label="Oportunidades, Amenazas y cruces estratégicos">
+              <div className="md:hidden bg-[#061010]/60 p-3">
+                <div className="overflow-hidden rounded-xl border border-white/10">
+                  {excelFoda.opportunities.map((opportunity, idx) => {
                     const fo = excelFoda.FO[idx];
                     const doCell = excelFoda.DO[idx];
                     return (
-                      <tr key={`odo-${o.id}`}>
-                        <IdCell value={o.id} />
-                        <TextCell section="Oportunidades" cell={o} onOpen={(val) => setSelected(val)} />
-                        <IdCell value={fo.id} />
-                        <TextCell section="FO Estrategias" cell={fo} onOpen={(val) => setSelected(val)} />
-                        <IdCell value={doCell.id} />
-                        <TextCell section="DO Estrategias" cell={doCell} onOpen={(val) => setSelected(val)} />
-                      </tr>
+                      <div key={`mobile-opportunity-${opportunity.id}`} className="grid grid-cols-1 border-b border-white/10 last:border-b-0">
+                        <MobileExcelCell
+                          label="OPORTUNIDAD"
+                          section="Oportunidades"
+                          cell={opportunity}
+                          gradient="from-emerald-500/95 to-emerald-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                        <MobileExcelCell
+                          label="FO ESTRATEGIA"
+                          section="FO Estrategias"
+                          cell={fo}
+                          gradient="from-teal-500/95 to-emerald-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                        <MobileExcelCell
+                          label="DO ESTRATEGIA"
+                          section="DO Estrategias"
+                          cell={doCell}
+                          gradient="from-amber-500/95 to-emerald-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                      </div>
                     );
                   })}
 
-                  <tr>
-                    <HeaderCell title="AMENAZAS" gradient="from-rose-500/90 to-rose-600/80" />
-                    <HeaderCell title="FA" subtitle="ESTRATEGIAS" gradient="from-teal-500/90 to-rose-600/80" />
-                    <HeaderCell title="DA" subtitle="ESTRATEGIAS" gradient="from-amber-500/90 to-rose-600/80" />
-                  </tr>
-
-                  {excelFoda.threats.map((a, idx) => {
+                  {excelFoda.threats.map((threat, idx) => {
                     const fa = excelFoda.FA[idx];
                     const da = excelFoda.DA[idx];
                     return (
-                      <tr key={`ada-${a.id}`}>
-                        <IdCell value={a.id} />
-                        <TextCell section="Amenazas" cell={a} onOpen={(val) => setSelected(val)} />
-                        <IdCell value={fa.id} />
-                        <TextCell section="FA Estrategias" cell={fa} onOpen={(val) => setSelected(val)} />
-                        <IdCell value={da.id} />
-                        <TextCell section="DA Estrategias" cell={da} onOpen={(val) => setSelected(val)} />
-                      </tr>
+                      <div key={`mobile-threat-${threat.id}`} className="grid grid-cols-1 border-b border-white/10 last:border-b-0">
+                        <MobileExcelCell
+                          label="AMENAZA"
+                          section="Amenazas"
+                          cell={threat}
+                          gradient="from-rose-500/95 to-rose-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                        <MobileExcelCell
+                          label="FA ESTRATEGIA"
+                          section="FA Estrategias"
+                          cell={fa}
+                          gradient="from-teal-500/95 to-rose-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                        <MobileExcelCell
+                          label="DA ESTRATEGIA"
+                          section="DA Estrategias"
+                          cell={da}
+                          gradient="from-amber-500/95 to-rose-600/80"
+                          onOpen={(val) => setSelected(val)}
+                        />
+                      </div>
                     );
                   })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </FadeIn>
+                </div>
+              </div>
+
+              <div className="hidden md:block max-h-[72vh] overflow-auto bg-[#061010]/60">
+                <table className="min-w-[1180px] w-full border-collapse">
+                  <colgroup>
+                    <col className="w-[86px]" />
+                    <col className="w-[380px]" />
+                    <col className="w-[86px]" />
+                    <col className="w-[420px]" />
+                    <col className="w-[86px]" />
+                    <col className="w-[420px]" />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <HeaderCell title="OPORTUNIDADES" gradient="from-emerald-500/95 to-emerald-600/80" />
+                      <HeaderCell title="FO" subtitle="ESTRATEGIAS" gradient="from-teal-500/95 to-emerald-600/80" />
+                      <HeaderCell title="DO" subtitle="ESTRATEGIAS" gradient="from-amber-500/95 to-emerald-600/80" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {excelFoda.opportunities.map((opportunity, idx) => {
+                      const fo = excelFoda.FO[idx];
+                      const doCell = excelFoda.DO[idx];
+                      return (
+                        <tr key={`opportunity-${opportunity.id}`}>
+                          <IdCell value={opportunity.id} />
+                          <TextCell section="Oportunidades" cell={opportunity} onOpen={(val) => setSelected(val)} />
+                          <IdCell value={fo.id} />
+                          <TextCell section="FO Estrategias" cell={fo} onOpen={(val) => setSelected(val)} />
+                          <IdCell value={doCell.id} />
+                          <TextCell section="DO Estrategias" cell={doCell} onOpen={(val) => setSelected(val)} />
+                        </tr>
+                      );
+                    })}
+
+                    <tr>
+                      <HeaderCell title="AMENAZAS" gradient="from-rose-500/95 to-rose-600/80" />
+                      <HeaderCell title="FA" subtitle="ESTRATEGIAS" gradient="from-teal-500/95 to-rose-600/80" />
+                      <HeaderCell title="DA" subtitle="ESTRATEGIAS" gradient="from-amber-500/95 to-rose-600/80" />
+                    </tr>
+
+                    {excelFoda.threats.map((threat, idx) => {
+                      const fa = excelFoda.FA[idx];
+                      const da = excelFoda.DA[idx];
+                      return (
+                        <tr key={`threat-${threat.id}`}>
+                          <IdCell value={threat.id} />
+                          <TextCell section="Amenazas" cell={threat} onOpen={(val) => setSelected(val)} />
+                          <IdCell value={fa.id} />
+                          <TextCell section="FA Estrategias" cell={fa} onOpen={(val) => setSelected(val)} />
+                          <IdCell value={da.id} />
+                          <TextCell section="DA Estrategias" cell={da} onOpen={(val) => setSelected(val)} />
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </ExcelFrame>
+          </FadeIn>
+        </div>
       </div>
 
       {/* Cell modal */}
       <AnimatePresence>
         {selected && (
           <motion.div
-            className="fixed inset-0 z-[60] flex items-center justify-center p-6"
+            className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -429,12 +572,12 @@ export default function FodaSection() {
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 18, opacity: 0, scale: 0.98 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-3xl rounded-3xl glass-card-strong border border-white/10 overflow-hidden shadow-2xl"
+              className="relative w-full max-w-3xl max-h-[86vh] rounded-2xl md:rounded-3xl glass-card-strong border border-white/10 overflow-hidden shadow-2xl"
               role="dialog"
               aria-modal="true"
               aria-label="Detalle de celda"
             >
-              <div className="px-6 py-4 border-b border-white/10 flex items-start justify-between gap-4 bg-gradient-to-r from-teal-950/50 via-[#071414]/40 to-amber-950/40">
+              <div className="px-4 sm:px-6 py-4 border-b border-white/10 flex items-start justify-between gap-4 bg-gradient-to-r from-teal-950/50 via-[#071414]/40 to-amber-950/40">
                 <div>
                   <div className="text-teal-200/60 text-xs font-semibold tracking-widest uppercase">{selected.section}</div>
                   <div className="mt-1 flex items-center gap-3">
@@ -453,7 +596,7 @@ export default function FodaSection() {
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              <div className="p-6">
+              <div className="p-4 sm:p-6 overflow-y-auto max-h-[62vh]">
                 <p className="text-teal-100/80 text-sm md:text-base leading-relaxed whitespace-pre-wrap">{selected.text}</p>
               </div>
             </motion.div>
@@ -463,4 +606,3 @@ export default function FodaSection() {
     </section>
   );
 }
-

@@ -73,17 +73,17 @@ const teamMembers = [
 
 export default function EquipoSection() {
   return (
-    <section id="equipo" className="relative py-28 px-6 bg-[#091212]/50 dot-pattern">
+    <section id="equipo" className="relative py-20 md:py-28 px-4 sm:px-6 bg-[#091212]/50 dot-pattern">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
-          <div className="text-center mb-20">
+          <div className="text-center mb-12 md:mb-20">
             <span className="inline-block text-sm font-semibold tracking-widest uppercase text-amber-400 mb-3">
               ¿Quiénes somos?
               </span>
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold gradient-text mb-6">
               El Equipo de TAOP KIT PRO
             </h2>
-            <p className="text-teal-100/80 max-w-3xl mx-auto text-lg leading-relaxed">
+            <p className="text-teal-100/80 max-w-3xl mx-auto text-sm md:text-lg leading-relaxed">
               Somos estudiantes de la{" "}
               <strong className="text-white font-semibold">
                 Institución Universitaria de Envigado (IUE)
@@ -94,14 +94,14 @@ export default function EquipoSection() {
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
           {teamMembers.map((member, i) => (
             <ScaleIn key={member.name} delay={i * 0.15}>
               <div
-                className={`glass-card-strong rounded-3xl p-6 border ${member.border} hover:scale-[1.02] transition-all duration-300 h-full flex flex-col overflow-hidden`}
+                className={`glass-card-strong rounded-2xl md:rounded-3xl p-4 sm:p-6 border ${member.border} hover:scale-[1.02] transition-all duration-300 h-full flex flex-col overflow-hidden`}
               >
                 <div className="relative mb-6">
-                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-teal-950/30">
+                  <div className="relative aspect-[16/11] md:aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-white/10 bg-teal-950/30">
                     <Image
                       src={member.image}
                       alt={`Foto de ${member.name}`}
@@ -111,14 +111,14 @@ export default function EquipoSection() {
                     />
                     <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#071414]/90 to-transparent" />
                   </div>
-                  <div className={`absolute -bottom-4 left-4 w-14 h-14 rounded-2xl bg-gradient-to-br ${member.color} flex items-center justify-center border border-white/10 backdrop-blur-xl shadow-lg`}>
-                    <member.icon className={`w-6 h-6 ${member.accent}`} />
+                  <div className={`absolute -bottom-4 left-4 w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br ${member.color} flex items-center justify-center border border-white/10 backdrop-blur-xl shadow-lg`}>
+                    <member.icon className={`w-5 h-5 md:w-6 md:h-6 ${member.accent}`} />
                   </div>
                 </div>
 
                 {/* Header profile */}
-                <div className="mb-6 pt-2">
-                  <h3 className="font-bold text-white text-lg leading-tight">
+                <div className="mb-5 md:mb-6 pt-1 md:pt-2">
+                  <h3 className="font-bold text-white text-base md:text-lg leading-tight">
                     {member.name}
                   </h3>
                   <p className={`text-xs font-semibold ${member.accent} mt-1`}>
@@ -127,12 +127,12 @@ export default function EquipoSection() {
                 </div>
 
                 {/* Description */}
-                <p className="text-teal-100/70 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-teal-100/70 text-sm leading-relaxed mb-5 md:mb-6 flex-grow">
                   {member.description}
                 </p>
 
                 {/* Goals */}
-                <div className="mt-auto border-t border-white/5 pt-6">
+                <div className="mt-auto border-t border-white/5 pt-5 md:pt-6">
                   <div className="flex items-center gap-2 mb-3">
                     <Target className={`w-4 h-4 ${member.accent}`} />
                     <span className="text-white font-bold text-xs uppercase tracking-wider">
