@@ -73,7 +73,7 @@ export default function Navbar() {
         <div className={`
           flex items-center justify-between rounded-2xl md:rounded-full px-4 md:px-6 py-3 md:py-4 transition-all duration-300
           ${isScrolled
-            ? "bg-[#0b1717]/90 md:bg-[#0b1717]/80 md:backdrop-blur-xl border border-teal-500/20 shadow-lg shadow-black/20"
+            ? "bg-[#0b1717]/90 md:bg-[#0b1717]/80 md:backdrop-blur-xl shadow-[0_18px_45px_rgba(0,0,0,0.28)]"
             : "bg-transparent"}
         `}>
           {/* Logo */}
