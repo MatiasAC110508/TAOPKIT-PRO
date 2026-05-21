@@ -17,6 +17,7 @@ const moreLinks = [
   { href: "#cim", label: "CIM" },
   { href: "#costos", label: "Costos" },
   { href: "#objetivo", label: "Objetivo" },
+  { href: "#segmentacion", label: "Segmentación" },
   { href: "#referencias", label: "Referencias" },
 ];
 

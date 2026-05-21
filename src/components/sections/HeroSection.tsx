@@ -35,17 +35,17 @@ export default function HeroSection() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.8, delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-4 sm:px-5 py-2 rounded-full glass-card mb-6 md:mb-8"
+            className="inline-flex items-center gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full glass-card mb-4 md:mb-8"
           >
-            <PawPrint className="w-4 h-4 text-teal-400" />
-            <span className="text-xs sm:text-sm text-teal-200 tracking-wider uppercase font-medium">
+            <PawPrint className="w-3 h-3 sm:w-4 sm:h-4 text-teal-400" />
+            <span className="text-[10px] sm:text-sm text-teal-200 tracking-wider uppercase font-medium text-center">
               Cuidado integral para mascotas
             </span>
           </motion.div>
         </FadeIn>
 
         <FadeIn delay={0.4}>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+          <h1 className="text-5xl sm:text-5xl md:text-7xl lg:text-8xl font-bold mb-4 sm:mb-6 leading-[1.1] sm:leading-tight">
             <span className="gradient-text">TAOP</span>{" "}
             <span className="text-white">KIT</span>{" "}
             <span className="gradient-text-coral">PRO</span>
@@ -53,7 +53,7 @@ export default function HeroSection() {
         </FadeIn>
 
         <FadeIn delay={0.6}>
-          <p className="text-sm sm:text-lg md:text-xl text-teal-100/80 max-w-3xl mx-auto mb-8 md:mb-10 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-teal-100/80 max-w-3xl mx-auto mb-6 md:mb-10 leading-relaxed px-2 sm:px-0">
             Descubre la primera <strong className="text-white font-medium">solución integral</strong> que revolucionará el cuidado de tu mascota. 
             Combinamos <span className="text-amber-300">productos personalizados</span>, <span className="text-teal-300">asesoría confiable</span> y una 
             organización perfecta en un solo sistema.
@@ -61,16 +61,16 @@ export default function HeroSection() {
         </FadeIn>
 
         <FadeIn delay={0.8}>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <a
               href="#descripcion"
-              className="px-8 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-full hover:from-teal-400 hover:to-teal-500 transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/40 hover:scale-105"
+              className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-full hover:from-teal-400 hover:to-teal-500 transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/40 hover:scale-105 text-center"
             >
               Explorar Proyecto
             </a>
             <a
               href="#niveles"
-              className="px-8 py-3 glass-card text-teal-200 font-semibold rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-105"
+              className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 glass-card text-teal-200 font-semibold rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-105 text-center"
             >
               Niveles del Producto
             </a>
