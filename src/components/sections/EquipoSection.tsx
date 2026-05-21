@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
 import { FadeIn, ScaleIn } from "../Animations";
 import { User, Music, Compass, Target, Heart } from "lucide-react";
 
@@ -15,6 +15,7 @@ const teamMembers = [
       "Destacar por liderazgo, creatividad y capacidad de innovación.",
       "Lograr estabilidad y dejar una huella positiva en su comunidad.",
     ],
+    image: "/collaboratos/juanmiguel.jpeg",
     icon: Compass,
     color: "from-teal-500/20 to-teal-400/10",
     border: "border-teal-500/30",
@@ -30,6 +31,7 @@ const teamMembers = [
       "Brindar apoyo y bienestar a su madre mediante su desarrollo laboral.",
       "Ser un profesional feliz, íntegro y agradecido con la vida.",
     ],
+    image: "/collaboratos/yashar.jpeg",
     icon: Heart,
     color: "from-amber-500/20 to-amber-400/10",
     border: "border-amber-500/30",
@@ -45,6 +47,7 @@ const teamMembers = [
       "Impulsar proyectos culturales con impacto comunitario positivo.",
       "Crear espacios donde el talento y la creatividad puedan desarrollarse.",
     ],
+    image: "/collaboratos/Sara.jpeg",
     icon: Music,
     color: "from-coral-500/20 to-coral-400/10",
     border: "border-rose-500/30",
@@ -60,6 +63,7 @@ const teamMembers = [
       "Desempeñarse eficientemente aportando una actitud positiva y compromiso.",
       "Adquirir experiencia para crecer de manera integral, tanto personal como profesionalmente.",
     ],
+    image: "/collaboratos/michelle.jpeg",
     icon: User,
     color: "from-indigo-500/20 to-indigo-400/10",
     border: "border-indigo-500/30",
@@ -94,21 +98,32 @@ export default function EquipoSection() {
           {teamMembers.map((member, i) => (
             <ScaleIn key={member.name} delay={i * 0.15}>
               <div
-                className={`glass-card-strong rounded-3xl p-8 border ${member.border} hover:scale-[1.02] transition-all duration-300 h-full flex flex-col`}
+                className={`glass-card-strong rounded-3xl p-6 border ${member.border} hover:scale-[1.02] transition-all duration-300 h-full flex flex-col overflow-hidden`}
               >
-                {/* Header profile */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${member.color} flex items-center justify-center border border-white/10`}>
+                <div className="relative mb-6">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-white/10 bg-teal-950/30">
+                    <Image
+                      src={member.image}
+                      alt={`Foto de ${member.name}`}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#071414]/90 to-transparent" />
+                  </div>
+                  <div className={`absolute -bottom-4 left-4 w-14 h-14 rounded-2xl bg-gradient-to-br ${member.color} flex items-center justify-center border border-white/10 backdrop-blur-xl shadow-lg`}>
                     <member.icon className={`w-6 h-6 ${member.accent}`} />
                   </div>
-                  <div>
-                    <h3 className="font-bold text-white text-lg leading-tight">
-                      {member.name}
-                    </h3>
-                    <p className={`text-xs font-semibold ${member.accent} mt-1`}>
-                      {member.role}
-                    </p>
-                  </div>
+                </div>
+
+                {/* Header profile */}
+                <div className="mb-6 pt-2">
+                  <h3 className="font-bold text-white text-lg leading-tight">
+                    {member.name}
+                  </h3>
+                  <p className={`text-xs font-semibold ${member.accent} mt-1`}>
+                    {member.role}
+                  </p>
                 </div>
 
                 {/* Description */}

@@ -10,6 +10,7 @@ import NivelesSection from "./sections/NivelesSection";
 import OmnicanalidadSection from "./sections/OmnicanalidadSection";
 import ObjetivoSection from "./sections/ObjetivoSection";
 import FodaSection from "./sections/FodaSection";
+import ReferenciasSection from "./sections/ReferenciasSection";
 import { PawPrint } from "lucide-react";
 
 export default function PresentationClient() {
@@ -26,6 +27,7 @@ export default function PresentationClient() {
         <CostosSection />
         <ObjetivoSection />
         <FodaSection />
+        <ReferenciasSection />
       </main>
 
       {/* Footer */}

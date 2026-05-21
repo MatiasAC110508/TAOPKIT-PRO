@@ -31,6 +31,9 @@ const hallazgos = [
 ];
 
 export default function InvestigacionSection() {
+  const formsUrl = process.env.NEXT_PUBLIC_FORMS_URL;
+  const hasFormsUrl = typeof formsUrl === "string" && /^https?:\/\//.test(formsUrl);
+
   return (
     <section id="investigacion" className="relative py-28 px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern">
       <div className="max-w-7xl mx-auto">
@@ -145,17 +148,28 @@ export default function InvestigacionSection() {
                 <h4 className="text-white font-bold text-lg">¿Quieres revisar la base metodológica?</h4>
               </div>
               <p className="text-teal-100/70 text-sm">
-                Puedes acceder al portal de análisis del formulario oficial en Microsoft Forms.
+                {hasFormsUrl
+                  ? "Puedes acceder al formulario oficial y su análisis en Microsoft Forms."
+                  : "El enlace del formulario no está disponible aquí. Puedes revisar las referencias y fuentes del estudio."}
               </p>
             </div>
-            <a
-              href="https://forms.cloud.microsoft/?utm_source=chatgpt.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold hover:from-teal-400 hover:to-teal-500 transition-all duration-200 hover:scale-105 shrink-0 text-sm shadow-md"
-            >
-              Ver Microsoft Forms <ExternalLink className="w-4 h-4" />
-            </a>
+            {hasFormsUrl ? (
+              <a
+                href={formsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold hover:from-teal-400 hover:to-teal-500 transition-all duration-200 hover:scale-105 shrink-0 text-sm shadow-md"
+              >
+                Ver Microsoft Forms <ExternalLink className="w-4 h-4" />
+              </a>
+            ) : (
+              <a
+                href="#referencias"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-400 hover:to-amber-500 transition-all duration-200 hover:scale-105 shrink-0 text-sm shadow-md"
+              >
+                Ver referencias <ExternalLink className="w-4 h-4" />
+              </a>
+            )}
           </div>
         </FadeIn>
 

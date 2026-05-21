@@ -14,6 +14,7 @@ const navLinks = [
   { href: "#costos", label: "Costos" },
   { href: "#objetivo", label: "Objetivo" },
   { href: "#foda", label: "FODA" },
+  { href: "#referencias", label: "Referencias" },
 ];
 
 export default function Navbar() {

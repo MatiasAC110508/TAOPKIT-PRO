@@ -58,8 +58,8 @@ export default function DescripcionSection() {
               </p>
               <div className="pl-4 border-l-2 border-teal-500/50 my-6">
                 <p className="text-white/90 text-base italic">
-                  "Nos destacamos por ofrecer información respaldada por veterinarios y expertos, 
-                  generando mayor confianza y seguridad en cada uso."
+                  &ldquo;Nos destacamos por ofrecer información respaldada por veterinarios y expertos,
+                  generando mayor confianza y seguridad en cada uso.&rdquo;
                 </p>
               </div>
               <p>

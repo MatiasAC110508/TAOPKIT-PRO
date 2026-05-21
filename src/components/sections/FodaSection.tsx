@@ -1,592 +1,466 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FadeIn, ScaleIn } from "../Animations";
-import {
-  Shield,
-  AlertTriangle,
-  Lightbulb,
-  Flame,
-  ChevronDown,
-  ArrowUpDown,
-  BookOpen,
-  Briefcase,
-  Activity,
-  UserCheck
-} from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { FadeIn } from "../Animations";
+import { Table2, X } from "lucide-react";
 
-type FodaCategory = "fortalezas" | "debilidades" | "oportunidades" | "amenazas";
-type CruceCategory = "FO" | "DO" | "FA" | "DA";
+type ExcelCell = { id: string; text: string };
+type SelectedCell = { section: string; id: string; text: string } | null;
 
-const fodaData: Record<
-  FodaCategory,
-  { id: string; titulo: string; desc: string }[]
-> = {
-  fortalezas: [
+const excelFoda: {
+  strengths: ExcelCell[];
+  weaknesses: ExcelCell[];
+  opportunities: ExcelCell[];
+  threats: ExcelCell[];
+  FO: ExcelCell[];
+  DO: ExcelCell[];
+  FA: ExcelCell[];
+  DA: ExcelCell[];
+} = {
+  strengths: [
     {
       id: "F1",
-      titulo: 'Modelo "Todo En Uno"',
-      desc: 'El modelo "Todo En Uno" integra productos, información y asesoría en una sola plataforma, eliminando la confusión del usuario y facilitando el cuidado de su mascota.',
+      text: "Modelo “Todo En Uno”: El modelo “Todo En Uno” integra productos, información y asesoría en una sola plataforma, eliminando la confusión del usuario y facilitando el cuidado de su mascota.",
     },
     {
       id: "F2",
-      titulo: "Respaldo Profesional",
-      desc: "Garantiza que la información y los productos recomendados están validados por veterinarios, lo que genera confianza en el usuario y reduce la desinformación presente en el mercado digital.",
+      text: "Respaldo Profesional: Garantiza que la información y los productos recomendados están validados por veterinarios, lo que genera confianza en el usuario y reduce la desinformación presente en el mercado digital.",
     },
     {
       id: "F3",
-      titulo: "Gamificación",
-      desc: "La utilización de la App motiva al usuario a ser constante mediante dinámicas de juego que hacen más atractivo el cuidado de la mascota.",
+      text: "Gamificación: La utilización de la App motiva al usuario a ser constante mediante dinámicas de juego que hacen más atractivo el cuidado de la mascota.",
     },
     {
       id: "F4",
-      titulo: "Acompañamiento Educativo",
-      desc: "Mejora el uso de los productos al enseñar cómo y por qué utilizarlos, reduciendo la falta de información del usuario.",
+      text: "Acompañamiento Educativo: Mejora el uso de los productos al profesional al enseñar cómo y por qué utilizarlos, reduciendo la falta de información del usuario.",
     },
     {
       id: "F5",
-      titulo: "Personalización Real",
-      desc: "El diseño de kits por parte de los mismos usuarios según sus necesidades permite ofrecer soluciones específicas para cada mascota, aumentando la efectividad frente a productos genéricos.",
+      text: "Personalización Real: El diseño de kits por parte de los mismos usuarios según sus necesidades permite ofrecer soluciones específicas para cada mascota, aumentando la efectividad frente a productos genéricos.",
     },
     {
       id: "F6",
-      titulo: "Bajo Costo Tecnológico",
-      desc: "El proyecto utiliza herramientas ya existentes de manera eficiente, lo que nos permite implementar el proyecto con menor inversión al usar tecnología accesible y existente.",
+      text: "Bajo Costo Tecnológico: El proyecto utiliza herramientas ya existentes de manera eficiente, lo que nos permite implementar el proyecto con menor inversión al usar tecnología accesible y existente.",
     },
   ],
-  debilidades: [
+  weaknesses: [
     {
       id: "D1",
-      titulo: "Dependencia Tecnológica",
-      desc: "Depende del uso constante de la App y conexión a internet, lo que puede limitar su funcionamiento.",
+      text: "Dependencia Tecnológica: Depende del uso constante de la App y conexión a internet, lo que puede limitar su funcionamiento.",
     },
     {
       id: "D2",
-      titulo: "Logística de Envíos",
-      desc: "La distribución de los kits físicos implica retos en tiempos de entrega, costos y posibles fallas en el proceso, lo que puede afectar la experiencia del usuario.",
+      text: "Logística de Envíos: La distribución de los kits físicos implica retos en tiempos de entrega, costos y posibles fallas en el proceso, lo que puede afectar la experiencia del usuario.",
     },
     {
       id: "D3",
-      titulo: "Costos de Personalización",
-      desc: "Diseñar kits específicos para cada mascota incrementa los costos operativos, lo que puede elevar el precio final y limitar el acceso para el público objetivo.",
+      text: "Costos de Personalización: Diseñar kits específicos para cada mascota incrementa los costos operativos, lo que puede elevar el precio final y limitar el acceso para el público objetivo.",
     },
     {
       id: "D4",
-      titulo: "Marca Nueva",
-      desc: "Al no contar con reconocimiento ni trayectoria en el mercado, puede generar desconfianza en los usuarios y dificultar la captación de clientes en sus primeras etapas.",
+      text: "Marca Nueva: Al no contar con reconocimiento ni trayectoria en el mercado, puede generar desconfianza en los usuarios y dificultar la captación de clientes en sus primeras etapas.",
     },
     {
       id: "D5",
-      titulo: "Recursos Limitados",
-      desc: "Al contar con un presupuesto reducido, se dificulta la inversión en marketing, desarrollo y expansión, lo que puede limitar el crecimiento del proyecto.",
+      text: "Recursos Limitados: Al contar con un presupuesto reducido, se dificulta la inversión en marketing, desarrollo y expansión, lo que puede limitar el crecimiento del proyecto.",
     },
     {
       id: "D6",
-      titulo: "Dependencia de Terceros",
-      desc: "Depender de un tercero puede ocasionar problemas de disponibilidad, retrasos en la entrega y pérdida de control sobre la calidad del producto.",
+      text: "Falta de control directo en la cadena de suministro: Al no contar con producción propia de los insumos o productos del kit, el proyecto carece de control directo sobre los tiempos de disponibilidad y los estándares de calidad finales, dependiendo de la gestión de proveedores externos.",
     },
   ],
-  oportunidades: [
+  opportunities: [
     {
       id: "O1",
-      titulo: "Segmento Desatendido",
-      desc: "Existe un grupo de usuarios, especialmente estudiantes con poco tiempo, que no cuentan con soluciones efectivas para el cuidado de sus mascotas.",
+      text: "Segmento Desatendido: Existe un grupo de usuarios, especialmente estudiantes con poco tiempo, que no cuentan con soluciones efectivas para el cuidado de sus mascotas.",
     },
     {
       id: "O2",
-      titulo: "Crecimiento del Sector",
-      desc: "Cada vez más personas consideran a sus animales como parte de la familia, lo que incrementa la demanda de productos y servicios de bienestar.",
+      text: "Crecimiento del Sector: Cada vez más personas consideran a sus animales como parte de la familia, lo que incrementa la demanda de productos y servicios de bienestar.",
     },
     {
       id: "O3",
-      titulo: "Adopción Tecnológica",
-      desc: "El uso creciente de Apps facilita la adopción de soluciones digitales para resolver problemas cotidianos del cuidado de mascotas.",
+      text: "Adopción Tecnológica: El uso creciente de Apps facilita la adopción de soluciones digitales para resolver problemas cotidianos del cuidado de mascotas.",
     },
     {
       id: "O4",
-      titulo: "Alianzas con Veterinarias",
-      desc: "Permite fortalecer la credibilidad del producto, ampliar su alcance y garantizar la calidad de la información médica ofrecida.",
+      text: "Alianzas con Veterinarias: Permite fortalecer la credibilidad del producto, ampliar su alcance y garantizar la calidad de la información médica ofrecida.",
     },
     {
       id: "O5",
-      titulo: "Demanda de Practicidad",
-      desc: "Los usuarios buscan soluciones prácticas que les ahorren tiempo, lo que favorece directamente el formato de nuestra propuesta.",
+      text: "Demanda de Practicidad: Los usuarios buscan soluciones prácticas que les ahorren tiempo, lo que favorece directamente el formato de nuestra propuesta",
     },
     {
       id: "O6",
-      titulo: "Mercado con Desinformación",
-      desc: "La gran cantidad de información poco confiable en redes permite destacar ofreciendo recomendaciones claras, profesionales y verificadas.",
+      text: "Mercado con Desinformación: La gran cantidad de información poco confiable en redes permite destacar ofreciendo recomendaciones claras, profesionales y verificadas.",
     },
   ],
-  amenazas: [
+  threats: [
     {
       id: "A1",
-      titulo: "Competencia Consolidada",
-      desc: "Existen plataformas y tiendas con mayor reconocimiento, experiencia y confianza en el mercado, dificultando la captación inicial.",
+      text: "Competencia Consolidada: Existen plataformas y tiendas con mayor reconocimiento, experiencia y confianza en el mercado, dificultando la captación inicial.",
     },
     {
       id: "A2",
-      titulo: "Ingresos Limitados",
-      desc: "El público objetivo (estudiantes), al contar con bajo poder adquisitivo, puede limitar la demanda o frecuencia de compra por presupuesto.",
+      text: "Ingresos Limitados: El público objetivo (estudiantes), al contar con bajo poder adquisitivo, puede limitar la demanda o frecuencia de compra por presupuesto.",
     },
     {
       id: "A3",
-      titulo: "Saturación de Aplicaciones",
-      desc: "El exceso de Apps en los dispositivos móviles de los usuarios puede generar rechazo o fatiga para instalar una nueva plataforma.",
+      text: "Saturación de Aplicaciones: El exceso de Apps en los dispositivos móviles de los usuarios puede generar rechazo o fatiga para instalar una nueva plataforma.",
     },
     {
       id: "A4",
-      titulo: "Facilidad de Copia",
-      desc: "Competidores con más recursos económicos pueden replicar rápidamente la idea de personalización y el ecosistema todo en uno.",
+      text: "Facilidad de Copia: Competidores con más recursos económicos pueden replicar rápidamente la idea de personalización y el ecosistema todo en uno.",
     },
     {
       id: "A5",
-      titulo: "Logística Externa",
-      desc: "Factores fuera del control del proyecto, como fallas en transporte local o proveedores de insumos, afectando la experiencia final.",
+      text: "Logística Externa: Factores fuera del control del proyecto, como fallas en transporte local o proveedores de insumos, afectando la experiencia final.",
     },
     {
       id: "A6",
-      titulo: "Cambios Normativos",
-      desc: "Nuevas regulaciones legales relacionadas con la salud animal, empaques o el uso y protección de datos pueden obligar a modificar costos.",
+      text: "Cambios Normativos: Nuevas regulaciones legales relacionadas con la salud animal, empaques o el uso y protección de datos pueden obligar a modificar costos.",
     },
   ],
-};
-
-const cruceData: Record<
-  CruceCategory,
-  { ids: string; titulo: string; desc: string }[]
-> = {
   FO: [
     {
-      ids: "F1 + O1",
-      titulo: "Consolidación de Solución Integral",
-      desc: "Consolidar el ecosistema 'Todo en Uno' como la respuesta para el segmento universitario de la IUE desatendido. Al integrar productos, asesoría y alertas en una sola app, evitamos que tengan que usar múltiples proveedores.",
+      id: "F3+O5",
+      text: "Explotar al máximo las dinámicas de juego, la barra de nivel de salud y el sistema de medallas de la aplicación para enganchar a los estudiantes de la IUE que viven cortos de tiempo. Al convertir las tareas en micro-retos diarios divertidos y satisfactorios, resolvemos su falta de disponibilidad sin que sientan el cuidado de su mascota como una carga pesada.",
     },
     {
-      ids: "F5 + O2",
-      titulo: "Vínculo de Personalización Familiar",
-      desc: "Impulsar la personalización de los kits interactivos aprovechando la fuerte tendencia cultural donde las mascotas son de la familia. Ofrecer empaques específicos según la raza genera un vínculo emocional inigualable.",
+      id: "F2+O6",
+      text: "Posicionar el respaldo y la validación de nuestros profesionales veterinarios como el principal sello de confianza y veracidad de la marca. Esto nos permitirá destacar con fuerza frente a la gigantesca ola de desinformación, mitos falsos y consejos sin sustento científico que confunden a los jóvenes en las redes sociales.",
     },
     {
-      ids: "F6 + O3",
-      titulo: "Estrategia de Adopción Ágil",
-      desc: "Desplegar la adopción digital rápida entre jóvenes universitarios apoyándonos en nuestra infraestructura de bajo costo tecnológico. Optimizando herramientas existentes, ingresan rápido sin altos costos iniciales.",
+      id: "F1+O1",
+      text: "Consolidar nuestro ecosistema centralizado \"Todo en Uno\" como la solución definitiva para el segmento universitario de la IUE que hoy se encuentra desatendido. Al integrar productos físicos, asesoría guiada y alertas en una sola app, eliminamos la confusión de tener que saltar entre múltiples plataformas independientes",
     },
     {
-      ids: "F2 + O4",
-      titulo: "Validación Médica Estratégica",
-      desc: "Cerrar alianzas con veterinarias aliadas en la zona de influencia de la institución. Esto valida científicamente el contenido educativo de la app, permitiendo dar cupones de descuento cruzados.",
+      id: "F5+O2",
+      text: "Impulsar la opción de personalización real de los kits interactivos aprovechando la fuerte tendencia cultural donde las mascotas son consideradas miembros de la familia. Ofrecer soluciones específicas para las necesidades exactas de cada perro genera un vínculo emocional altísimo y destruye la oferta de productos genéricos del mercado.",
     },
     {
-      ids: "F2 + O6",
-      titulo: "Combate de Mitos Científicos",
-      desc: "Posicionar el respaldo profesional veterinario como el principal sello de veracidad del kit frente a la ola de desinformación y mitos falsos de redes sociales.",
+      id: "F6+O3",
+      text: "Desplegar una estrategia de adopción digital rápida entre los jóvenes universitarios apoyándonos en nuestra infraestructura de bajo costo tecnológico. Al optimizar herramientas digitales que ya existen y son familiares para ellos, facilitamos que integren la plataforma a su ritmo de vida acelerado sin exigir grandes inversiones iniciales.",
+    },
+    {
+      id: "F2+O4",
+      text: "Cerrar alianzas estratégicas con clínicas veterinarias aliadas en la zona de influencia de la institución. Esto nos permitirá validar médicamente el contenido educativo de la app, ofrecer cupones de descuento cruzados y ampliar el alcance comercial del proyecto con un respaldo real en el sector.",
     },
   ],
   DO: [
     {
-      ids: "D2 + O4",
-      titulo: "Puntos de Entrega Autorizados",
-      desc: "Corregir las limitaciones y altos costos de envíos físicos mediante convenios con centros veterinarios locales como pick-up points. Los estudiantes recogen allí, reduciendo costos.",
+      id: "D2+O4",
+      text: "Corregir las limitaciones y los altos costos de la logística de envíos físicos mediante convenios con centros veterinarios locales. Al usarlos como puntos físicos de distribución autorizados (\"pick-up points\"), los estudiantes pueden recoger sus kits directamente, eliminando el costo de envío y garantizando entregas seguras.",
     },
     {
-      ids: "D2 + O2",
-      titulo: "Compras en Bloque de Insumos",
-      desc: "Mitigar los altos costos operativos de empaquetar por mascota aprovechando la demanda de estudiantes. Al agrupar pedidos, compramos materia prima por volumen con mejores tarifas.",
+      id: "D2+O2",
+      text: "Neutralizar el impacto de los altos costos operativos que genera personalizar cada kit aprovechando la gran demanda y crecimiento del sector de mascotas. Al consolidar una comunidad de usuarios en la IUE, podemos generar compras de insumos en bloque y por volumen, negociando tarifas preferenciales con proveedores.",
     },
     {
-      ids: "D4 + O5",
-      titulo: "Atracción por Practicidad",
-      desc: "Superar la desconfianza de marca nueva enfocando la comunicación en el ahorro de tiempo real diario. Los testimonios locales disipan la incertidumbre inicial de compra.",
+      id: "D4+O5",
+      text: "Superar la desconfianza natural que genera ser una marca nueva y sin trayectoria en el mercado enfocándonos en la practicidad extrema. Al demostrarle a los estudiantes con datos y testimonios reales del campus que la app les ahorra tiempo real en sus rutinas diarias, la marca ganará reputación por su utilidad directa.",
     },
     {
-      ids: "D5 + O3",
-      titulo: "Crecimiento Orgánico Viral",
-      desc: "Compensar la escasez de presupuesto de marketing explotando las redes sociales de manera orgánica. Crearemos desafíos comunitarios y videos interactivos dentro de los campus.",
+      id: "D5+O3",
+      text: "Compensar la escasez de presupuesto para marketing y expansión explotando las facilidades del entorno digital y la alta adopción tecnológica de los jóvenes. En lugar de pauta costosa, implementaremos estrategias de contenido orgánico, viralización y desafíos comunitarios dentro de las redes que ellos ya usan todos los días.",
     },
     {
-      ids: "D6 + O4",
-      titulo: "Estabilidad de Abastecimiento",
-      desc: "Disminuir la dependencia de terceros firmando acuerdos comerciales directos con grandes distribuidores del sector veterinario, asegurando stock permanente.",
+      id: "D6+O4",
+      text: "Reducir la peligrosa dependencia de terceros y la pérdida de control en los insumos firmando alianzas estratégicas con distribuidoras del sector veterinario. Esto nos garantiza prioridad en el abastecimiento de productos esenciales para los kits, stock seguro y un control de calidad certificado por profesionales.",
     },
     {
-      ids: "D4 + O6",
-      titulo: "Diagnósticos Preventivos Informativos",
-      desc: "Superar la barrera de mercado publicando guías y diagnósticos médicos validados por la app. Esto educa al usuario y lo convierte en cliente recurrente.",
+      id: "D4+O6",
+      text: "Romper la barrera de entrada de ser una marca nueva posicionándonos como el canal de información verídica que combate la desinformación del mercado. Publicar guías y diagnósticos preventivos claros y validados científicamente en la app hará que los usuarios desconfiados nos vean rápido como un referente transparente y seguro.",
     },
   ],
   FA: [
     {
-      ids: "F1 + A1",
-      titulo: "Diferenciación vs Monopolios",
-      desc: "Enfrentar a gigantes como Mercado Libre destacando que somos asesores personalizados con manuales pedagógicos incluidos en el kit, no solo intermediarios de venta.",
+      id: "F1+A1",
+      text: "Utilizar la propuesta de valor integral del modelo \"Todo en Uno\" para competir con ventajas reales frente a monopolios digitales consolidados como Mercado Libre o tiendas tradicionales. Ellos son simples canales de venta fríos; nosotros ofrecemos personalización, manuales físicos pedagógicos y asesoría virtual guiada.",
     },
     {
-      ids: "F2 + A2",
-      titulo: "Prevención Médica Económica",
-      desc: "Contrarrestar el bajo presupuesto estudiantil demostrando que un kit preventivo guiado evita que cometan errores médicos futuros, cuidando su bolsillo a mediano plazo.",
+      id: "F2+A2",
+      text: "Apoyarse en el sello y respaldo profesional veterinario para contrarrestar la limitación de ingresos económicos de los estudiantes de la IUE. Al demostrarles que un kit preventivo guiado evita que cometan errores médicos costosos, el usuario percibirá el servicio como una inversión inteligente que cuida su bolsillo.",
     },
     {
-      ids: "F3 + A3",
-      titulo: "Gamificación contra Abandono",
-      desc: "Combatir la fatiga de aplicaciones móviles mediante mecánicas de juego, recompensas y medallas de constancia en el cuidado diario del animal.",
+      id: "F3+A3",
+      text: "Aplicar las mecánicas de gamificación, recompensas por constancia y medallas de logro para combatir el riesgo de abandono por la saturación de aplicaciones en el celular. Hacer que la interacción diaria sea dinámica, divertida y satisfactoria evita que nuestra app sea percibida como una herramienta aburrida que deban borrar.",
     },
     {
-      ids: "F5 + A4",
-      titulo: "Fidelización de Co-creación",
-      desc: "Crear una barrera contra la copia de competidores con más capital mediante la personalización interactiva. El vínculo emocional construido es imposible de clonar con dinero.",
+      id: "F5+A4",
+      text: "Explotar el sistema de personalización real interactiva (donde el usuario es el cocreador de su propio kit) como barrera competitiva ante la facilidad de copia del modelo por parte de empresas con más recursos. El vínculo emocional y la experiencia a la medida construida por el dueño de la mascota son imposibles de replicar con simple dinero.",
     },
     {
-      ids: "F4 + A6",
-      titulo: "Cumplimiento Educativo y Resguardo",
-      desc: "Desplegar manuales educativos impresos y acompañamiento digital para educar correctamente al usuario y cumplir de manera natural las normativas de salud animal.",
+      id: "F4+A6",
+      text: "Desplegar el acompañamiento educativo interactivo y los manuales físicos incluidos en cada caja para blindar al usuario ante regulaciones gubernamentales confusas o normativas de salud animal. Mantener al cliente perfectamente educado sobre el uso correcto de cada insumo garantiza el cumplimiento estricto de las normas vigentes.",
     },
     {
-      ids: "F6 + A6",
-      titulo: "Adaptabilidad Legal Sin Costo",
-      desc: "Aprovechar la infraestructura ágil y ligera para absorber cambios imprevistos en normativas de datos o de salud sin tener que subirle las tarifas finales a los clientes.",
+      id: "F6+A6",
+      text: "Aprovechar nuestra infraestructura operativa ágil de bajo costo tecnológico para absorber cambios imprevistos en normativas de datos o de salud sin que afecte el negocio. Al no depender de servidores costosos ni desarrollos complejos en esta etapa, el proyecto puede pivotar rápido y adaptarse legalmente sin tener que subirle las tarifas a los estudiantes.",
     },
   ],
   DA: [
     {
-      ids: "D3 + A2",
-      titulo: "Línea Express Modular Económica",
-      desc: "Reestructurar los empaques para crear una línea express más económica enfocada estrictamente en el bolsillo universitario con menores ingresos.",
+      id: "D3+A2",
+      text: "Reestructurar la escala de costos operativos de empaque y personalización para diseñar una línea exclusiva de \"Kits modulares express\" económicos. Esto nos permite ajustarnos estrictamente al bajo poder adquisitivo y presupuestos limitados de los estudiantes de la IUE, evitando que el precio final tumbe la demanda.",
     },
     {
-      ids: "D2 + A5",
-      titulo: "Mensajería Local Descentralizada",
-      desc: "Crear una red de transporte de mensajería independiente en el Valle de Aburrá para que paros o incidentes externos no retrasen las entregas.",
+      id: "D2+A5",
+      text: "Desarrollar un protocolo logístico interno descentralizado que incluya mensajería local alternativa e independiente del Valle de Aburrá. De esta forma, si ocurren problemas externos de transporte masivo o bloqueos logísticos de las grandes agencias, las entregas de los kits del campus no se verán interrumpidas.",
     },
     {
-      ids: "D4 + A1",
-      titulo: "Identidad Comunitaria Universitaria",
-      desc: "Neutralizar grandes marcas competidoras con una identidad muy cercana. Un proyecto nacido de las aulas de la IUE genera una lealtad local muy fuerte.",
+      id: "D4+A1",
+      text: "Crear una identidad de marca comunitaria muy cercana, humana e integrada a la vida universitaria de la IUE para neutralizar la amenaza de la competencia consolidada. Las grandes corporaciones son percibidas como entes corporativos distantes; un proyecto nacido en las mismas aulas genera una lealtad local muy difícil de arrebatar.",
     },
     {
-      ids: "D1 + A3",
-      titulo: "Funcionalidad Offline y Canales Directos",
-      desc: "Desarrollar la app de manera ultraligera y permitir el registro por WhatsApp. Reduce la exigencia de memoria y datos móviles de los estudiantes.",
+      id: "D1+A3",
+      text: "Garantizar que el desarrollo técnico de la aplicación sea sumamente ligero, permitiendo la consulta de tareas en modo offline o mediante recordatorios directos automatizados vía canales nativos como WhatsApp. Esto reduce la dependencia estricta de internet constante y mitiga el peligro de que borren la app por falta de espacio.",
     },
     {
-      ids: "D6 + A5",
-      titulo: "Diversificación de Insumos",
-      desc: "Mantener al menos tres proveedores alternativos locales de insumos clave para que fallas logísticas de terceros no detengan el ensamblado.",
+      id: "D6+A5",
+      text: "Diversificar la cartera de proveedores de insumos esenciales estableciendo al menos tres opciones de suministro locales. Esto nos permite descentralizar las compras y evitar que paros de transporte o fallas de producción de un único tercero dejen los kits vacíos o retrasen los envíos.",
     },
     {
-      ids: "D5 + A6",
-      titulo: "Respaldo Consultorio Jurídico IUE",
-      desc: "Optimizar el presupuesto apoyándonos en los consultorios jurídicos de la universidad para la revisión legal y protección de datos sin gastar en abogados corporativos.",
+      id: "D5+A6",
+      text: "Optimizar la distribución del presupuesto limitado enfocándolo en el cumplimiento legal básico de la mano de los consultorios jurídicos de la misma universidad. Así mitigamos riesgos de multas o sanciones imprevistas por normativas de protección de datos o manejo de salud animal sin desangrar el capital de marketing.",
     },
   ],
 };
 
-const mainTabs = [
-  { key: "matriz", label: "Matriz FODA Básica" },
-  { key: "cruce", label: "Cruce Estratégico (Excel)" },
-];
-
-const categoryTabs: {
-  key: FodaCategory;
-  label: string;
-  icon: typeof Shield;
+function HeaderCell({
+  title,
+  subtitle,
+  gradient,
+  className = "",
+}: {
+  title: string;
+  subtitle?: string;
   gradient: string;
-  border: string;
-}[] = [
-  {
-    key: "fortalezas",
-    label: "Fortalezas",
-    icon: Shield,
-    gradient: "from-teal-500 to-teal-600",
-    border: "border-teal-500/20",
-  },
-  {
-    key: "debilidades",
-    label: "Debilidades",
-    icon: AlertTriangle,
-    gradient: "from-amber-500 to-amber-600",
-    border: "border-amber-500/20",
-  },
-  {
-    key: "oportunidades",
-    label: "Oportunidades",
-    icon: Lightbulb,
-    gradient: "from-emerald-500 to-emerald-600",
-    border: "border-emerald-500/20",
-  },
-  {
-    key: "amenazas",
-    label: "Amenazas",
-    icon: Flame,
-    gradient: "from-rose-500 to-rose-600",
-    border: "border-rose-500/20",
-  },
-];
+  className?: string;
+}) {
+  return (
+    <th
+      colSpan={2}
+      className={`px-4 py-3 text-center uppercase tracking-widest border border-white/10 bg-gradient-to-r ${gradient} ${className}`}
+    >
+      <div className="text-xs md:text-sm font-extrabold text-white">{title}</div>
+      {subtitle && <div className="text-[10px] font-semibold text-white/80 mt-0.5">{subtitle}</div>}
+    </th>
+  );
+}
 
-const cruceTabs: {
-  key: CruceCategory;
-  label: string;
-  desc: string;
-  gradient: string;
-  accent: string;
-}[] = [
-  {
-    key: "FO",
-    label: "FO (Maxi-Maxi)",
-    desc: "Estrategias de crecimiento: Usar fortalezas para aprovechar oportunidades.",
-    gradient: "from-teal-500 to-emerald-600",
-    accent: "text-teal-400",
-  },
-  {
-    key: "DO",
-    label: "DO (Mini-Maxi)",
-    desc: "Estrategias de mejora: Superar debilidades usando oportunidades.",
-    gradient: "from-amber-500 to-emerald-600",
-    accent: "text-amber-400",
-  },
-  {
-    key: "FA",
-    label: "FA (Maxi-Mini)",
-    desc: "Estrategias de defensa: Usar fortalezas para evitar amenazas.",
-    gradient: "from-teal-500 to-rose-600",
-    accent: "text-rose-400",
-  },
-  {
-    key: "DA",
-    label: "DA (Mini-Mini)",
-    desc: "Estrategias de supervivencia: Reducir debilidades y evitar amenazas.",
-    gradient: "from-amber-500 to-rose-600",
-    accent: "text-amber-500",
-  },
-];
+function EmptyHeaderCell() {
+  return <th colSpan={2} className="border border-white/10 bg-[#061010]/80" aria-hidden="true" />;
+}
+
+function EmptyCell() {
+  return <td className="border border-white/10 bg-[#061010]/60" aria-hidden="true" />;
+}
+
+function IdCell({ value }: { value: string }) {
+  return (
+    <td className="w-[92px] border border-white/10 bg-[#061010]/70 text-center align-top px-2 py-2">
+      <span className="font-mono text-[11px] md:text-xs font-extrabold text-white">{value}</span>
+    </td>
+  );
+}
+
+function TextCell({
+  section,
+  cell,
+  onOpen,
+}: {
+  section: string;
+  cell: ExcelCell;
+  onOpen: (selected: { section: string; id: string; text: string }) => void;
+}) {
+  return (
+    <td className="border border-white/10 bg-[#0a1717]/60 align-top px-3 py-2">
+      <button type="button" onClick={() => onOpen({ section, id: cell.id, text: cell.text })} className="w-full text-left group">
+        <div className="text-[11px] md:text-xs leading-relaxed text-teal-100/80 group-hover:text-white transition-colors">
+          {cell.text}
+        </div>
+        <div className="mt-1 text-[10px] text-teal-300/50 group-hover:text-amber-300/70 transition-colors">
+          Click para ampliar
+        </div>
+      </button>
+    </td>
+  );
+}
 
 export default function FodaSection() {
-  const [activeMainTab, setActiveMainTab] = useState<"matriz" | "cruce">("matriz");
-  const [activeFodaCat, setActiveFodaCat] = useState<FodaCategory>("fortalezas");
-  const [activeCruceCat, setActiveCruceCat] = useState<CruceCategory>("FO");
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-
-  const toggleExpand = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
+  const [selected, setSelected] = useState<SelectedCell>(null);
 
   return (
     <section id="foda" className="relative py-28 px-6 dot-pattern bg-[#081313]/60">
       <div className="max-w-6xl mx-auto">
-        
         {/* Header */}
         <FadeIn>
           <div className="text-center mb-16">
             <span className="inline-block text-sm font-semibold tracking-widest uppercase text-amber-400 mb-3">
               Análisis Estratégico
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">
-              FODA y Plan de Acción
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">FODA y Plan de Acción</h2>
             <p className="text-teal-100/70 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-              Meticulosa evaluación del micro y macroentorno del negocio. Compara los factores internos/externos y visualiza la matriz de cruce táctico.
+              Matriz tipo Excel (interactiva) con factores internos/externos y cruce estratégico FO/DO/FA/DA.
             </p>
           </div>
         </FadeIn>
 
-        {/* Main Tab Selector (Matriz vs Cruce) */}
-        <div className="flex justify-center mb-12">
-          <div className="p-1 rounded-full bg-teal-950/40 border border-teal-500/20 inline-flex">
-            {mainTabs.map((tab) => (
-              <button
-                key={tab.key}
-                onClick={() => {
-                  setActiveMainTab(tab.key as "matriz" | "cruce");
-                  setExpandedId(null);
-                }}
-                className={`px-6 py-2.5 rounded-full font-bold text-xs md:text-sm transition-all duration-300 ${
-                  activeMainTab === tab.key
-                    ? "bg-teal-500 text-white shadow-md"
-                    : "text-teal-200/50 hover:text-white"
-                }`}
+        {/* Excel-like table */}
+        <FadeIn>
+          <div className="glass-card-strong rounded-3xl border border-white/10 overflow-hidden shadow-2xl shadow-black/30">
+            <div className="px-6 py-4 border-b border-white/10 bg-gradient-to-r from-teal-950/60 via-[#071414]/40 to-amber-950/40 flex items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-teal-500/10 border border-teal-400/20 flex items-center justify-center">
+                  <Table2 className="w-5 h-5 text-teal-300" />
+                </div>
+                <div>
+                  <div className="text-white font-extrabold text-sm md:text-base">Cruce Estratégico (Excel)</div>
+                  <div className="text-teal-200/50 text-[11px] md:text-xs">Desliza para ver todo • Click en una celda para ampliar</div>
+                </div>
+              </div>
+              <a
+                href="#referencias"
+                className="text-[11px] md:text-xs font-semibold text-amber-300/90 hover:text-amber-200 transition-colors"
               >
-                {tab.label}
-              </button>
-            ))}
+                Ver referencias (APA 7)
+              </a>
+            </div>
+
+            <div className="max-h-[72vh] overflow-auto bg-[#061010]/60">
+              <table className="min-w-[1180px] w-full border-collapse">
+                <colgroup>
+                  <col className="w-[92px]" />
+                  <col className="w-[420px]" />
+                  <col className="w-[92px]" />
+                  <col className="w-[420px]" />
+                  <col className="w-[92px]" />
+                  <col className="w-[420px]" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <EmptyHeaderCell />
+                    <HeaderCell title="FORTALEZAS" gradient="from-teal-500/90 to-teal-600/80" />
+                    <HeaderCell title="DEBILIDADES" gradient="from-amber-500/90 to-amber-600/80" />
+                  </tr>
+                </thead>
+                <tbody>
+                  {excelFoda.strengths.map((s, idx) => {
+                    const w = excelFoda.weaknesses[idx];
+                    return (
+                      <tr key={`sw-${s.id}`}>
+                        <EmptyCell />
+                        <EmptyCell />
+                        <IdCell value={s.id} />
+                        <TextCell section="Fortalezas" cell={s} onOpen={(val) => setSelected(val)} />
+                        <IdCell value={w.id} />
+                        <TextCell section="Debilidades" cell={w} onOpen={(val) => setSelected(val)} />
+                      </tr>
+                    );
+                  })}
+
+                  <tr>
+                    <HeaderCell title="OPORTUNIDADES" gradient="from-emerald-500/90 to-emerald-600/80" />
+                    <HeaderCell title="FO" subtitle="ESTRATEGIAS" gradient="from-teal-500/90 to-emerald-600/80" />
+                    <HeaderCell title="DO" subtitle="ESTRATEGIAS" gradient="from-amber-500/90 to-emerald-600/80" />
+                  </tr>
+
+                  {excelFoda.opportunities.map((o, idx) => {
+                    const fo = excelFoda.FO[idx];
+                    const doCell = excelFoda.DO[idx];
+                    return (
+                      <tr key={`odo-${o.id}`}>
+                        <IdCell value={o.id} />
+                        <TextCell section="Oportunidades" cell={o} onOpen={(val) => setSelected(val)} />
+                        <IdCell value={fo.id} />
+                        <TextCell section="FO Estrategias" cell={fo} onOpen={(val) => setSelected(val)} />
+                        <IdCell value={doCell.id} />
+                        <TextCell section="DO Estrategias" cell={doCell} onOpen={(val) => setSelected(val)} />
+                      </tr>
+                    );
+                  })}
+
+                  <tr>
+                    <HeaderCell title="AMENAZAS" gradient="from-rose-500/90 to-rose-600/80" />
+                    <HeaderCell title="FA" subtitle="ESTRATEGIAS" gradient="from-teal-500/90 to-rose-600/80" />
+                    <HeaderCell title="DA" subtitle="ESTRATEGIAS" gradient="from-amber-500/90 to-rose-600/80" />
+                  </tr>
+
+                  {excelFoda.threats.map((a, idx) => {
+                    const fa = excelFoda.FA[idx];
+                    const da = excelFoda.DA[idx];
+                    return (
+                      <tr key={`ada-${a.id}`}>
+                        <IdCell value={a.id} />
+                        <TextCell section="Amenazas" cell={a} onOpen={(val) => setSelected(val)} />
+                        <IdCell value={fa.id} />
+                        <TextCell section="FA Estrategias" cell={fa} onOpen={(val) => setSelected(val)} />
+                        <IdCell value={da.id} />
+                        <TextCell section="DA Estrategias" cell={da} onOpen={(val) => setSelected(val)} />
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-
-        {/* Dynamic content wrapper */}
-        <div className="min-h-[480px]">
-          
-          {/* TAB 1: MATRIZ FODA BÁSICA */}
-          {activeMainTab === "matriz" && (
-            <div>
-              {/* Category sub-selector */}
-              <div className="flex flex-wrap justify-center gap-3 mb-10">
-                {categoryTabs.map((tab) => {
-                  const Icon = tab.icon;
-                  const isActive = activeFodaCat === tab.key;
-                  return (
-                    <button
-                      key={tab.key}
-                      onClick={() => {
-                        setActiveFodaCat(tab.key);
-                        setExpandedId(null);
-                      }}
-                      className={`flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-xs md:text-sm transition-all duration-300 border ${
-                        isActive
-                          ? `bg-gradient-to-r ${tab.gradient} border-transparent text-white shadow-lg`
-                          : `glass-card ${tab.border} text-teal-200/60 hover:text-white hover:bg-white/5`
-                      }`}
-                    >
-                      <Icon className="w-4 h-4" />
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Category Item List */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeFodaCat}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.25 }}
-                  className="space-y-3 max-w-4xl mx-auto"
-                >
-                  {fodaData[activeFodaCat].map((item) => (
-                    <div
-                      key={item.id}
-                      className="glass-card-strong rounded-2xl overflow-hidden hover:border-teal-400/25 transition-all duration-200 border border-white/5"
-                    >
-                      <button
-                        onClick={() => toggleExpand(item.id)}
-                        className="w-full flex items-center justify-between p-5 text-left"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span
-                            className={`text-xs font-bold px-3 py-1 rounded-lg bg-gradient-to-r ${
-                              categoryTabs.find((t) => t.key === activeFodaCat)?.gradient
-                            } text-white`}
-                          >
-                            {item.id}
-                          </span>
-                          <span className="font-bold text-white text-sm md:text-base">
-                            {item.titulo}
-                          </span>
-                        </div>
-                        <ChevronDown
-                          className={`w-5 h-5 text-teal-400 transition-transform duration-300 shrink-0 ${
-                            expandedId === item.id ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {expandedId === item.id && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <div className="px-5 pb-5 pl-14 text-teal-100/70 text-xs md:text-sm leading-relaxed border-t border-white/5 pt-3 bg-teal-950/10">
-                              {item.desc}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          )}
-
-          {/* TAB 2: CRUCE ESTRATÉGICO */}
-          {activeMainTab === "cruce" && (
-            <div>
-              {/* Crossover grid selector */}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-                {cruceTabs.map((tab) => {
-                  const isActive = activeCruceCat === tab.key;
-                  return (
-                    <button
-                      key={tab.key}
-                      onClick={() => {
-                        setActiveCruceCat(tab.key);
-                        setExpandedId(null);
-                      }}
-                      className={`text-left p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between h-28 ${
-                        isActive
-                          ? `bg-gradient-to-br ${tab.gradient} border-transparent text-white shadow-lg`
-                          : "glass-card border-white/5 text-teal-200/60 hover:bg-white/5"
-                      }`}
-                    >
-                      <span className="font-extrabold text-lg block">{tab.label}</span>
-                      <span className={`text-[10px] leading-tight ${isActive ? "text-white/80" : "text-teal-200/40"}`}>
-                        {tab.desc}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Strategy Item List */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeCruceCat}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.25 }}
-                  className="space-y-3 max-w-4xl mx-auto"
-                >
-                  {cruceData[activeCruceCat].map((strategy) => (
-                    <div
-                      key={strategy.ids}
-                      className="glass-card-strong rounded-2xl overflow-hidden hover:border-amber-400/25 transition-all duration-200 border border-white/5"
-                    >
-                      <button
-                        onClick={() => toggleExpand(strategy.ids)}
-                        className="w-full flex items-center justify-between p-5 text-left"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/25">
-                            {strategy.ids}
-                          </span>
-                          <span className="font-bold text-white text-sm md:text-base leading-tight">
-                            {strategy.titulo}
-                          </span>
-                        </div>
-                        <ChevronDown
-                          className={`w-5 h-5 text-teal-400 transition-transform duration-300 shrink-0 ${
-                            expandedId === strategy.ids ? "rotate-180" : ""
-                          }`}
-                        />
-                      </button>
-                      <AnimatePresence>
-                        {expandedId === strategy.ids && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <div className="px-5 pb-5 pl-14 text-teal-100/70 text-xs md:text-sm leading-relaxed border-t border-white/5 pt-3 bg-amber-950/10">
-                              {strategy.desc}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          )}
-
-        </div>
-
+        </FadeIn>
       </div>
+
+      {/* Cell modal */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex items-center justify-center p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <button
+              type="button"
+              aria-label="Cerrar"
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+              onClick={() => setSelected(null)}
+            />
+            <motion.div
+              initial={{ y: 18, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 18, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.2 }}
+              className="relative w-full max-w-3xl rounded-3xl glass-card-strong border border-white/10 overflow-hidden shadow-2xl"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Detalle de celda"
+            >
+              <div className="px-6 py-4 border-b border-white/10 flex items-start justify-between gap-4 bg-gradient-to-r from-teal-950/50 via-[#071414]/40 to-amber-950/40">
+                <div>
+                  <div className="text-teal-200/60 text-xs font-semibold tracking-widest uppercase">{selected.section}</div>
+                  <div className="mt-1 flex items-center gap-3">
+                    <span className="font-mono text-xs font-extrabold px-2 py-1 rounded-lg bg-teal-500/10 border border-teal-400/20 text-white">
+                      {selected.id}
+                    </span>
+                    <span className="text-white font-bold text-sm md:text-base">Detalle</span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setSelected(null)}
+                  className="p-2 rounded-xl hover:bg-white/5 text-teal-200/70 hover:text-white transition-colors"
+                  aria-label="Cerrar modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="p-6">
+                <p className="text-teal-100/80 text-sm md:text-base leading-relaxed whitespace-pre-wrap">{selected.text}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
+
