@@ -170,7 +170,7 @@ export default function CostosSection() {
                   max="60"
                   value={margen}
                   onChange={(e) => setMargen(Number(e.target.value))}
-                  className="w-full h-2 rounded-lg bg-teal-950/60 appearance-none cursor-pointer accent-teal-400"
+                  className="w-full h-2 rounded-lg bg-teal-950/60 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-amber-400 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-amber-400 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none"
                 />
                 
                 <div className="flex justify-between text-[10px] text-teal-200/40">
