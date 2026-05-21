@@ -1,181 +1,158 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, PawPrint, X } from "lucide-react";
-
-const primaryLinks = [
-  { href: "#hero", label: "Inicio" },
-  { href: "#equipo", label: "Equipo" },
-  { href: "#investigacion", label: "Estudio" },
-  { href: "#descripcion", label: "Producto" },
-  { href: "#foda", label: "FODA" },
-];
-
-const moreLinks = [
-  { href: "#niveles", label: "Niveles" },
-  { href: "#cim", label: "CIM" },
-  { href: "#costos", label: "Costos" },
-  { href: "#objetivo", label: "Objetivo" },
-  { href: "#segmentacion", label: "Segmentación" },
-  { href: "#referencias", label: "Referencias" },
-];
-
-const allLinks = [...primaryLinks, ...moreLinks];
+import { useState, useEffect } from "react";
+import { PawPrint, Menu, X, ChevronDown } from "lucide-react";
+import { primaryLinks, moreLinks, allLinks } from "../data/navigation";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [moreOpen, setMoreOpen] = useState(false);
-  const [activeHash, setActiveHash] = useState("#hero");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
+      setIsScrolled(window.scrollY > 20);
 
-      const current = [...allLinks].reverse().find((link) => {
-        const section = document.querySelector(link.href);
-        if (!section) return false;
-        return section.getBoundingClientRect().top <= 140;
+      const sections = allLinks.map(link => link.href.substring(1));
+
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
       });
 
-      if (current) setActiveHash(current.href);
+      if (current) {
+        setActiveSection(current);
+      }
     };
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const closeMenus = (href: string) => {
-    setActiveHash(href);
-    setMobileOpen(false);
-    setMoreOpen(false);
+  const scrollTo = (href: string) => {
+    setIsMobileMenuOpen(false);
+    setIsMoreMenuOpen(false);
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80;
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   };
 
-  const linkClass = (href: string) =>
-    `px-3.5 py-2 text-xs xl:text-sm rounded-full transition-all duration-200 ${
-      activeHash === href
-        ? "bg-teal-400/20 text-white border border-teal-300/20"
-        : "text-teal-100/70 border border-transparent hover:text-white hover:bg-white/5"
-    }`;
-
   return (
-    <>
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-3 md:top-4 left-0 right-0 z-50 px-3 md:px-4"
-      >
-        <div
-          className={`max-w-6xl mx-auto h-14 md:h-16 rounded-full border px-3 md:px-4 flex items-center justify-between transition-all duration-500 ${
-            scrolled
-              ? "bg-[#071414]/90 border-teal-300/20 backdrop-blur-2xl shadow-2xl shadow-black/30"
-              : "bg-[#071414]/60 border-white/10 backdrop-blur-xl"
-          }`}
-        >
-          <a href="#hero" onClick={() => closeMenus("#hero")} className="flex items-center gap-2 group shrink-0">
-            <span className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-teal-500/10 border border-teal-400/20 flex items-center justify-center">
-              <PawPrint className="w-4 h-4 md:w-5 md:h-5 text-teal-300 group-hover:rotate-12 transition-transform" />
+    <nav
+      className={`fixed top-3 md:top-4 left-0 right-0 z-50 transition-all duration-300 px-4 md:px-6`}
+    >
+      <div className="max-w-7xl mx-auto">
+        <div className={`
+          flex items-center justify-between rounded-2xl md:rounded-full px-4 md:px-6 py-3 md:py-4 transition-all duration-300
+          ${isScrolled
+            ? "bg-[#0b1717]/80 backdrop-blur-xl border border-teal-500/20 shadow-lg shadow-black/20"
+            : "bg-transparent"}
+        `}>
+          {/* Logo */}
+          <div className="flex items-center gap-2 md:gap-3 cursor-pointer" onClick={() => scrollTo('#hero')}>
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center shadow-lg shadow-teal-500/20">
+              <PawPrint className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            </div>
+            <span className="font-bold text-lg md:text-xl tracking-wide text-white">
+              TAOP<span className="text-teal-400">KIT</span>
             </span>
-            <span className="font-bold text-sm sm:text-base md:text-lg text-white leading-none">
-              TAOP <span className="gradient-text">KIT PRO</span>
-            </span>
-          </a>
+          </div>
 
-          <div className="hidden lg:flex items-center gap-1">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center gap-2 bg-black/20 rounded-full p-1.5 border border-white/5">
             {primaryLinks.map((link) => (
-              <a key={link.href} href={link.href} onClick={() => closeMenus(link.href)} className={linkClass(link.href)}>
+              <button
+                key={link.href}
+                onClick={() => scrollTo(link.href)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeSection === link.href.substring(1)
+                    ? "bg-teal-500 text-white shadow-md shadow-teal-500/20"
+                    : "text-teal-100/70 hover:text-white hover:bg-white/10"
+                  }`}
+              >
                 {link.label}
-              </a>
+              </button>
             ))}
 
+            {/* "More" Dropdown Menu */}
             <div className="relative">
               <button
-                type="button"
-                onClick={() => setMoreOpen((open) => !open)}
-                className={`inline-flex items-center gap-1.5 ${linkClass(moreLinks.some((link) => link.href === activeHash) ? activeHash : "#more")}`}
-                aria-expanded={moreOpen}
-                aria-label="Abrir más secciones"
+                onClick={() => setIsMoreMenuOpen(!isMoreMenuOpen)}
+                className={`flex items-center gap-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${moreLinks.some(l => activeSection === l.href.substring(1)) || isMoreMenuOpen
+                    ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                    : "text-teal-100/70 hover:text-white hover:bg-white/10"
+                  }`}
               >
-                Más
-                <ChevronDown className={`w-4 h-4 transition-transform ${moreOpen ? "rotate-180" : ""}`} />
+                Más <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMoreMenuOpen ? "rotate-180" : ""}`} />
               </button>
 
-              <AnimatePresence>
-                {moreOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.98 }}
-                    transition={{ duration: 0.18 }}
-                    className="absolute right-0 top-full mt-3 w-56 rounded-2xl border border-white/10 bg-[#071414]/95 backdrop-blur-2xl p-2 shadow-2xl shadow-black/35"
-                  >
-                    {moreLinks.map((link) => (
-                      <a
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => closeMenus(link.href)}
-                        className={`block rounded-xl px-4 py-3 text-sm transition-colors ${
-                          activeHash === link.href
-                            ? "bg-teal-400/10 text-white"
-                            : "text-teal-100/70 hover:bg-white/5 hover:text-white"
+              {/* Dropdown Content */}
+              <div className={`
+                absolute top-full right-0 mt-2 w-48 rounded-2xl bg-[#0b1717]/95 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 origin-top-right
+                ${isMoreMenuOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}
+              `}>
+                <div className="p-2 flex flex-col gap-1">
+                  {moreLinks.map((link) => (
+                    <button
+                      key={link.href}
+                      onClick={() => scrollTo(link.href)}
+                      className={`text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${activeSection === link.href.substring(1)
+                          ? "bg-teal-500/20 text-teal-300"
+                          : "text-teal-100/70 hover:bg-white/10 hover:text-white"
                         }`}
-                      >
-                        {link.label}
-                      </a>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                    >
+                      {link.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
+          {/* Mobile Menu Button */}
           <button
-            className="lg:hidden w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-teal-100 hover:text-white hover:bg-white/5 transition-colors"
-            onClick={() => {
-              setMobileOpen((open) => !open);
-              setMoreOpen(false);
-            }}
-            aria-label="Abrir menú"
+            className="lg:hidden w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </motion.nav>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 overflow-y-auto bg-[#071414]/98 backdrop-blur-2xl px-4 pt-24 pb-8"
-          >
-            <div className="max-w-sm mx-auto grid gap-2">
-              {allLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.035 }}
-                  onClick={() => closeMenus(link.href)}
-                  className={`rounded-2xl px-5 py-3.5 text-base font-semibold border transition-colors ${
-                    activeHash === link.href
-                      ? "bg-teal-400/10 border-teal-300/20 text-white"
-                      : "border-white/10 text-teal-100/75 hover:bg-white/5 hover:text-white"
+        {/* Mobile Navigation */}
+        <div className={`
+          lg:hidden absolute top-full left-4 right-4 mt-2 rounded-2xl bg-[#0b1717]/95 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 overflow-hidden
+          ${isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 border-transparent"}
+        `}>
+          <div className="p-4 flex flex-col gap-2 max-h-[60vh] overflow-y-auto custom-scrollbar">
+            {allLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => scrollTo(link.href)}
+                className={`w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors ${activeSection === link.href.substring(1)
+                    ? "bg-teal-500/20 text-teal-300 border border-teal-500/20"
+                    : "text-teal-100/70 hover:bg-white/10 hover:text-white"
                   }`}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+              >
+                {link.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
   );
 }

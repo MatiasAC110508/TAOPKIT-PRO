@@ -1,14 +1,6 @@
-"use client";
+import { ReferenceItem } from "../types";
 
-import { FadeIn } from "../Animations";
-import { BookOpenText, ExternalLink } from "lucide-react";
-
-type ReferenceItem = {
-  text: string;
-  href?: string;
-};
-
-const referencias: ReferenceItem[] = [
+export const projectReferences: ReferenceItem[] = [
   {
     text: "Granados, M., Zapata, J. M., Farhang, Y., Torres, S., y grupo de trabajo. (2026). Desarrollo de producto: TAOP KIT PRO. Institución Universitaria de Envigado.",
   },
@@ -66,61 +58,3 @@ const referencias: ReferenceItem[] = [
     href: "https://www.one.com/es-es/marketing-digital/guia-para-principiantes-publico-objetivo",
   },
 ];
-
-export default function ReferenciasSection() {
-  return (
-    <section id="referencias" className="relative py-20 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-[#081212] via-[#071414] to-[#081212] dot-pattern">
-      <div className="max-w-6xl mx-auto">
-        <FadeIn>
-          <div className="text-center mb-12">
-            <span className="inline-block text-sm font-semibold tracking-widest uppercase text-amber-400 mb-3">
-              Soporte Teórico
-            </span>
-            <h2 className="text-3xl md:text-5xl font-bold gradient-text mb-4">Referencias (APA 7)</h2>
-            <p className="text-teal-100/70 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-              Fuentes utilizadas para sustentar la investigación, segmentación y estrategia del proyecto.
-            </p>
-          </div>
-        </FadeIn>
-
-        <FadeIn>
-          <div className="glass-card-strong rounded-2xl md:rounded-3xl border border-white/10 overflow-hidden">
-            <div className="px-4 md:px-6 py-4 border-b border-white/10 bg-gradient-to-r from-amber-950/30 via-[#071414]/40 to-teal-950/30 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl md:rounded-2xl bg-amber-500/10 border border-amber-400/20 flex items-center justify-center shrink-0">
-                <BookOpenText className="w-5 h-5 text-amber-300" />
-              </div>
-              <div className="text-white font-extrabold">Listado de referencias</div>
-            </div>
-
-            <ol className="p-4 md:p-6 space-y-4 text-teal-100/75">
-              {referencias.map((ref, idx) => {
-                const content = (
-                  <span className="text-sm leading-relaxed">{ref.text}</span>
-                );
-
-                return (
-                  <li key={idx} className="pl-6 -indent-6 break-words">
-                    <span className="mr-2 text-teal-300/50">{idx + 1}.</span>
-                    {ref.href ? (
-                      <a
-                        href={ref.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-white transition-colors inline"
-                      >
-                        {content}
-                        <ExternalLink className="inline-block w-4 h-4 ml-1 align-text-bottom text-teal-300/60" />
-                      </a>
-                    ) : (
-                      content
-                    )}
-                  </li>
-                );
-              })}
-            </ol>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}

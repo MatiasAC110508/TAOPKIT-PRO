@@ -63,13 +63,13 @@ export default function HeroSection() {
         <FadeIn delay={0.8}>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <a
-              href="#descripcion"
+              href="#description"
               className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-full hover:from-teal-400 hover:to-teal-500 transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/40 hover:scale-105 text-center"
             >
               Explorar Proyecto
             </a>
             <a
-              href="#niveles"
+              href="#levels"
               className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 glass-card text-teal-200 font-semibold rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-105 text-center"
             >
               Niveles del Producto

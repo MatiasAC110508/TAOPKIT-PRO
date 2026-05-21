@@ -2,41 +2,18 @@
 
 import { useState } from "react";
 import { FadeIn, StaggerContainer, StaggerItem } from "../Animations";
-import { DollarSign, Package, Wrench, Tag, Calculator, Percent, Sparkles } from "lucide-react";
+import { DollarSign, Package, Wrench, Calculator, Sparkles } from "lucide-react";
+import { costJustifications, productCosts, serviceCosts } from "../../data/pricing";
 
-const costoProducto = [
-  { elemento: "Productos de higiene y cuidado", costo: "$25.000" },
-  { elemento: "Snacks o suplementos", costo: "$15.000" },
-  { elemento: "Empaque personalizado", costo: "$8.000" },
-  { elemento: "Manual e instrucciones impresas", costo: "$4.000" },
-  { elemento: "Diseño y personalización del kit", costo: "$6.000" },
-  { elemento: "Envío aproximado", costo: "$12.000" },
-];
-
-const costoServicio = [
-  { servicio: "Página web y mantenimiento", costo: "$80.000" },
-  { servicio: "Publicidad en redes sociales", costo: "$150.000" },
-  { servicio: "Diseño y contenido digital", costo: "$70.000" },
-  { servicio: "Atención al cliente", costo: "$50.000" },
-];
-
-const justificaciones = [
-  "La personalización algorítmica del kit.",
-  "La asesoría e indicaciones confiables.",
-  "La comodidad de comprar todo en un solo portal.",
-  "El ahorro de tiempo y traslados para el cliente.",
-  "El valor educativo y acompañamiento ofrecido por la marca.",
-];
-
-export default function CostosSection() {
-  const [margen, setMargen] = useState(50); // 50% default margin
+export default function PricingSection() {
+  const [margin, setMargin] = useState(50); // 50% default margin
   
-  const costoBase = 70000;
-  const precioSugerido = Math.round(costoBase + (costoBase * (margen / 100)));
+  const baseCost = 70000;
+  const suggestedPrice = Math.round(baseCost + (baseCost * (margin / 100)));
 
   return (
     <section
-      id="costos"
+      id="pricing"
       className="relative py-28 px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern"
     >
       <div className="max-w-7xl mx-auto">
@@ -59,7 +36,7 @@ export default function CostosSection() {
         {/* Costs lists Grid */}
         <div className="grid lg:grid-cols-2 gap-8 mb-16">
           
-          {/* Costos del producto */}
+          {/* Product Costs */}
           <FadeIn direction="left">
             <div className="glass-card-strong rounded-2xl p-8 h-full flex flex-col justify-between">
               <div>
@@ -73,16 +50,16 @@ export default function CostosSection() {
                 </div>
 
                 <div className="space-y-2 mb-6">
-                  {costoProducto.map((item) => (
+                  {productCosts.map((item) => (
                     <div
-                      key={item.elemento}
+                      key={item.item}
                       className="flex justify-between items-center py-2 border-b border-white/5"
                     >
                       <span className="text-teal-200/70 text-xs md:text-sm">
-                        {item.elemento}
+                        {item.item}
                       </span>
                       <span className="text-amber-300 font-semibold text-xs md:text-sm">
-                        {item.costo}
+                        {item.cost}
                       </span>
                     </div>
                   ))}
@@ -100,7 +77,7 @@ export default function CostosSection() {
             </div>
           </FadeIn>
 
-          {/* Costos del servicio */}
+          {/* Service Costs */}
           <FadeIn direction="right" delay={0.15}>
             <div className="glass-card-strong rounded-2xl p-8 h-full flex flex-col justify-between">
               <div>
@@ -114,16 +91,16 @@ export default function CostosSection() {
                 </div>
 
                 <div className="space-y-2 mb-6">
-                  {costoServicio.map((item) => (
+                  {serviceCosts.map((item) => (
                     <div
-                      key={item.servicio}
+                      key={item.service}
                       className="flex justify-between items-center py-2 border-b border-white/5"
                     >
                       <span className="text-teal-200/70 text-xs md:text-sm">
-                        {item.servicio}
+                        {item.service}
                       </span>
                       <span className="text-amber-300 font-semibold text-xs md:text-sm">
-                        {item.costo}
+                        {item.cost}
                       </span>
                     </div>
                   ))}
@@ -161,15 +138,15 @@ export default function CostosSection() {
               <div className="space-y-6">
                 <div className="flex justify-between items-center">
                   <span className="text-white text-xs font-semibold uppercase tracking-wider">Margen de Ganancia Proyectado</span>
-                  <span className="text-teal-400 font-extrabold text-lg">{margen}%</span>
+                  <span className="text-teal-400 font-extrabold text-lg">{margin}%</span>
                 </div>
                 
                 <input
                   type="range"
                   min="30"
                   max="60"
-                  value={margen}
-                  onChange={(e) => setMargen(Number(e.target.value))}
+                  value={margin}
+                  onChange={(e) => setMargin(Number(e.target.value))}
                   className="w-full h-2 rounded-lg bg-teal-950/60 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-6 [&::-webkit-slider-thumb]:h-6 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-amber-400 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-6 [&::-moz-range-thumb]:h-6 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-amber-400 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none"
                 />
                 
@@ -187,7 +164,7 @@ export default function CostosSection() {
                 </span>
                 
                 <span className="text-3xl md:text-4xl font-extrabold text-white block mb-2">
-                  ${precioSugerido.toLocaleString("es-CO")} COP
+                  ${suggestedPrice.toLocaleString("es-CO")} COP
                 </span>
                 
                 <span className="text-[10px] text-amber-400 italic font-medium flex items-center justify-center gap-1">
@@ -201,14 +178,14 @@ export default function CostosSection() {
             <div className="text-center mt-8 pt-6 border-t border-white/5">
               <span className="text-[10px] uppercase font-bold text-teal-200/30 tracking-widest block mb-2">Ecuación Teórica Usada</span>
               <code className="text-xs md:text-sm text-teal-300 font-mono">
-                Precio = {costoBase.toLocaleString("es-CO")} + ({costoBase.toLocaleString("es-CO")} × {margen / 100}) = ${precioSugerido.toLocaleString("es-CO")} COP
+                Precio = {baseCost.toLocaleString("es-CO")} + ({baseCost.toLocaleString("es-CO")} × {margin / 100}) = ${suggestedPrice.toLocaleString("es-CO")} COP
               </code>
             </div>
 
           </div>
         </FadeIn>
 
-        {/* Justificación del precio */}
+        {/* Price Justification */}
         <FadeIn delay={0.2}>
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-6">
@@ -219,7 +196,7 @@ export default function CostosSection() {
               El cliente percibe a TAOP KIT PRO como una solución integral que excede por mucho la simple entrega física de productos de aseo:
             </p>
             <StaggerContainer className="flex flex-wrap justify-center gap-4">
-              {justificaciones.map((j) => (
+              {costJustifications.map((j) => (
                 <StaggerItem key={j} className="w-full md:w-[calc(50%-0.5rem)] max-w-[400px]">
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-teal-950/20 border border-teal-500/10 h-full">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />

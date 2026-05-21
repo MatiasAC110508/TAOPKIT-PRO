@@ -3,39 +3,14 @@
 import { motion } from "framer-motion";
 import { FadeIn, ScaleIn } from "../Animations";
 import { Users, ExternalLink, BarChart3, ShieldAlert, Sparkles } from "lucide-react";
+import { researchFindings, researchLimitations } from "../../data/research";
 
-const limitantes = [
-  { label: "Tiempo para el cuidado", valor: 53, color: "bg-teal-400", bg: "bg-teal-950/50" },
-  { label: "Presupuesto / Dinero", valor: 29, color: "bg-amber-400", bg: "bg-amber-950/50" },
-  { label: "Información y Guía", valor: 12, color: "bg-rose-400", bg: "bg-rose-950/50" },
-  { label: "Acceso a Productos", valor: 6, color: "bg-emerald-400", bg: "bg-emerald-950/50" },
-];
-
-const hallazgos = [
-  {
-    titulo: "Higiene y Alimentación",
-    desc: "Muchos dueños batallan por mantener la constancia en el baño de su perro y en elegir alimentos/snacks saludables.",
-  },
-  {
-    titulo: "Falta de Tiempo",
-    desc: "Los estudiantes de la IUE viven horarios saturados de estudio y trabajo, lo que dificulta la búsqueda individualizada de productos.",
-  },
-  {
-    titulo: "Desconfianza en Internet",
-    desc: "El mercado digital está saturado de información falsa y productos genéricos de baja calidad que pueden dañar a las mascotas.",
-  },
-  {
-    titulo: "Gastos Ineficientes",
-    desc: "Los usuarios a menudo compran productos equivocados debido a la desinformación, resultando en pérdidas financieras y frustración.",
-  },
-];
-
-export default function InvestigacionSection() {
+export default function ResearchSection() {
   const formsUrl = process.env.NEXT_PUBLIC_FORMS_URL;
   const hasFormsUrl = typeof formsUrl === "string" && /^https?:\/\//.test(formsUrl);
 
   return (
-    <section id="investigacion" className="relative py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern">
+    <section id="research" className="relative py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
@@ -79,7 +54,7 @@ export default function InvestigacionSection() {
             </div>
           </div>
 
-          {/* Limitantes - Animated Progress Bars */}
+          {/* Limitations - Animated Progress Bars */}
           <div className="lg:col-span-8 glass-card-strong rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/5 flex flex-col justify-between">
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
@@ -97,16 +72,16 @@ export default function InvestigacionSection() {
             </div>
 
             <div className="space-y-6">
-              {limitantes.map((limit) => (
+              {researchLimitations.map((limit) => (
                 <div key={limit.label} className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-white font-medium">{limit.label}</span>
-                    <span className="text-teal-300 font-bold">{limit.valor}%</span>
+                    <span className="text-teal-300 font-bold">{limit.value}%</span>
                   </div>
                   <div className={`w-full h-3 rounded-full ${limit.bg} overflow-hidden`}>
                     <motion.div
                       initial={{ width: 0 }}
-                      whileInView={{ width: `${limit.valor}%` }}
+                      whileInView={{ width: `${limit.value}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 1, ease: "easeOut" }}
                       className={`h-full rounded-full ${limit.color}`}
@@ -118,20 +93,20 @@ export default function InvestigacionSection() {
           </div>
         </div>
 
-        {/* Hallazgos principales */}
+        {/* Findings */}
         <div className="mb-12 md:mb-16">
           <div className="flex items-start md:items-center gap-3 mb-6 md:mb-8">
             <ShieldAlert className="w-6 h-6 text-rose-400" />
             <h3 className="text-xl md:text-2xl font-bold text-white">Hallazgos y Problemas Identificados</h3>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {hallazgos.map((item, i) => (
-              <ScaleIn key={item.titulo} delay={i * 0.1}>
+            {researchFindings.map((item, i) => (
+              <ScaleIn key={item.title} delay={i * 0.1}>
                 <div className="glass-card rounded-2xl p-5 md:p-6 border border-white/5 hover:border-teal-500/30 transition-all duration-300 h-full">
                   <span className="text-xs font-bold px-2 py-0.5 rounded bg-teal-500/10 text-teal-300 mb-4 inline-block">
                     Problema {i + 1}
                   </span>
-                  <h4 className="font-bold text-white text-base mb-2">{item.titulo}</h4>
+                  <h4 className="font-bold text-white text-base mb-2">{item.title}</h4>
                   <p className="text-teal-200/60 text-xs leading-relaxed">{item.desc}</p>
                 </div>
               </ScaleIn>
@@ -164,7 +139,7 @@ export default function InvestigacionSection() {
               </a>
             ) : (
               <a
-                href="#referencias"
+                href="#references"
                 className="inline-flex w-full md:w-auto justify-center items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-400 hover:to-amber-500 transition-all duration-200 hover:scale-105 shrink-0 text-sm shadow-md"
               >
                 Ver referencias <ExternalLink className="w-4 h-4" />

@@ -2,34 +2,11 @@
 
 import Image from "next/image";
 import { FadeIn } from "../Animations";
-import { Sparkles, Heart, Clock, Shield } from "lucide-react";
+import { productHighlights } from "../../data/product";
 
-const highlights = [
-  {
-    icon: Sparkles,
-    title: "Personalización",
-    text: "Cada kit se adapta a las necesidades específicas de la mascota, teniendo en cuenta aspectos como higiene, alimentación, salud y bienestar.",
-  },
-  {
-    icon: Heart,
-    title: "Respaldo Veterinario",
-    text: "Información respaldada por veterinarios y expertos, generando mayor confianza y seguridad en los usuarios.",
-  },
-  {
-    icon: Clock,
-    title: "Ahorro de Tiempo",
-    text: "Evita que los usuarios gasten en productos innecesarios o pierdan tiempo buscando soluciones poco confiables.",
-  },
-  {
-    icon: Shield,
-    title: "Todo en Uno",
-    text: "Integra bienestar, asesoría, personalización y practicidad, ofreciendo una experiencia moderna, confiable y accesible.",
-  },
-];
-
-export default function DescripcionSection() {
+export default function ProductDescriptionSection() {
   return (
-    <section id="descripcion" className="relative py-28 px-6 dot-pattern">
+    <section id="description" className="relative py-28 px-6 dot-pattern">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
           <div className="text-center mb-16">
@@ -91,21 +68,24 @@ export default function DescripcionSection() {
 
         {/* Highlight cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.1}>
-              <div className="glass-card-strong rounded-2xl p-6 hover:border-teal-400/40 transition-all duration-300 group hover:-translate-y-1 h-full">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500/20 to-teal-400/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-6 h-6 text-teal-400" />
+          {productHighlights.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <FadeIn key={item.title} delay={i * 0.1}>
+                <div className="glass-card-strong rounded-2xl p-6 hover:border-teal-400/40 transition-all duration-300 group hover:-translate-y-1 h-full">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500/20 to-teal-400/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                    <Icon className="w-6 h-6 text-teal-400" />
+                  </div>
+                  <h3 className="font-bold text-white text-lg mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-teal-200/60 text-sm leading-relaxed">
+                    {item.text}
+                  </p>
                 </div>
-                <h3 className="font-bold text-white text-lg mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-teal-200/60 text-sm leading-relaxed">
-                  {item.text}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
+              </FadeIn>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -2,34 +2,35 @@
 
 import Navbar from "./Navbar";
 import HeroSection from "./sections/HeroSection";
-import EquipoSection from "./sections/EquipoSection";
-import InvestigacionSection from "./sections/InvestigacionSection";
-import DescripcionSection from "./sections/DescripcionSection";
-import CostosSection from "./sections/CostosSection";
-import NivelesSection from "./sections/NivelesSection";
-import OmnicanalidadSection from "./sections/OmnicanalidadSection";
-import ObjetivoSection from "./sections/ObjetivoSection";
-import SegmentacionSection from "./sections/SegmentacionSection";
-import FodaSection from "./sections/FodaSection";
-import ReferenciasSection from "./sections/ReferenciasSection";
+import TeamSection from "./sections/TeamSection";
+import ResearchSection from "./sections/ResearchSection";
+import ProductDescriptionSection from "./sections/ProductDescriptionSection";
+import PricingSection from "./sections/PricingSection";
+import ProductLevelsSection from "./sections/ProductLevelsSection";
+import OmnichannelSection from "./sections/OmnichannelSection";
+import ObjectivesSection from "./sections/ObjectivesSection";
+import SegmentationSection from "./sections/SegmentationSection";
+import SwotSection from "./sections/SwotSection";
+import ReferencesSection from "./sections/ReferencesSection";
 import { PawPrint } from "lucide-react";
 
 export default function PresentationClient() {
   return (
-    <>
+    <div className="min-h-screen bg-[#071414] text-white selection:bg-teal-500/30 font-sans">
       <Navbar />
-      <main className="flex-1">
+      
+      <main className="relative z-10">
         <HeroSection />
-        <EquipoSection />
-        <InvestigacionSection />
-        <DescripcionSection />
-        <NivelesSection />
-        <OmnicanalidadSection />
-        <CostosSection />
-        <ObjetivoSection />
-        <SegmentacionSection />
-        <FodaSection />
-        <ReferenciasSection />
+        <TeamSection />
+        <ResearchSection />
+        <ProductDescriptionSection />
+        <ProductLevelsSection />
+        <OmnichannelSection />
+        <PricingSection />
+        <ObjectivesSection />
+        <SegmentationSection />
+        <SwotSection />
+        <ReferencesSection />
       </main>
 
       {/* Footer */}
@@ -46,6 +47,6 @@ export default function PresentationClient() {
           </p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
