@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn, ScaleIn, StaggerContainer, StaggerItem } from "../Animations";
 import {
   Layers,
@@ -13,16 +14,18 @@ import {
   Users,
   Clock,
   CheckCircle2,
+  HelpCircle,
+  HelpCircle as QuestionIcon
 } from "lucide-react";
 
 const productosIncluidos = [
-  "Champú",
-  "Acondicionador",
-  "Loción",
-  "Talco",
+  "Champú especializado",
+  "Acondicionador suavizante",
+  "Loción aromática",
+  "Talco protector",
   "Baño en seco",
-  "Crema dental",
-  "Cepillo de dientes",
+  "Crema dental canina",
+  "Cepillo de dientes de doble cerda",
 ];
 
 const serviciosPrincipales = [
@@ -67,164 +70,209 @@ const experiencia = [
   "Tranquilidad en el cuidado de su mascota.",
 ];
 
-const nivelesResumen = [
-  {
-    nivel: "Producto Básico",
-    desc: "Bienestar, higiene y salud de la mascota.",
-    icon: Heart,
-    color: "from-teal-500 to-teal-600",
-  },
-  {
-    nivel: "Producto Real",
-    desc: "Kit completo de productos de higiene y cuidado.",
-    icon: Box,
-    color: "from-amber-500 to-amber-600",
-  },
-  {
-    nivel: "Producto Aumentado",
-    desc: "Comodidad, ahorro de tiempo y experiencia premium.",
-    icon: Star,
-    color: "from-coral-400 to-coral-500",
-  },
-];
+type NivelKey = "basico" | "real" | "aumentado";
 
 export default function NivelesSection() {
+  const [activeNivel, setActiveNivel] = useState<NivelKey>("basico");
+
   return (
-    <section id="niveles" className="relative py-28 px-6 dot-pattern">
+    <section id="niveles" className="relative py-28 px-6 bg-gradient-to-b from-[#0c1a1a] via-[#081313] to-[#0c1a1a] dot-pattern">
       <div className="max-w-7xl mx-auto">
+        
         {/* Header */}
         <FadeIn>
           <div className="text-center mb-20">
             <span className="inline-block text-sm font-semibold tracking-widest uppercase text-amber-400 mb-3">
-              Niveles del Producto
+              Estructura de la Propuesta
             </span>
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              TAOP KIT PRO
+              Niveles del Producto
             </h2>
             <p className="text-teal-100/80 max-w-3xl mx-auto text-lg leading-relaxed">
-              <strong className="text-white">TAOP KIT PRO</strong> nace con un propósito claro: <span className="text-teal-300 font-medium">facilitar la vida</span> de los
-              dueños de mascotas que buscan productos de higiene de primera
-              calidad, pero que muchas veces no cuentan con el tiempo suficiente
-              para buscar cada producto por separado.
+              De acuerdo con la teoría de Kotler, estructuramos a 
+              <strong className="text-white"> TAOP KIT PRO </strong> en tres niveles complementarios para asegurar valor básico, tangible y aumentado.
             </p>
-            <div className="inline-block mt-6 px-6 py-3 rounded-2xl glass-card-strong border border-amber-500/20">
-              <p className="text-white/90 max-w-2xl mx-auto">
-                Nuestro kit reúne todo lo necesario en un <span className="text-amber-300 font-semibold">paquete práctico, moderno y fácil de transportar</span>, 
-                ofreciendo comodidad inmediata y ahorro de tiempo sin descuidar el bienestar de tu mascota.
-              </p>
-            </div>
           </div>
         </FadeIn>
 
-        {/* Producto Básico */}
-        <div className="mb-20">
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center">
-                <Heart className="w-5 h-5 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white">
-                Producto Básico — Necesidad a Satisfacer
-              </h3>
-            </div>
-          </FadeIn>
+        {/* Dynamic Levels Layout */}
+        <div className="grid lg:grid-cols-12 gap-12 items-center mb-24">
+          
+          {/* Left Column: Visual Concentric Diagram */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full flex items-center justify-center border border-white/5 bg-[#091515]/30">
+              
+              {/* Outer Layer: Producto Aumentado */}
+              <button
+                onClick={() => setActiveNivel("aumentado")}
+                className={`absolute inset-0 rounded-full border-2 transition-all duration-300 flex items-start justify-center pt-5 ${
+                  activeNivel === "aumentado"
+                    ? "border-rose-400 bg-rose-950/10 scale-100 z-10"
+                    : "border-teal-500/10 hover:border-teal-500/35 hover:bg-white/5"
+                }`}
+              >
+                <span className={`text-[10px] uppercase font-bold tracking-widest ${activeNivel === "aumentado" ? "text-rose-400" : "text-teal-300/40"}`}>
+                  Producto Aumentado
+                </span>
+              </button>
 
-          <FadeIn delay={0.1}>
-            <div className="glass-card-strong rounded-2xl p-8 mb-8">
-              <p className="text-teal-100/80 text-lg mb-6">
-                El principal beneficio de TAOP KIT PRO es satisfacer la
-                necesidad de higiene, bienestar y salud de las mascotas. El
-                producto ayuda a:
-              </p>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {[
-                  "Mantener limpia a la mascota.",
-                  "Controlar olores.",
-                  "Mejorar la convivencia dentro del hogar.",
-                  "Facilitar el cuidado diario del animal.",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0" />
-                    <span className="text-teal-100/70">{item}</span>
+              {/* Middle Layer: Producto Real */}
+              <button
+                onClick={() => setActiveNivel("real")}
+                className={`absolute w-[240px] h-[240px] md:w-[280px] md:h-[280px] rounded-full border-2 transition-all duration-300 flex items-start justify-center pt-5 ${
+                  activeNivel === "real"
+                    ? "border-amber-400 bg-amber-950/10 scale-102 z-20"
+                    : "border-teal-500/15 hover:border-teal-500/40 hover:bg-white/5"
+                }`}
+              >
+                <span className={`text-[10px] uppercase font-bold tracking-widest ${activeNivel === "real" ? "text-amber-400" : "text-teal-300/50"}`}>
+                  Producto Real
+                </span>
+              </button>
+
+              {/* Core Layer: Producto Básico */}
+              <button
+                onClick={() => setActiveNivel("basico")}
+                className={`absolute w-[140px] h-[140px] md:w-[160px] md:h-[160px] rounded-full border-2 transition-all duration-300 flex flex-col items-center justify-center p-3 text-center ${
+                  activeNivel === "basico"
+                    ? "border-teal-400 bg-teal-950/30 scale-105 z-30"
+                    : "border-teal-500/20 hover:border-teal-500/50 hover:bg-white/5"
+                }`}
+              >
+                <Heart className={`w-6 h-6 mb-1 ${activeNivel === "basico" ? "text-teal-400" : "text-teal-400/40"}`} />
+                <span className={`text-[9px] uppercase font-bold tracking-widest ${activeNivel === "basico" ? "text-white" : "text-teal-300/60"}`}>
+                  P. Básico
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Active Level Description Cards */}
+          <div className="lg:col-span-7">
+            <AnimatePresence mode="wait">
+              {activeNivel === "basico" && (
+                <motion.div
+                  key="basico"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.25 }}
+                  className="glass-card-strong rounded-3xl p-8 border border-teal-500/20"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center">
+                      <Heart className="w-5 h-5 text-teal-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white leading-tight">Producto Básico</h3>
+                      <p className="text-xs text-teal-400 font-semibold uppercase tracking-wider">Necesidad Esencial a Satisfacer</p>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-
-        {/* Producto Real */}
-        <div className="mb-20">
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex items-center justify-center">
-                <Box className="w-5 h-5 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white">
-                Producto Real
-              </h3>
-            </div>
-          </FadeIn>
-
-          <div className="grid lg:grid-cols-2 gap-8">
-            <FadeIn direction="left" delay={0.1}>
-              <div className="glass-card-strong rounded-2xl p-8 h-full">
-                <p className="text-teal-100/80 mb-6">
-                  TAOP KIT PRO es un kit de higiene para mascotas que incluye
-                  diferentes productos esenciales para su cuidado.
-                </p>
-                <h4 className="font-bold text-amber-300 mb-4">
-                  Productos incluidos
-                </h4>
-                <StaggerContainer className="space-y-2">
-                  {productosIncluidos.map((p) => (
-                    <StaggerItem key={p}>
-                      <div className="flex items-center gap-3 py-1">
-                        <span className="w-2 h-2 rounded-full bg-amber-400 shrink-0" />
-                        <span className="text-teal-100/70">{p}</span>
+                  <p className="text-teal-100/90 text-sm md:text-base leading-relaxed mb-6">
+                    Satisface la necesidad primaria de <strong className="text-white">higiene, bienestar y salud integral</strong> de las mascotas. Al mantener limpio al animal, controla los olores y mejora de manera directa la convivencia familiar e higiene del hogar.
+                  </p>
+                  <div className="grid sm:grid-cols-2 gap-3 pt-4 border-t border-white/5">
+                    {[
+                      "Bienestar y salud canina",
+                      "Control biológico de olores",
+                      "Higiene y convivencia familiar",
+                      "Cuidado básico preventivo"
+                    ].map((item) => (
+                      <div key={item} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
+                        <span className="text-teal-200/60 text-xs">{item}</span>
                       </div>
-                    </StaggerItem>
-                  ))}
-                </StaggerContainer>
-                <p className="text-teal-100/50 text-sm mt-4 italic">
-                  Todo se entrega en un empaque práctico, resistente y fácil de
-                  transportar.
-                </p>
-              </div>
-            </FadeIn>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
 
-            <FadeIn direction="right" delay={0.2}>
-              <div className="relative group h-full">
-                <div className="absolute -inset-3 bg-gradient-to-r from-amber-400/20 to-teal-400/20 rounded-3xl blur-xl opacity-50 group-hover:opacity-80 transition-opacity duration-500" />
-                <div className="relative rounded-2xl overflow-hidden h-full">
-                  <Image
-                    src="/products-flatlay.png"
-                    alt="Productos incluidos en TAOP KIT PRO"
-                    width={600}
-                    height={500}
-                    className="w-full h-full object-cover rounded-2xl hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              </div>
-            </FadeIn>
+              {activeNivel === "real" && (
+                <motion.div
+                  key="real"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.25 }}
+                  className="glass-card-strong rounded-3xl p-8 border border-amber-500/20"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
+                      <Box className="w-5 h-5 text-amber-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white leading-tight">Producto Real</h3>
+                      <p className="text-xs text-amber-400 font-semibold uppercase tracking-wider">Especificaciones Tangibles</p>
+                    </div>
+                  </div>
+                  <p className="text-teal-100/90 text-sm md:text-base leading-relaxed mb-6">
+                    El kit físico tangible y de fácil transporte. Contiene 7 productos de higiene en una caja protectora, complementados con un manual de usuario pedagógico.
+                  </p>
+                  <div className="pt-4 border-t border-white/5">
+                    <h4 className="text-white font-bold text-xs uppercase tracking-wider mb-3">Productos Físicos Incluidos</h4>
+                    <div className="grid grid-cols-2 gap-2">
+                      {productosIncluidos.map((p) => (
+                        <div key={p} className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                          <span className="text-teal-200/60 text-xs">{p}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeNivel === "aumentado" && (
+                <motion.div
+                  key="aumentado"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.25 }}
+                  className="glass-card-strong rounded-3xl p-8 border border-rose-500/20"
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-rose-500/10 flex items-center justify-center">
+                      <Star className="w-5 h-5 text-rose-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white leading-tight">Producto Aumentado</h3>
+                      <p className="text-xs text-rose-400 font-semibold uppercase tracking-wider">Servicio & Valor Diferenciador</p>
+                    </div>
+                  </div>
+                  <p className="text-teal-100/90 text-sm md:text-base leading-relaxed mb-6">
+                    Soporte extendido e intangibles que facilitan la vida del dueño. Incluye comodidad, el algoritmo de personalización en la web, asesoría médica directa y recordatorios de recompra inteligentes.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
+                    {diferenciadores.map((d, idx) => {
+                      const Icon = d.icon;
+                      return (
+                        <div key={idx} className="flex items-start gap-2">
+                          <Icon className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                          <span className="text-teal-200/60 text-xs leading-tight">{d.text}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
 
-        {/* Servicios y Características */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-20">
+        {/* Support Services and Specs Grid */}
+        <div className="grid md:grid-cols-2 gap-8 mb-20">
           <FadeIn direction="left">
-            <div className="glass-card-strong rounded-2xl p-8 h-full">
+            <div className="glass-card-strong rounded-2xl p-8 border border-white/5 h-full">
               <div className="flex items-center gap-3 mb-6">
                 <ShieldCheck className="w-6 h-6 text-teal-400" />
-                <h4 className="text-xl font-bold text-white">
-                  Servicios Principales
-                </h4>
+                <h4 className="text-lg font-bold text-white">Servicios de Soporte</h4>
               </div>
               <div className="space-y-3">
                 {serviciosPrincipales.map((s) => (
-                  <div key={s} className="flex items-start gap-3">
+                  <div key={s} className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-teal-400 mt-1 shrink-0" />
-                    <span className="text-teal-100/70 text-sm">{s}</span>
+                    <span className="text-teal-200/70 text-xs md:text-sm">{s}</span>
                   </div>
                 ))}
               </div>
@@ -232,18 +280,16 @@ export default function NivelesSection() {
           </FadeIn>
 
           <FadeIn direction="right" delay={0.15}>
-            <div className="glass-card-strong rounded-2xl p-8 h-full">
+            <div className="glass-card-strong rounded-2xl p-8 border border-white/5 h-full">
               <div className="flex items-center gap-3 mb-6">
                 <Layers className="w-6 h-6 text-amber-400" />
-                <h4 className="text-xl font-bold text-white">
-                  Características del Servicio
-                </h4>
+                <h4 className="text-lg font-bold text-white">Características del Servicio</h4>
               </div>
               <div className="space-y-3">
                 {caracteristicas.map((c) => (
-                  <div key={c} className="flex items-start gap-3">
+                  <div key={c} className="flex items-start gap-2">
                     <CheckCircle2 className="w-4 h-4 text-amber-400 mt-1 shrink-0" />
-                    <span className="text-teal-100/70 text-sm">{c}</span>
+                    <span className="text-teal-200/70 text-xs md:text-sm">{c}</span>
                   </div>
                 ))}
               </div>
@@ -251,59 +297,19 @@ export default function NivelesSection() {
           </FadeIn>
         </div>
 
-        {/* Producto Aumentado */}
-        <div className="mb-20">
-          <FadeIn>
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-coral-400 to-coral-500 flex items-center justify-center">
-                <Star className="w-5 h-5 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white">
-                Producto Aumentado
-              </h3>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <div className="glass-card-strong rounded-2xl p-8 mb-8">
-              <p className="text-teal-100/80 text-lg mb-4">
-                TAOP KIT PRO no solo ofrece productos de higiene, sino también
-                comodidad y facilidad para los dueños de mascotas. El cliente
-                evita buscar productos individualmente y obtiene una solución
-                completa en un solo lugar.
-              </p>
-            </div>
-          </FadeIn>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {diferenciadores.map((d, i) => (
-              <ScaleIn key={d.text} delay={i * 0.1}>
-                <div className="glass-card rounded-2xl p-6 text-center hover:border-teal-400/30 transition-all duration-300 hover:-translate-y-1 h-full">
-                  <d.icon className="w-8 h-8 text-teal-400 mx-auto mb-3" />
-                  <p className="text-teal-100/70 text-sm">{d.text}</p>
-                </div>
-              </ScaleIn>
-            ))}
-          </div>
-        </div>
-
-        {/* Experiencia del Cliente */}
+        {/* Customer Experience Summary */}
         <FadeIn>
-          <div className="glass-card rounded-2xl p-8 mb-16 text-center max-w-3xl mx-auto">
-            <Clock className="w-10 h-10 text-amber-400 mx-auto mb-4" />
-            <h4 className="text-xl font-bold text-white mb-4">
-              Experiencia del Cliente
-            </h4>
-            <p className="text-teal-100/70 mb-6">
-              El cliente vive una experiencia cómoda y sin complicaciones. Desde
-              el momento en que recibe el kit hasta el uso de los productos,
-              percibe:
+          <div className="rounded-3xl bg-[#091616]/40 p-8 text-center max-w-3xl mx-auto border border-white/5">
+            <Clock className="w-8 h-8 text-amber-400 mx-auto mb-4" />
+            <h4 className="text-lg font-bold text-white mb-3">La Experiencia del Cliente</h4>
+            <p className="text-teal-200/70 text-sm mb-6 max-w-xl mx-auto">
+              Facilitamos el cuidado integral de la mascota, ahorrando tiempo y eliminando la fricción de comprar cada elemento por separado.
             </p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <div className="flex flex-wrap justify-center gap-2">
               {experiencia.map((e) => (
                 <span
                   key={e}
-                  className="px-4 py-2 rounded-full glass-card-strong text-teal-200 text-sm font-medium"
+                  className="px-4 py-2 rounded-full bg-teal-950/40 border border-teal-500/25 text-teal-300 text-xs font-semibold"
                 >
                   {e}
                 </span>
@@ -312,42 +318,6 @@ export default function NivelesSection() {
           </div>
         </FadeIn>
 
-        {/* Resumen de Niveles */}
-        <FadeIn>
-          <h3 className="text-2xl font-bold text-center text-white mb-8">
-            Resumen de los Niveles del Producto
-          </h3>
-        </FadeIn>
-        <div className="grid md:grid-cols-3 gap-6">
-          {nivelesResumen.map((n, i) => (
-            <ScaleIn key={n.nivel} delay={i * 0.15}>
-              <div className="glass-card-strong rounded-2xl p-8 text-center hover:border-teal-400/30 transition-all duration-300 hover:-translate-y-2 h-full">
-                <div
-                  className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${n.color} flex items-center justify-center mx-auto mb-4`}
-                >
-                  <n.icon className="w-7 h-7 text-white" />
-                </div>
-                <h4 className="font-bold text-white text-lg mb-2">
-                  {n.nivel}
-                </h4>
-                <p className="text-teal-100/60 text-sm">{n.desc}</p>
-              </div>
-            </ScaleIn>
-          ))}
-        </div>
-
-        {/* Conclusión */}
-        <FadeIn delay={0.3}>
-          <div className="mt-16 text-center max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold gradient-text mb-4">
-              Conclusión
-            </h3>
-            <p className="text-teal-100/70 text-lg leading-relaxed">
-              TAOP KIT PRO es una propuesta innovadora que facilita el cuidado
-              de las mascotas mediante un kit completo, práctico y funcional.
-            </p>
-          </div>
-        </FadeIn>
       </div>
     </section>
   );
