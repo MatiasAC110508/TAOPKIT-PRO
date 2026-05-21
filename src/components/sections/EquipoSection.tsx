@@ -50,6 +50,21 @@ const teamMembers = [
     border: "border-rose-500/30",
     accent: "text-rose-400",
   },
+  {
+    name: "Michelle Granados Botero",
+    role: "Co-fundador & Ventas y Relaciones",
+    description:
+      "17 años, estudiante de primer semestre de Mercadeo en la IUE. Responsable, comprometida y con excelente actitud para aprender. Cuenta con experiencia en ventas y destaca por sus habilidades de comunicación y atención al cliente.",
+    goals: [
+      "Seguir aprendiendo y desarrollar nuevas habilidades en el área de mercadeo.",
+      "Desempeñarse eficientemente aportando una actitud positiva y compromiso.",
+      "Adquirir experiencia para crecer de manera integral, tanto personal como profesionalmente.",
+    ],
+    icon: User,
+    color: "from-indigo-500/20 to-indigo-400/10",
+    border: "border-indigo-500/30",
+    accent: "text-indigo-400",
+  },
 ];
 
 export default function EquipoSection() {
@@ -75,7 +90,7 @@ export default function EquipoSection() {
           </div>
         </FadeIn>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member, i) => (
             <ScaleIn key={member.name} delay={i * 0.15}>
               <div
