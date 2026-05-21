@@ -1,4 +1,4 @@
-import { Box, Heart, Layers, ShieldCheck, Sparkles, Star, Truck, Users } from "lucide-react";
+import { Sparkles, Star, Truck, Users } from "lucide-react";
 
 export const includedProducts = [
   "Champú especializado",

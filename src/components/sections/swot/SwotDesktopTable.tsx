@@ -1,9 +1,10 @@
 import { Search } from "lucide-react";
-import { SwotData } from "../../../types";
+import type { ReactNode } from "react";
+import type { SwotCell, SwotData } from "../../../types";
 
 interface SwotDesktopTableProps {
   swotData: SwotData;
-  onOpenModal: (title: string, items: any[], gradient: string, icon: React.ReactNode) => void;
+  onOpenModal: (title: string, items: SwotCell[], gradient: string, icon: ReactNode) => void;
 }
 
 export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProps) {
@@ -24,8 +25,8 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
       </div>
       
       {/* FO Strategies */}
-      <div className="glass-card-strong rounded-2xl p-6 border border-teal-500/20 hover:border-teal-400/50 transition-all group relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl group-hover:bg-teal-500/20 transition-all" />
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-teal-500/20 hover:border-teal-400/50 transition-all group relative overflow-hidden">
+        <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl group-hover:bg-teal-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias FO (Maxi-Maxi)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
           Uso de las fortalezas internas para aprovechar al máximo las oportunidades externas.
@@ -39,8 +40,8 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
       </div>
 
       {/* DO Strategies */}
-      <div className="glass-card-strong rounded-2xl p-6 border border-amber-500/20 hover:border-amber-400/50 transition-all group relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all" />
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-amber-500/20 hover:border-amber-400/50 transition-all group relative overflow-hidden">
+        <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias DO (Mini-Maxi)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
           Mejora de las debilidades internas aprovechando las oportunidades del entorno.
@@ -59,8 +60,8 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
       </div>
 
       {/* FA Strategies */}
-      <div className="glass-card-strong rounded-2xl p-6 border border-indigo-500/20 hover:border-indigo-400/50 transition-all group relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-all" />
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-indigo-500/20 hover:border-indigo-400/50 transition-all group relative overflow-hidden">
+        <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias FA (Maxi-Mini)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
           Uso de las fortalezas para evitar o reducir el impacto de las amenazas externas.
@@ -74,8 +75,8 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
       </div>
 
       {/* DA Strategies */}
-      <div className="glass-card-strong rounded-2xl p-6 border border-rose-500/20 hover:border-rose-400/50 transition-all group relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition-all" />
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-rose-500/20 hover:border-rose-400/50 transition-all group relative overflow-hidden">
+        <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias DA (Mini-Mini)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
           Tácticas defensivas dirigidas a disminuir debilidades y evitar amenazas.

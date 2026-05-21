@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { PawPrint, Menu, X, ChevronDown } from "lucide-react";
 import { primaryLinks, moreLinks, allLinks } from "../data/navigation";
 
@@ -9,13 +9,13 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
+  const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
+    const updateNavigationState = () => {
+      frameRef.current = null;
+      const nextIsScrolled = window.scrollY > 20;
       const sections = allLinks.map(link => link.href.substring(1));
-
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -25,13 +25,26 @@ export default function Navbar() {
         return false;
       });
 
+      setIsScrolled(previous => previous === nextIsScrolled ? previous : nextIsScrolled);
       if (current) {
-        setActiveSection(current);
+        setActiveSection(previous => previous === current ? previous : current);
       }
     };
 
+    const handleScroll = () => {
+      if (frameRef.current === null) {
+        frameRef.current = window.requestAnimationFrame(updateNavigationState);
+      }
+    };
+
+    updateNavigationState();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+    };
   }, []);
 
   const scrollTo = (href: string) => {
@@ -60,7 +73,7 @@ export default function Navbar() {
         <div className={`
           flex items-center justify-between rounded-2xl md:rounded-full px-4 md:px-6 py-3 md:py-4 transition-all duration-300
           ${isScrolled
-            ? "bg-[#0b1717]/80 backdrop-blur-xl border border-teal-500/20 shadow-lg shadow-black/20"
+            ? "bg-[#0b1717]/90 md:bg-[#0b1717]/80 md:backdrop-blur-xl border border-teal-500/20 shadow-lg shadow-black/20"
             : "bg-transparent"}
         `}>
           {/* Logo */}
@@ -102,7 +115,7 @@ export default function Navbar() {
 
               {/* Dropdown Content */}
               <div className={`
-                absolute top-full right-0 mt-2 w-48 rounded-2xl bg-[#0b1717]/95 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 origin-top-right
+                absolute top-full right-0 mt-2 w-48 rounded-2xl bg-[#0b1717]/95 md:backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 origin-top-right
                 ${isMoreMenuOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}
               `}>
                 <div className="p-2 flex flex-col gap-1">
@@ -134,7 +147,7 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         <div className={`
-          lg:hidden absolute top-full left-4 right-4 mt-2 rounded-2xl bg-[#0b1717]/95 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 overflow-hidden
+          lg:hidden absolute top-full left-4 right-4 mt-2 rounded-2xl bg-[#0b1717]/95 md:backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 overflow-hidden
           ${isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0 border-transparent"}
         `}>
           <div className="p-4 flex flex-col gap-2 max-h-[60vh] overflow-y-auto custom-scrollbar">

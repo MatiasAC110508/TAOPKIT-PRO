@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Search } from "lucide-react";
+import { X } from "lucide-react";
+import type { ReactNode } from "react";
 import { SwotCell } from "../../../types";
 
 interface SwotModalProps {
@@ -8,7 +9,7 @@ interface SwotModalProps {
   title: string;
   gradient: string;
   items: SwotCell[];
-  icon: React.ReactNode;
+  icon: ReactNode;
 }
 
 export function SwotModal({ isOpen, onClose, title, gradient, items, icon }: SwotModalProps) {
@@ -21,17 +22,17 @@ export function SwotModal({ isOpen, onClose, title, gradient, items, icon }: Swo
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/60 md:backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-2xl bg-[#0b1717] rounded-3xl border border-white/10 shadow-2xl overflow-hidden"
+            className="relative w-full max-w-2xl bg-[#0b1717] rounded-3xl border border-white/10 shadow-2xl overflow-hidden render-layer"
           >
             <div className={`p-6 md:p-8 bg-gradient-to-br ${gradient} flex items-center justify-between`}>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-md">
+                <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center md:backdrop-blur-md">
                   {icon}
                 </div>
                 <h3 className="text-2xl font-bold text-white">

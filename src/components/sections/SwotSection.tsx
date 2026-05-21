@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import type { ReactNode } from "react";
 import { FadeIn, ScaleIn } from "../Animations";
-import { Grid3X3, Search, Shield, Target, TrendingUp, AlertTriangle } from "lucide-react";
+import { AlertTriangle, Download, Grid3X3, Search, Shield, Target, TrendingUp } from "lucide-react";
 import { swotData } from "../../data/swot";
+import type { SwotCell } from "../../types";
 import { SwotModal } from "./swot/SwotModal";
 import { SwotMobileCard } from "./swot/SwotMobileCard";
 import { SwotDesktopTable } from "./swot/SwotDesktopTable";
@@ -12,9 +14,9 @@ export default function SwotSection() {
   const [modalData, setModalData] = useState<{
     isOpen: boolean;
     title: string;
-    items: any[];
+    items: SwotCell[];
     gradient: string;
-    icon: React.ReactNode | null;
+    icon: ReactNode;
   }>({
     isOpen: false,
     title: "",
@@ -25,7 +27,7 @@ export default function SwotSection() {
 
   const [viewMode, setViewMode] = useState<"cards" | "table">("cards");
 
-  const openModal = (title: string, items: any[], gradient: string, icon: React.ReactNode) => {
+  const openModal = (title: string, items: SwotCell[], gradient: string, icon: ReactNode) => {
     setModalData({ isOpen: true, title, items, gradient, icon });
   };
 
@@ -47,6 +49,14 @@ export default function SwotSection() {
             <p className="text-teal-100/80 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
               Análisis estratégico interactivo. Haz clic en cada cuadrante para explorar las tácticas de integración que usaremos para mitigar riesgos y maximizar oportunidades en el mercado.
             </p>
+            <a
+              href="/taop-dofa-matriz.pdf"
+              download="TAOP-KIT-PRO-Matriz-DOFA.pdf"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-amber-500/20 transition-all duration-300 hover:from-amber-400 hover:to-amber-500 md:hover:scale-105"
+            >
+              <Download className="w-4 h-4" />
+              Descargar DOFA en PDF
+            </a>
           </div>
         </FadeIn>
 

@@ -14,7 +14,7 @@ export default function PricingSection() {
   return (
     <section
       id="pricing"
-      className="relative py-28 px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern"
+      className="relative isolate py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern"
     >
       <div className="max-w-7xl mx-auto">
         
@@ -38,7 +38,7 @@ export default function PricingSection() {
           
           {/* Product Costs */}
           <FadeIn direction="left">
-            <div className="glass-card-strong rounded-2xl p-8 h-full flex flex-col justify-between">
+            <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 md:p-8 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center">
@@ -79,7 +79,7 @@ export default function PricingSection() {
 
           {/* Service Costs */}
           <FadeIn direction="right" delay={0.15}>
-            <div className="glass-card-strong rounded-2xl p-8 h-full flex flex-col justify-between">
+            <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 md:p-8 h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
@@ -121,7 +121,7 @@ export default function PricingSection() {
 
         {/* Pricing Calculator Tool */}
         <FadeIn>
-          <div className="glass-card-strong rounded-3xl p-8 max-w-4xl mx-auto border border-teal-500/25 mb-16">
+          <div className="glass-card-strong render-layer rounded-3xl p-6 md:p-8 max-w-4xl mx-auto border border-teal-500/25 mb-16 overflow-hidden">
             
             <div className="flex items-center gap-3 mb-6 justify-center">
               <Calculator className="w-6 h-6 text-amber-400" />

@@ -8,7 +8,7 @@ export default function ObjectivesSection() {
   return (
     <section
       id="objectives"
-      className="relative py-28 px-6 bg-gradient-to-b from-[#0c1a1a] via-[#0e2020] to-[#0c1a1a]"
+      className="relative isolate py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-b from-[#0c1a1a] via-[#0e2020] to-[#0c1a1a]"
     >
       <div className="max-w-7xl mx-auto">
         <FadeIn>
@@ -24,7 +24,7 @@ export default function ObjectivesSection() {
 
         {/* Main Objective */}
         <FadeIn delay={0.1}>
-          <div className="glass-card rounded-2xl p-8 mb-16 max-w-4xl mx-auto text-center">
+          <div className="glass-card mobile-safe-card rounded-2xl p-6 md:p-8 mb-16 max-w-4xl mx-auto text-center">
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-amber-400 flex items-center justify-center mx-auto mb-4">
               <Target className="w-7 h-7 text-white" />
             </div>
@@ -51,7 +51,7 @@ export default function ObjectivesSection() {
           {organizationalGoals.map((goal, i) => (
             <FadeIn key={goal.id} delay={i * 0.15}>
               <div
-                className={`glass-card-strong rounded-2xl p-8 ${goal.borderColor} transition-all duration-300 hover:-translate-y-2 h-full flex flex-col`}
+                className={`glass-card-strong mobile-safe-card rounded-2xl p-6 md:p-8 ${goal.borderColor} transition-all duration-300 md:hover:-translate-y-2 h-full flex flex-col`}
               >
                 <div
                   className={`w-12 h-12 rounded-xl bg-gradient-to-br ${goal.color} flex items-center justify-center mb-4`}

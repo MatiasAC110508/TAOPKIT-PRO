@@ -75,7 +75,7 @@ export default function SegmentationSection() {
   const ActiveIcon = activeData.icon;
 
   return (
-    <section id="segmentation" className="relative py-28 px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern">
+    <section id="segmentation" className="relative isolate py-20 md:py-28 px-4 sm:px-6 bg-gradient-to-b from-[#0c1a1a] via-[#091515] to-[#0c1a1a] dot-pattern">
       <div className="max-w-6xl mx-auto">
         <FadeIn>
           <div className="text-center mb-16">
@@ -108,8 +108,8 @@ export default function SegmentationSection() {
                     onClick={() => setActiveTab(key)}
                     className={`w-full flex items-center gap-4 p-4 md:p-5 rounded-2xl font-semibold text-left transition-all duration-300 border ${
                       isActive
-                        ? `bg-gradient-to-r ${item.gradient} border-transparent text-white shadow-lg shadow-black/25 scale-[1.02]`
-                        : "glass-card border-white/5 text-teal-200/70 hover:text-white hover:bg-white/10 hover:border-white/10"
+                        ? `bg-gradient-to-r ${item.gradient} border-transparent text-white shadow-lg shadow-black/25 md:scale-[1.02]`
+                        : "glass-card mobile-safe-card border-white/5 text-teal-200/70 hover:text-white hover:bg-white/10 hover:border-white/10"
                     }`}
                   >
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors ${isActive ? 'bg-white/20' : item.bgIcon}`}>
@@ -129,7 +129,7 @@ export default function SegmentationSection() {
 
           {/* Tab Content Area */}
           <FadeIn direction="right" delay={0.15} className="lg:col-span-7">
-            <div className="glass-card-strong rounded-3xl p-6 md:p-10 border border-white/10 min-h-[400px] flex flex-col shadow-2xl shadow-black/20">
+            <div className="glass-card-strong render-layer rounded-3xl p-6 md:p-10 border border-white/10 min-h-[400px] flex flex-col shadow-2xl shadow-black/20 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeTab}

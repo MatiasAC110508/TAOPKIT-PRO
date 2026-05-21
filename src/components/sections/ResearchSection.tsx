@@ -32,7 +32,7 @@ export default function ResearchSection() {
         <div className="grid lg:grid-cols-12 gap-5 md:gap-8 items-stretch mb-12 md:mb-16">
           
           {/* Stat summary card */}
-          <div className="lg:col-span-4 flex flex-col justify-between glass-card-strong rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/5">
+          <div className="lg:col-span-4 flex flex-col justify-between glass-card-strong mobile-safe-card rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/5">
             <div>
               <div className="w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-6">
                 <Users className="w-6 h-6 text-teal-400" />
@@ -55,7 +55,7 @@ export default function ResearchSection() {
           </div>
 
           {/* Limitations - Animated Progress Bars */}
-          <div className="lg:col-span-8 glass-card-strong rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/5 flex flex-col justify-between">
+          <div className="lg:col-span-8 glass-card-strong mobile-safe-card rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/5 flex flex-col justify-between">
             <div>
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
                 <div className="flex items-center gap-3">
@@ -102,7 +102,7 @@ export default function ResearchSection() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {researchFindings.map((item, i) => (
               <ScaleIn key={item.title} delay={i * 0.1}>
-                <div className="glass-card rounded-2xl p-5 md:p-6 border border-white/5 hover:border-teal-500/30 transition-all duration-300 h-full">
+                <div className="glass-card mobile-safe-card rounded-2xl p-5 md:p-6 border border-white/5 hover:border-teal-500/30 transition-all duration-300 h-full">
                   <span className="text-xs font-bold px-2 py-0.5 rounded bg-teal-500/10 text-teal-300 mb-4 inline-block">
                     Problema {i + 1}
                   </span>
@@ -133,14 +133,14 @@ export default function ResearchSection() {
                 href={formsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full md:w-auto justify-center items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold hover:from-teal-400 hover:to-teal-500 transition-all duration-200 hover:scale-105 shrink-0 text-sm shadow-md"
+                className="inline-flex w-full md:w-auto justify-center items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold hover:from-teal-400 hover:to-teal-500 transition-all duration-200 md:hover:scale-105 shrink-0 text-sm shadow-md"
               >
                 Ver Microsoft Forms <ExternalLink className="w-4 h-4" />
               </a>
             ) : (
               <a
                 href="#references"
-                className="inline-flex w-full md:w-auto justify-center items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-400 hover:to-amber-500 transition-all duration-200 hover:scale-105 shrink-0 text-sm shadow-md"
+                className="inline-flex w-full md:w-auto justify-center items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-400 hover:to-amber-500 transition-all duration-200 md:hover:scale-105 shrink-0 text-sm shadow-md"
               >
                 Ver referencias <ExternalLink className="w-4 h-4" />
               </a>

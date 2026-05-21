@@ -1,7 +1,23 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+
+function useMobileSafeMotion() {
+  const prefersReducedMotion = useReducedMotion();
+  const [isTouchMobile, setIsTouchMobile] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 767px), (pointer: coarse)");
+    const update = () => setIsTouchMobile(query.matches);
+
+    update();
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  return Boolean(prefersReducedMotion || isTouchMobile);
+}
 
 /* ── Fade-in on scroll ────────────────────────── */
 export function FadeIn({
@@ -17,6 +33,7 @@ export function FadeIn({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const useSafeMotion = useMobileSafeMotion();
 
   const offsets: Record<string, { x: number; y: number }> = {
     up: { x: 0, y: 50 },
@@ -28,9 +45,13 @@ export function FadeIn({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, ...offsets[direction] }}
+      initial={useSafeMotion ? { opacity: 0 } : { opacity: 0, ...offsets[direction] }}
       animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: useSafeMotion ? 0.25 : 0.7,
+        delay: useSafeMotion ? Math.min(delay, 0.1) : delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className={className}
     >
       {children}
@@ -50,13 +71,18 @@ export function ScaleIn({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const useSafeMotion = useMobileSafeMotion();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, scale: 0.85 }}
+      initial={useSafeMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85 }}
       animate={isInView ? { opacity: 1, scale: 1 } : {}}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: useSafeMotion ? 0.25 : 0.6,
+        delay: useSafeMotion ? Math.min(delay, 0.1) : delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className={className}
     >
       {children}

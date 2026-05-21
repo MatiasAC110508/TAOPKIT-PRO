@@ -6,7 +6,7 @@ import { projectReferences } from "../../data/references";
 
 export default function ReferencesSection() {
   return (
-    <section id="references" className="relative py-28 px-6 bg-[#091515] border-t border-white/5">
+    <section id="references" className="relative isolate py-20 md:py-28 px-4 sm:px-6 bg-[#091515] border-t border-white/5">
       <div className="max-w-4xl mx-auto">
         <FadeIn>
           <div className="text-center mb-16">
@@ -22,7 +22,7 @@ export default function ReferencesSection() {
           </div>
         </FadeIn>
 
-        <div className="glass-card-strong rounded-3xl p-6 md:p-10 border border-white/5">
+        <div className="glass-card-strong render-layer rounded-3xl p-6 md:p-10 border border-white/5 overflow-hidden">
           <StaggerContainer className="space-y-4">
             {projectReferences.map((ref, i) => (
               <StaggerItem key={i}>

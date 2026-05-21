@@ -65,6 +65,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  overflow-x: clip;
 }
 
 body {
@@ -72,6 +73,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans, system-ui, sans-serif);
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
@@ -109,6 +112,20 @@ body {
   -webkit-backdrop-filter: blur(24px);
 }
 
+.render-layer {
+  isolation: isolate;
+  contain: paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.mobile-safe-card {
+  isolation: isolate;
+  contain: paint;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 /* ── Gradient Text ───────────────────────────── */
 .gradient-text {
   background: linear-gradient(135deg, var(--teal-300), var(--amber-400));
@@ -137,6 +154,64 @@ body {
 
 .glow-amber {
   box-shadow: 0 0 60px rgba(251, 191, 36, 0.2), 0 0 120px rgba(251, 191, 36, 0.06);
+}
+
+@media (max-width: 767px) {
+  section {
+    overflow-x: clip;
+  }
+
+  .glass-card {
+    background: rgba(8, 29, 29, 0.9);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .glass-card-strong {
+    background: rgba(8, 35, 34, 0.94);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .backdrop-blur-sm,
+  .backdrop-blur-md,
+  .backdrop-blur-xl {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .glow-teal {
+    box-shadow: 0 0 28px rgba(13, 148, 136, 0.22);
+  }
+
+  .glow-amber {
+    box-shadow: 0 0 28px rgba(251, 191, 36, 0.16);
+  }
+
+  .dot-pattern {
+    background-size: 34px 34px;
+    background-image: radial-gradient(rgba(45, 212, 191, 0.12) 1px, transparent 1px);
+  }
+
+  .mobile-hide-heavy {
+    display: none;
+  }
+
+  .mobile-safe-card {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ── Paw print decoration ────────────────────── */

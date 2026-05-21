@@ -18,7 +18,9 @@ export default function HeroSection() {
           alt="Mascota feliz"
           fill
           className="object-cover"
-          priority
+          sizes="100vw"
+          preload
+          quality={90}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c1a1a]/80 via-[#0c1a1a]/60 to-[#0c1a1a]" />
       </div>
@@ -35,7 +37,7 @@ export default function HeroSection() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: "spring", duration: 0.8, delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full glass-card mb-4 md:mb-8"
+            className="inline-flex items-center gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full glass-card mobile-safe-card mb-4 md:mb-8"
           >
             <PawPrint className="w-3 h-3 sm:w-4 sm:h-4 text-teal-400" />
             <span className="text-[10px] sm:text-sm text-teal-200 tracking-wider uppercase font-medium text-center">
@@ -64,13 +66,13 @@ export default function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <a
               href="#description"
-              className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-full hover:from-teal-400 hover:to-teal-500 transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/40 hover:scale-105 text-center"
+              className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-semibold rounded-full hover:from-teal-400 hover:to-teal-500 transition-all duration-300 shadow-lg shadow-teal-500/25 hover:shadow-teal-400/40 md:hover:scale-105 text-center"
             >
               Explorar Proyecto
             </a>
             <a
               href="#levels"
-              className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 glass-card text-teal-200 font-semibold rounded-full hover:bg-white/10 transition-all duration-300 hover:scale-105 text-center"
+              className="w-full sm:w-auto max-w-[280px] sm:max-w-none px-8 py-3 glass-card mobile-safe-card text-teal-200 font-semibold rounded-full hover:bg-white/10 transition-all duration-300 md:hover:scale-105 text-center"
             >
               Niveles del Producto
             </a>

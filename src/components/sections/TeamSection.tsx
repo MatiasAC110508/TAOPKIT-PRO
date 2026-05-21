@@ -34,7 +34,7 @@ export default function TeamSection() {
             return (
               <ScaleIn key={member.name} delay={i * 0.15}>
                 <div
-                  className={`glass-card-strong rounded-2xl md:rounded-3xl p-4 sm:p-6 border ${member.border} hover:scale-[1.02] transition-all duration-300 h-full flex flex-col overflow-hidden`}
+                  className={`glass-card-strong render-layer rounded-2xl md:rounded-3xl p-4 sm:p-6 border ${member.border} md:hover:scale-[1.02] transition-all duration-300 h-full flex flex-col overflow-hidden`}
                 >
                   <div className="relative mb-6">
                     <div className="relative aspect-[16/11] md:aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-white/10 bg-teal-950/30">
@@ -43,11 +43,12 @@ export default function TeamSection() {
                         alt={`Foto de ${member.name}`}
                         fill
                         sizes="(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                        className="object-cover transition-transform duration-700 hover:scale-105"
+                        quality={88}
+                        className="object-cover transition-transform duration-700 md:hover:scale-105"
                       />
                       <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#071414]/90 to-transparent" />
                     </div>
-                    <div className={`absolute -bottom-4 left-4 w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br ${member.color} flex items-center justify-center border border-white/10 backdrop-blur-xl shadow-lg`}>
+                    <div className={`absolute -bottom-4 left-4 w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br ${member.color} flex items-center justify-center border border-white/10 md:backdrop-blur-xl shadow-lg`}>
                       <Icon className={`w-5 h-5 md:w-6 md:h-6 ${member.accent}`} />
                     </div>
                   </div>

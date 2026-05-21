@@ -1,4 +1,3 @@
-import React from "react";
 import { Activity, Brain, MapPin, Users } from "lucide-react";
 import { SegTabKey, SegmentationEntry } from "../types";
 

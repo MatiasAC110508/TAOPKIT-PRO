@@ -13,11 +13,11 @@ export default function OmnichannelSection() {
   const ActiveIcon = activeData.icon;
 
   return (
-    <section id="omnichannel" className="relative py-28 px-6 bg-[#091515] overflow-hidden">
+    <section id="omnichannel" className="relative isolate py-20 md:py-28 px-4 sm:px-6 bg-[#091515] overflow-hidden">
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-teal-500/5 blur-[120px]" />
-        <div className="absolute top-[40%] -left-[10%] w-[40%] h-[40%] rounded-full bg-amber-500/5 blur-[100px]" />
+        <div className="mobile-hide-heavy absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-teal-500/5 blur-[120px]" />
+        <div className="mobile-hide-heavy absolute top-[40%] -left-[10%] w-[40%] h-[40%] rounded-full bg-amber-500/5 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -52,7 +52,7 @@ export default function OmnichannelSection() {
                 const Icon = step.icon;
                 return (
                   <ScaleIn key={i} delay={i * 0.1}>
-                    <div className="glass-card rounded-2xl p-6 relative h-full group hover:-translate-y-2 transition-all duration-300">
+                    <div className="glass-card mobile-safe-card rounded-2xl p-5 md:p-6 relative h-full group md:hover:-translate-y-2 transition-all duration-300">
                       <div className={`w-12 h-12 rounded-xl bg-[#091515] border border-white/10 flex items-center justify-center mb-4 shadow-lg ${step.accent}`}>
                         <Icon className="w-6 h-6" />
                       </div>
@@ -79,7 +79,7 @@ export default function OmnichannelSection() {
               const Icon = channel.icon;
               return (
                 <FadeIn key={channel.title} delay={i * 0.1}>
-                  <div className="glass-card-strong rounded-2xl p-6 border-l-4 border-l-teal-500/50 hover:border-l-teal-400 transition-colors duration-300 h-full">
+                  <div className="glass-card-strong mobile-safe-card rounded-2xl p-5 md:p-6 border-l-4 border-l-teal-500/50 hover:border-l-teal-400 transition-colors duration-300 h-full">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-10 h-10 rounded-lg bg-teal-500/10 flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5 text-teal-400" />
@@ -96,7 +96,7 @@ export default function OmnichannelSection() {
 
         {/* 3. CIM Detailed Strategy */}
         <FadeIn>
-          <div className="glass-card-strong rounded-3xl p-2 max-w-5xl mx-auto border border-white/10 overflow-hidden shadow-2xl shadow-black/40">
+          <div className="glass-card-strong render-layer rounded-3xl p-2 max-w-5xl mx-auto border border-white/10 overflow-hidden shadow-2xl shadow-black/40">
             
             {/* Header CIM */}
             <div className="text-center p-8 pb-6 border-b border-white/5">
@@ -131,7 +131,7 @@ export default function OmnichannelSection() {
               </div>
 
               {/* Content Panel */}
-              <div className="bg-[#0b1717] rounded-xl p-6 md:p-8 border border-white/5 relative overflow-hidden min-h-[350px] flex flex-col justify-center">
+              <div className="mobile-safe-card bg-[#0b1717] rounded-xl p-5 md:p-8 border border-white/5 relative overflow-hidden min-h-[350px] flex flex-col justify-center">
                 
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -169,7 +169,7 @@ export default function OmnichannelSection() {
                 </AnimatePresence>
                 
                 {/* Background active icon watermark */}
-                <ActiveIcon className="absolute -bottom-10 -right-10 w-64 h-64 text-white/[0.02] pointer-events-none" />
+                <ActiveIcon className="mobile-hide-heavy absolute -bottom-10 -right-10 w-64 h-64 text-white/[0.02] pointer-events-none" />
               </div>
 
             </div>

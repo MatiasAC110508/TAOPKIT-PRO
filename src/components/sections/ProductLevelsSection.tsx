@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FadeIn, ScaleIn } from "../Animations";
+import { FadeIn } from "../Animations";
 import {
   Package,
   Wrench,
@@ -18,15 +18,14 @@ import {
   includedProducts, 
   mainServices, 
   serviceFeatures, 
-  differentiators, 
-  customerExperience 
+  differentiators,
 } from "../../data/productLevels";
 
 export default function ProductLevelsSection() {
   const [activeLevel, setActiveLevel] = useState<1 | 2 | 3>(1);
 
   return (
-    <section id="levels" className="relative py-20 md:py-28 px-4 sm:px-6 bg-[#091212]/50 dot-pattern">
+    <section id="levels" className="relative isolate py-20 md:py-28 px-4 sm:px-6 bg-[#091212]/50 dot-pattern">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}
@@ -57,7 +56,7 @@ export default function ProductLevelsSection() {
                 className={`w-full flex items-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 border ${
                   activeLevel === 1
                     ? "bg-gradient-to-br from-teal-900/80 to-teal-800/50 border-teal-500/50 shadow-[0_0_30px_rgba(20,184,166,0.15)]"
-                    : "glass-card border-white/5 hover:border-teal-500/30"
+                    : "glass-card mobile-safe-card border-white/5 hover:border-teal-500/30"
                 }`}
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
@@ -78,7 +77,7 @@ export default function ProductLevelsSection() {
                 className={`w-full flex items-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 border ${
                   activeLevel === 2
                     ? "bg-gradient-to-br from-amber-900/80 to-amber-800/50 border-amber-500/50 shadow-[0_0_30px_rgba(245,158,11,0.15)]"
-                    : "glass-card border-white/5 hover:border-amber-500/30"
+                    : "glass-card mobile-safe-card border-white/5 hover:border-amber-500/30"
                 }`}
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
@@ -99,7 +98,7 @@ export default function ProductLevelsSection() {
                 className={`w-full flex items-start gap-4 p-5 rounded-2xl text-left transition-all duration-300 border ${
                   activeLevel === 3
                     ? "bg-gradient-to-br from-coral-900/80 to-coral-800/50 border-coral-500/50 shadow-[0_0_30px_rgba(251,113,133,0.15)]"
-                    : "glass-card border-white/5 hover:border-coral-500/30"
+                    : "glass-card mobile-safe-card border-white/5 hover:border-coral-500/30"
                 }`}
               >
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${
@@ -120,7 +119,7 @@ export default function ProductLevelsSection() {
 
           {/* Level Details Panel */}
           <FadeIn direction="right" delay={0.2} className="lg:col-span-7 h-full">
-            <div className="glass-card-strong rounded-3xl p-6 md:p-8 border border-white/10 h-full min-h-[450px]">
+            <div className="glass-card-strong render-layer rounded-3xl p-6 md:p-8 border border-white/10 h-full min-h-[450px] overflow-hidden">
               <AnimatePresence mode="wait">
                 
                 {activeLevel === 1 && (

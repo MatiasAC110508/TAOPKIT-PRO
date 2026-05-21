@@ -6,7 +6,7 @@ import { productHighlights } from "../../data/product";
 
 export default function ProductDescriptionSection() {
   return (
-    <section id="description" className="relative py-28 px-6 dot-pattern">
+    <section id="description" className="relative isolate py-20 md:py-28 px-4 sm:px-6 dot-pattern">
       <div className="max-w-7xl mx-auto">
         <FadeIn>
           <div className="text-center mb-16">
@@ -52,14 +52,16 @@ export default function ProductDescriptionSection() {
 
           <FadeIn direction="right" delay={0.2}>
             <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-amber-400/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500 opacity-60 group-hover:opacity-100" />
-              <div className="relative rounded-2xl overflow-hidden glow-teal">
+              <div className="absolute -inset-4 bg-gradient-to-r from-teal-500/20 to-amber-400/20 rounded-3xl blur-xl md:blur-2xl md:group-hover:blur-3xl transition-all duration-500 opacity-60 md:group-hover:opacity-100" />
+              <div className="relative rounded-2xl overflow-hidden glow-teal render-layer">
                 <Image
                   src="/product-kit.png"
                   alt="TAOP KIT PRO - Kit de cuidado para mascotas"
                   width={600}
                   height={500}
-                  className="w-full h-auto object-cover rounded-2xl hover:scale-105 transition-transform duration-700"
+                  sizes="(max-width: 768px) calc(100vw - 48px), 600px"
+                  quality={92}
+                  className="w-full h-auto object-cover rounded-2xl md:hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>
@@ -72,8 +74,8 @@ export default function ProductDescriptionSection() {
             const Icon = item.icon;
             return (
               <FadeIn key={item.title} delay={i * 0.1}>
-                <div className="glass-card-strong rounded-2xl p-6 hover:border-teal-400/40 transition-all duration-300 group hover:-translate-y-1 h-full">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500/20 to-teal-400/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 hover:border-teal-400/40 transition-all duration-300 group md:hover:-translate-y-1 h-full">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-500/20 to-teal-400/10 flex items-center justify-center mb-4 md:group-hover:scale-110 transition-transform">
                     <Icon className="w-6 h-6 text-teal-400" />
                   </div>
                   <h3 className="font-bold text-white text-lg mb-2">
