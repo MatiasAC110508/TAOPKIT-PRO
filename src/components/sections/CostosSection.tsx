@@ -218,9 +218,9 @@ export default function CostosSection() {
             <p className="text-center text-teal-200/60 text-xs md:text-sm mb-8 max-w-xl mx-auto">
               El cliente percibe a TAOP KIT PRO como una solución integral que excede por mucho la simple entrega física de productos de aseo:
             </p>
-            <StaggerContainer className="grid md:grid-cols-2 gap-4">
+            <StaggerContainer className="flex flex-wrap justify-center gap-4">
               {justificaciones.map((j) => (
-                <StaggerItem key={j}>
+                <StaggerItem key={j} className="w-full md:w-[calc(50%-0.5rem)] max-w-[400px]">
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-teal-950/20 border border-teal-500/10 h-full">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-teal-400 shrink-0" />
                     <span className="text-teal-100/70 text-xs md:text-sm">{j}</span>
