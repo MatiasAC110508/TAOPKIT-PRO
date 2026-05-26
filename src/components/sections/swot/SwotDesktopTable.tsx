@@ -25,7 +25,7 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
       </div>
       
       {/* FO Strategies */}
-      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-teal-500/20 hover:border-teal-400/50 transition-all group relative overflow-hidden">
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-teal-500/20 hover:border-teal-400/50 transition-all group relative overflow-hidden flex flex-col">
         <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-2xl group-hover:bg-teal-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias FO (Maxi-Maxi)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
@@ -33,14 +33,14 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
         </p>
         <button
           onClick={() => onOpenModal("Estrategias FO", swotData.so, "from-teal-600 to-teal-800", <Search />)}
-          className="w-full py-2.5 rounded-xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
+          className="mt-auto w-full py-2.5 rounded-xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
         >
           <Search className="w-4 h-4" /> Ver {swotData.so.length} Estrategias
         </button>
       </div>
 
       {/* DO Strategies */}
-      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-amber-500/20 hover:border-amber-400/50 transition-all group relative overflow-hidden">
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-amber-500/20 hover:border-amber-400/50 transition-all group relative overflow-hidden flex flex-col">
         <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl group-hover:bg-amber-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias DO (Mini-Maxi)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
@@ -48,7 +48,7 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
         </p>
         <button
           onClick={() => onOpenModal("Estrategias DO", swotData.wo, "from-amber-600 to-amber-800", <Search />)}
-          className="w-full py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
+          className="mt-auto w-full py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
         >
           <Search className="w-4 h-4" /> Ver {swotData.wo.length} Estrategias
         </button>
@@ -60,7 +60,7 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
       </div>
 
       {/* FA Strategies */}
-      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-indigo-500/20 hover:border-indigo-400/50 transition-all group relative overflow-hidden">
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-indigo-500/20 hover:border-indigo-400/50 transition-all group relative overflow-hidden flex flex-col">
         <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl group-hover:bg-indigo-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias FA (Maxi-Mini)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
@@ -68,14 +68,14 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
         </p>
         <button
           onClick={() => onOpenModal("Estrategias FA", swotData.st, "from-indigo-600 to-indigo-800", <Search />)}
-          className="w-full py-2.5 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
+          className="mt-auto w-full py-2.5 rounded-xl bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
         >
           <Search className="w-4 h-4" /> Ver {swotData.st.length} Estrategias
         </button>
       </div>
 
       {/* DA Strategies */}
-      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-rose-500/20 hover:border-rose-400/50 transition-all group relative overflow-hidden">
+      <div className="glass-card-strong mobile-safe-card rounded-2xl p-6 border border-rose-500/20 hover:border-rose-400/50 transition-all group relative overflow-hidden flex flex-col">
         <div className="mobile-hide-heavy absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-2xl group-hover:bg-rose-500/20 transition-all" />
         <h4 className="font-bold text-white mb-4 relative z-10">Estrategias DA (Mini-Mini)</h4>
         <p className="text-teal-100/70 text-sm mb-6 relative z-10">
@@ -83,7 +83,7 @@ export function SwotDesktopTable({ swotData, onOpenModal }: SwotDesktopTableProp
         </p>
         <button
           onClick={() => onOpenModal("Estrategias DA", swotData.wt, "from-rose-600 to-rose-800", <Search />)}
-          className="w-full py-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
+          className="mt-auto w-full py-2.5 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 font-semibold text-sm transition-colors flex items-center justify-center gap-2 relative z-10"
         >
           <Search className="w-4 h-4" /> Ver {swotData.wt.length} Estrategias
         </button>
