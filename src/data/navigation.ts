@@ -14,6 +14,7 @@ export const moreLinks: NavigationLink[] = [
   { href: "#pricing", label: "Costos" },
   { href: "#objectives", label: "Objetivo" },
   { href: "#segmentation", label: "Segmentación" },
+  { href: "#comprador", label: "Comprador" },
   { href: "#references", label: "Referencias" },
 ];
 
