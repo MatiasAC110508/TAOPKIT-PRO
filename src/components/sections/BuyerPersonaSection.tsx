@@ -2,10 +2,34 @@
 
 import { useState } from "react";
 import { FadeIn } from "../Animations";
-import { Target, TrendingUp, Users, HeartHandshake, Download, X } from "lucide-react";
+import { Target, TrendingUp, Users, HeartHandshake, Download, X, Maximize2 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function BuyerPersonaSection() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
+  const images = [
+    {
+      src: "/buyer.jpg",
+      alt: "Perfil de Buyer Persona - Parte 1",
+      downloadName: "Buyer_Persona_1.jpg",
+      label: "Descargar",
+    },
+    {
+      src: "/buyerimg2.jpeg",
+      alt: "Perfil de Buyer Persona - Parte 2",
+      downloadName: "Buyer_Persona_2.jpeg",
+      label: "Descargar",
+    },
+    {
+      src: "/buyerimage3.jpeg",
+      alt: "Perfil de Buyer Persona - Parte 3",
+      downloadName: "Buyer_Persona_3.jpeg",
+      label: "Descargar",
+    },
+  ];
+
+  const currentImageInfo = images.find(img => img.src === zoomedImage);
 
   return (
     <section id="comprador" className="relative py-28 px-6 bg-[#071414] border-t border-white/5">
@@ -39,36 +63,22 @@ export default function BuyerPersonaSection() {
 
           <FadeIn delay={0.1} className="w-full">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  src: "/buyer.jpg",
-                  alt: "Perfil de Buyer Persona - Parte 1",
-                  downloadName: "Buyer_Persona_1.jpg",
-                  label: "Descargar",
-                },
-                {
-                  src: "/buyerimg2.jpeg",
-                  alt: "Perfil de Buyer Persona - Parte 2",
-                  downloadName: "Buyer_Persona_2.jpeg",
-                  label: "Descargar",
-                },
-                {
-                  src: "/buyerimage3.jpeg",
-                  alt: "Perfil de Buyer Persona - Parte 3",
-                  downloadName: "Buyer_Persona_3.jpeg",
-                  label: "Descargar",
-                },
-              ].map((img, index) => (
+              {images.map((img, index) => (
                 <div key={index} className="glass-card rounded-3xl p-5 md:p-6 border border-white/10 flex flex-col items-center h-full">
                   <div 
-                    className="w-full rounded-2xl overflow-hidden mb-6 border border-white/5 bg-black/20 flex-1 flex items-center justify-center cursor-zoom-in group"
+                    className="relative w-full rounded-2xl overflow-hidden mb-6 border border-white/5 bg-black/40 flex-1 flex items-center justify-center cursor-pointer group"
                     onClick={() => setZoomedImage(img.src)}
                   >
                     <img
                       src={img.src}
                       alt={img.alt}
-                      className="w-full h-auto max-h-[400px] object-contain group-hover:scale-[1.02] transition-transform duration-500 ease-in-out"
+                      className="w-full h-auto max-h-[400px] object-contain group-hover:scale-[1.02] transition-transform duration-500 ease-in-out group-hover:opacity-60"
                     />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                       <span className="bg-purple-500 text-white rounded-full p-3 shadow-lg flex items-center gap-2 font-semibold">
+                         <Maximize2 className="w-5 h-5"/> Ampliar
+                       </span>
+                    </div>
                   </div>
                   <a
                     href={img.src}
@@ -177,30 +187,77 @@ export default function BuyerPersonaSection() {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {zoomedImage && (
-        <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-300"
-          onClick={() => setZoomedImage(null)}
-        >
-          <button 
-            onClick={() => setZoomedImage(null)}
-            className="absolute top-6 right-6 lg:top-10 lg:right-10 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full backdrop-blur-md transition-all z-[110]"
-          >
-            <X className="w-8 h-8" />
-          </button>
-          <div 
-            className="relative max-w-7xl max-h-[90vh] w-full flex items-center justify-center p-2 lg:p-10 animate-in zoom-in-95 duration-300"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <img 
-              src={zoomedImage} 
-              alt="Vista Ampliada" 
-              className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+      {/* Lightbox Modal (Framed style) */}
+      <AnimatePresence>
+        {zoomedImage && currentImageInfo && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setZoomedImage(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
             />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-5xl bg-[#0b1717] rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col render-layer"
+            >
+              <div className="p-4 md:p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-b border-white/10 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                    <Maximize2 className="w-5 h-5 text-purple-400" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
+                    Vista Ampliada
+                  </h3>
+                </div>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={currentImageInfo.src}
+                    download={currentImageInfo.downloadName}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-full hidden md:flex items-center gap-2 transition-colors text-sm"
+                  >
+                    <Download className="w-4 h-4" />
+                    Descargar
+                  </a>
+                  <button
+                    onClick={() => setZoomedImage(null)}
+                    className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+              
+              <div className="p-2 md:p-8 bg-black/40 flex items-center justify-center max-h-[75vh] overflow-auto custom-scrollbar">
+                <img 
+                  src={zoomedImage} 
+                  alt={currentImageInfo.alt} 
+                  className="w-full h-auto object-contain rounded-xl"
+                  onClick={(e) => e.stopPropagation()} 
+                />
+              </div>
+
+              <div className="p-4 border-t border-white/5 bg-black/20 text-center flex md:hidden justify-center">
+                <a
+                  href={currentImageInfo.src}
+                  download={currentImageInfo.downloadName}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full flex items-center gap-2 text-sm justify-center"
+                >
+                  <Download className="w-4 h-4" />
+                  Descargar Imagen
+                </a>
+              </div>
+            </motion.div>
           </div>
-        </div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 }
