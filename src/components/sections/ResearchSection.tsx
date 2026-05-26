@@ -7,7 +7,7 @@ import { researchFindings, researchLimitations } from "../../data/research";
 import SectionReferences from "../SectionReferences";
 
 export default function ResearchSection() {
-  const formsUrl = process.env.NEXT_PUBLIC_FORMS_URL;
+  const formsUrl = process.env.NEXT_PUBLIC_FORMS_URL || "https://forms.cloud.microsoft/Pages/AnalysisPage.aspx?AnalyzerToken=rbIy7jZsK0RH9ss9wX73p90fneRovXyi&id=6KpUAKXk7ES9ib5JK-lOVxoGrbmtVhdPksH293SOSX5UMVNJQTlaMFVONEVQVDg1OERFUlcyWlRERy4u";
   const hasFormsUrl = typeof formsUrl === "string" && /^https?:\/\//.test(formsUrl);
 
   return (
@@ -156,7 +156,7 @@ export default function ResearchSection() {
               {
                 label:
                   "Microsoft Forms. (2026). Encuesta sobre necesidades y cuidado de mascotas en estudiantes universitarios. Microsoft Corporation.",
-                href: "https://forms.cloud.microsoft/",
+                href: "https://forms.cloud.microsoft/Pages/AnalysisPage.aspx?AnalyzerToken=rbIy7jZsK0RH9ss9wX73p90fneRovXyi&id=6KpUAKXk7ES9ib5JK-lOVxoGrbmtVhdPksH293SOSX5UMVNJQTlaMFVONEVQVDg1OERFUlcyWlRERy4u",
               },
             ]}
           />

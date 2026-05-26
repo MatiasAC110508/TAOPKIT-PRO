@@ -1,212 +1,212 @@
 import { SwotData } from "../types";
 
 export const swotData: SwotData = {
-  strengths: [
+  "strengths": [
     {
-      id: "F1",
-      text: "Modelo “Todo En Uno”: El modelo “Todo En Uno” integra productos, información y asesoría en una sola plataforma, eliminando la confusión del usuario y facilitando el cuidado de su mascota.",
+      "id": "F1",
+      "text": "En un solo paquete (la caja física) entregan el producto premium, el cual contiene insumos como: línea de higiene (shampoos, lociones, paños), linea de herramientas (cepillos, cortauñas, limas), y un manual educativo paso a paso, resolviendo la necesidad sin intermediarios."
     },
     {
-      id: "F2",
-      text: "Respaldo Profesional: Garantiza que la información y los productos recomendados están validados por veterinarios, lo que genera confianza en el usuario y reduce la desinformación presente en el mercado digital.",
+      "id": "F2",
+      "text": "El uso de un manual impreso con retos sencillos, listas de chequeo físicas y una cartilla coleccionable de sellos/stickers que conecta con el dueño. Este contaría como nuestro algoritmo propio de indentificación en el mercado, ya que aparte de nuestro kit, ofrecemos una fórmula estructura y fundamentada de uso médico-estético exacta que brinda tips y trucos que todo dueño deberia de saber para aplicar en el cuidado de su mascota(s). Ademas de explicar la función  y utilización vital de cada elemento del kit."
     },
     {
-      id: "F3",
-      text: "Gamificación: La utilización de la App motiva al usuario a ser constante mediante dinámicas de juego que hacen más atractivo el cuidado de la mascota.",
+      "id": "F3",
+      "text": "Selección científica y auditoría rigurosa de cada insumo químico y físico (líquidos, geles y diferentes productos de aseo sean herramientas o utensilios que el dueño va a manipular con sus manos para hacerle el mantenimiento a la mascot), garantizando seguridad absoluta frente a sensibilidades biológicas de la mascota (condiciones de salud, alergias o reacciones naturales que tiene cada animal según su raza, su edad o su tipo de piel/pelo)."
     },
     {
-      id: "F4",
-      text: "Acompañamiento Educativo: Mejora el uso de los productos al profesional al enseñar cómo y por qué utilizarlos, reduciendo la falta de información del usuario.",
+      "id": "F4",
+      "text": "Ventaja estratégica basada en el acceso inmediato a una red preestablecida de contactos directos (vínculos familiares, comerciales y sociales directos). Este activo intangible permite activar canales de comercialización inmediata a costo cero, facilitando la validación del producto en un entorno seguro y dinamizando el posicionamiento de marca mediante el efecto multiplicador del \"voz a voz\" (marketing de recomendación de alta efectividad)."
     },
     {
-      id: "F5",
-      text: "Personalización Real: El diseño de kits por parte de los mismos usuarios según sus necesidades permite ofrecer soluciones específicas para cada mascota, aumentando la efectividad frente a productos genéricos.",
+      "id": "F5",
+      "text": "Desarrollo de nuestro Algoritmo de Diagnóstico y Dosificación Manual (ADDM). Es un algoritmo que fideliza a el consumidor donde la capacidad de personalizar el manual mediante preguntas biológicas sencillas enviadas por WhatsApp para dar una dosis exacta e incopiable según la raza, edad y peso de la mascota."
     },
     {
-      id: "F6",
-      text: "Bajo Costo Tecnológico: El proyecto utiliza herramientas ya existentes de manera eficiente, lo que nos permite implementar el proyecto con menor inversión al usar tecnología accesible y existente.",
-    },
+      "id": "F6",
+      "text": "Al no pagar arriendos de locales, nóminas de empleados ni almacenamiento logístico complejo en esta fase inicial, el riesgo financiero por sostenimiento es mínimo."
+    }
   ],
-  weaknesses: [
+  "weaknesses": [
     {
-      id: "D1",
-      text: "Dependencia Tecnológica: Depende del uso constante de la App y conexión a internet, lo que puede limitar su funcionamiento.",
+      "id": "D1",
+      "text": "El control de calidad de los kits dependen directamente de la gestión del equipo fundador"
     },
     {
-      id: "D2",
-      text: "Logística de Envíos: La distribución de los kits físicos implica retos en tiempos de entrega, costos y posibles fallas en el proceso, lo que puede afectar la experiencia del usuario.",
+      "id": "D2",
+      "text": "La identidad corporativa de TAOP se encuentra en fase de penetración de merdaco, requeriendo estrategias orgánicas para captar nuevos segmentos: sean adoptantes nuevos, fundaciones, etc."
     },
     {
-      id: "D3",
-      text: "Costos de Personalización: Diseñar kits específicos para cada mascota incrementa los costos operativos, lo que puede elevar el precio final y limitar el acceso para el público objetivo.",
+      "id": "D3",
+      "text": "El inventario de insumos físicos (shampoos y herramientas) está sujeto a las dinámicas de stock y variaciones de precios de los distribuidores locales (almacenes mayoristas y depósitos comerciales) seleccionados."
     },
     {
-      id: "D4",
-      text: "Marca Nueva: Al no contar con reconocimiento ni trayectoria en el mercado, puede generar desconfianza en los usuarios y dificultar la captación de clientes en sus primeras etapas.",
+      "id": "D4",
+      "text": "Como el equipo se encarga de repartir los kits en persona para ahorrar costos de despacho y comercialización, el negocio tiene la debilidad de no poder atender clientes que necesiten el producto con urgencia o que vivan en municipios lejanos (como el norte del Valle de Aburrá). Las ventas quedan limitadas solo al tiempo y los viajes que el equipo pueda hacer físicamente."
     },
     {
-      id: "D5",
-      text: "Recursos Limitados: Al contar con un presupuesto reducido, se dificulta la inversión en marketing, desarrollo y expansión, lo que puede limitar el crecimiento del proyecto.",
+      "id": "D5",
+      "text": "Al estar la gestión comercial, operativa y logística concentrada exclusivamente en el equipo fundador, la operación presenta una alta sensibilidad ante picos de demanda o compromisos académicos concurrentes. Esta superposición de roles puede generar variaciones temporales en los tiempos de respuesta y despacho, creando un riesgo potencial de insatisfacción o pérdida de clientes que requieran una atención inmediata o de entrega instantánea."
     },
     {
-      id: "D6",
-      text: "Falta de control directo en la cadena de suministro: Al no contar con producción propia de los insumos o productos del kit, el proyecto carece de control directo sobre los tiempos de disponibilidad y los estándares de calidad finales, dependiendo de la gestión de proveedores externos.",
-    },
+      "id": "D6",
+      "text": "Al gestionar el inventario de empaques, insumos líquidos y herramientas en espacios propios adaptados, el proyecto carece temporalmente de una bodega industrial estandarizada. Esto restringe la posibilidad de manejar grandes volúmenes de existencias y eleva el riesgo operativo de daños menores por humedad o manipulación casera."
+    }
   ],
-  opportunities: [
+  "opportunities": [
     {
-      id: "O1",
-      text: "Segmento Desatendido: Existe un grupo de usuarios, especialmente estudiantes con poco tiempo, que no cuentan con soluciones efectivas para el cuidado de sus mascotas.",
+      "id": "O1",
+      "text": "La existencia de una comunidad cautiva, densa y de alta confianza dentro del campus universitario (estudiantes, docentes y personal), la cual actúa como el escenario ideal y de bajo costo para testear el producto, recibir retroalimentación inmediata y consolidar los primeros clientes. También consideramos un muy buen nicho para iniciar, al ver mucha actividad canina, cosa que nos podria venir muy bien."
     },
     {
-      id: "O2",
-      text: "Crecimiento del Sector: Cada vez más personas consideran a sus animales como parte de la familia, lo que incrementa la demanda de productos y servicios de bienestar.",
+      "id": "O2",
+      "text": "De acuerdo con los últimos estudios de Fenalco Antioquia, el 83% de los hogares encuestados en el departamento posee mascotas (perros y gatos), consolidando una tendencia de consumo donde la manutención y el bienestar animal son prioritarios. Este fenómeno se alinea con la proyección nacional de Euromonitor, que estima que el mercado de mascotas alcanzará un gasto de $6,1 billones de pesos, impulsado por dueños dispuestos a invertir en productos especializados, técnicos y educativos que mejoren la calidad de vida y la salud de sus animales de compañía por encima de las opciones genéricas tradicionales."
     },
     {
-      id: "O3",
-      text: "Adopción Tecnológica: El uso creciente de Apps facilita la adopción de soluciones digitales para resolver problemas cotidianos del cuidado de mascotas.",
+      "id": "O3",
+      "text": "La disponibilidad en el entorno digital de plataformas sin costo (como WhatsApp Business, redes sociales) que permiten estructurar canales de atención y catálogos profesionales sin requerir inversión en desarrollo de software."
     },
     {
-      id: "O4",
-      text: "Alianzas con Veterinarias: Permite fortalecer la credibilidad del producto, ampliar su alcance y garantizar la calidad de la información médica ofrecida.",
+      "id": "O4",
+      "text": "El incremento de ferias de emprendimiento, mercados de pulgas, ferias universitarias y eventos de públicos amigables con las mascotas en municipios como Envigado y Sabaneta, abriendo vitrinas comerciales presenciales de alto impacto para marcas emergentes."
     },
     {
-      id: "O5",
-      text: "Demanda de Practicidad: Los usuarios buscan soluciones prácticas que les ahorren tiempo, lo que favorece directamente el formato de nuestra propuesta",
+      "id": "O5",
+      "text": "La existencia de convocatorias, incentivos o espacios de visibilidad promovidos por instituciones académicas y entidades municipales que buscan impulsar proyectos de negocio liderados por estudiantes de instituciones públicas y privadas."
     },
     {
-      id: "O6",
-      text: "Mercado con Desinformación: La gran cantidad de información poco confiable en redes permite destacar ofreciendo recomendaciones claras, profesionales y verificadas.",
-    },
+      "id": "O6",
+      "text": "El flujo continuo de familias y personas que integran nuevos caninos a sus hogares a través de refugios o centros de bienestar animal en el sur del Valle de Aburrá, generando un volumen constante de nuevos usuarios que necesitan educación inicial de aseo."
+    }
   ],
-  threats: [
+  "threats": [
     {
-      id: "A1",
-      text: "Competencia Consolidada: Existen plataformas y tiendas con mayor reconocimiento, experiencia y confianza en el mercado, dificultando la captación inicial.",
+      "id": "A1",
+      "text": "La presencia de cadenas de distribución masiva (pet-shops tradicionales, supermercados de cadena y multinacionales como Laika o Tierragro) en el Valle de Aburrá que comercializan productos de aseo canino a precios ultra bajos gracias a sus contratos globales, lo que puede desviar a los clientes que priorizan el precio inmediato sobre el valor educativo de TAOP."
     },
     {
-      id: "A2",
-      text: "Ingresos Limitados: El público objetivo (estudiantes), al contar con bajo poder adquisitivo, puede limitar la demanda o frecuencia de compra por presupuesto.",
+      "id": "A2",
+      "text": "Riesgo de incrementos imprevistos y fluctuaciones de precios en el mercado de Proveedores locales para insumos críticos del proyecto (como la tela para, envases plásticos, esencias naturales para el PH canino y herramientas de aseo). Al depender del comercio minorista y mayorista regional, cualquier fenómeno inflacionario o escasez de materias primas obliga a TAOP a absorber el sobrecosto reduciendo su margen de utilidad neta, o a trasladarlo al precio final del consumidor, afectando la competitividad en el campus."
     },
     {
-      id: "A3",
-      text: "Saturación de Aplicaciones: El exceso de Apps en los dispositivos móviles de los usuarios puede generar rechazo o fatiga para instalar una nueva plataforma.",
+      "id": "A3",
+      "text": "La aparición potencial de competidores informales en el entorno local que intenten replicar el formato visual del kit (caja y herramientas) bajo una estrategia de precios bajos. Esta dinámica representa una amenaza en términos de posicionamiento, ya que estas propuestas genéricas, al carecer del Protocolo Técnico de Co-Creación Veterinaria y del valor pedagógico que diferencian a TAOP, pueden confundir momentáneamente al consumidor final, obligando al proyecto a reforzar la comunicación de sus ventajas técnicas e intangibles no clonables para mantener el liderazgo del nicho."
     },
     {
-      id: "A4",
-      text: "Facilidad de Copia: Competidores con más recursos económicos pueden replicar rápidamente la idea de personalización y el ecosistema todo en uno.",
+      "id": "A4",
+      "text": "La transformación acelerada en los hábitos de consumo de la región, donde los usuarios exigen cada vez más envíos inmediatos (entregas el mismo día) y costos de envío subsidiados (envío gratis) debido al estándar fijado por las grandes plataformas de comercio electrónico. Esta tendencia representa una amenaza competitiva para TAOP KIT PRO, ya que puede generar fricción o resistencia en aquellos clientes locales que priorizan la comodidad del despacho automatizado a domicilio sobre los modelos de entrega programada o presencial en el campus."
     },
     {
-      id: "A5",
-      text: "Logística Externa: Factores fuera del control del proyecto, como fallas en transporte local o proveedores de insumos, afectando la experiencia final.",
+      "id": "A5",
+      "text": "La resistencia natural al cambio por parte de un segmento de propietarios de mascotas que muestran un arraigo o fidelidad estricta hacia marcas de aseo tradicionales o recomendadas históricamente por canales veterinarios cerrados. Esta costumbre de compra representa una amenaza para la velocidad de penetración de TAOP KIT PRO, obligando al proyecto a intensificar sus esfuerzos de comunicación educativa para demostrar los beneficios superiores de la co-creación veterinaria frente a los productos genéricos del mercado."
     },
     {
-      id: "A6",
-      text: "Cambios Normativos: Nuevas regulaciones legales relacionadas con la salud animal, empaques o el uso y protección de datos pueden obligar a modificar costos.",
-    },
+      "id": "A6",
+      "text": "La persistencia de mitos urbanos, costumbres tradicionales y desinformación en un sector de los propietarios de mascotas respecto a los hábitos correctos de higiene, salud dermatológica y mantenimiento preventivo del animal (como el uso de productos e ingredientes caseros inadecuados o la falta de conciencia sobre el cuidado periódico de la piel, orejas y pelaje). Estas tendencias y creencias arraigadas en el entorno representan una amenaza externa para la adopción del proyecto, ya que ralentizan la decisión de compra de soluciones profesionales y obligan a la marca a asumir un rol activo en la educación integral del consumidor."
+    }
   ],
-  so: [
+  "so": [
     {
-      id: "F3+O5",
-      text: "Explotar al máximo las dinámicas de juego, la barra de nivel de salud y el sistema de medallas de la aplicación para enganchar a los estudiantes de la IUE que viven cortos de tiempo. Al convertir las tareas en micro-retos diarios divertidos y satisfactorios, resolvemos su falta de disponibilidad sin que sientan el cuidado de su mascota como una carga pesada.",
+      "id": "FO1",
+      "text": "Diseñar campañas de activación en zonas residenciales y centros de adopción del Valle de Aburrá, posicionando a TAOP KIT PRO como el aliado obligatorio para los nuevos dueños de mascotas (O6), respaldados en el protocolo técnico y el manual pedagógico del kit (F3)."
     },
     {
-      id: "F2+O6",
-      text: "Posicionar el respaldo y la validación de nuestros profesionales veterinarios como el principal sello de confianza y veracidad de la marca. Esto nos permitirá destacar con fuerza frente a la gigantesca ola de desinformación, mitos falsos y consejos sin sustento científico que confunden a los jóvenes en las redes sociales.",
+      "id": "FO2",
+      "text": "Automatización de Atención y Conversión Comercial mediante Plataformas Gratuitas. Aprovechar la personalización y el enfoque técnico del sistema ADDM (F5) para construir un ecosistema digital en WhatsApp Business, Instagram y TikTok (O3), donde TAOP KIT PRO funcione como una plataforma de educación y asesoría preventiva que atraiga clientes orgánicamente, fortalezca la confianza y aumente la conversión comercial sin depender de altas inversiones publicitarias."
     },
     {
-      id: "F1+O1",
-      text: "Consolidar nuestro ecosistema centralizado \"Todo en Uno\" como la solución definitiva para el segmento universitario de la IUE que hoy se encuentra desatendido. Al integrar productos físicos, asesoría guiada y alertas en una sola app, eliminamos la confusión de tener que saltar entre múltiples plataformas independientes",
+      "id": "FO3",
+      "text": "Utilizar el respaldo y la rigurosidad del protocolo veterinario (F3) para negociar alianzas con distribuidores locales de insumos naturales (O4), logrando mejores precios a cambio de co-patrocinio o validación de la eficacia de sus materias primas en el manual de TAOP."
     },
     {
-      id: "F5+O2",
-      text: "Impulsar la opción de personalización real de los kits interactivos aprovechando la fuerte tendencia cultural donde las mascotas son consideradas miembros de la familia. Ofrecer soluciones específicas para las necesidades exactas de cada perro genera un vínculo emocional altísimo y destruye la oferta de productos genéricos del mercado.",
+      "id": "FO4",
+      "text": "Utilizar la metodología pedagógica y el valor educativo del kit (F2) para posicionar a TAOP KIT PRO como una solución premium dentro del creciente mercado de mascotas (O2), diferenciándose de los productos genéricos mediante protocolos de higiene preventiva, orientación técnica y acompañamiento responsable enfocado en bienestar animal."
     },
     {
-      id: "F6+O3",
-      text: "Desplegar una estrategia de adopción digital rápida entre los jóvenes universitarios apoyándonos en nuestra infraestructura de bajo costo tecnológico. Al optimizar herramientas digitales que ya existen y son familiares para ellos, facilitamos que integren la plataforma a su ritmo de vida acelerado sin exigir grandes inversiones iniciales.",
+      "id": "FO5",
+      "text": "Monetizar de forma directa el atractivo y la presentación comercial del kit (F1) implementando códigos QR de Nequi y Bancolombia (O3) en todo el material publicitario, facilitando la compra impulsiva y el recaudo instantáneo en el campus sin costos de intermediación."
     },
     {
-      id: "F2+O4",
-      text: "Cerrar alianzas estratégicas con clínicas veterinarias aliadas en la zona de influencia de la institución. Esto nos permitirá validar médicamente el contenido educativo de la app, ofrecer cupones de descuento cruzados y ampliar el alcance comercial del proyecto con un respaldo real en el sector.",
-    },
+      "id": "FO6",
+      "text": "Utilizar la estructura integral del kit y su componente educativo (F1) para participar estratégicamente en ferias de emprendimiento, jornadas veterinarias y eventos pet-friendly (O4), desarrollando demostraciones prácticas que permitan aumentar el reconocimiento de marca, captar clientes potenciales y fortalecer la percepción de profesionalismo y confiabilidad técnica."
+    }
   ],
-  wo: [
+  "wo": [
     {
-      id: "D2+O4",
-      text: "Corregir las limitaciones y los altos costos de la logística de envíos físicos mediante convenios con centros veterinarios locales. Al usarlos como puntos físicos de distribución autorizados (\"pick-up points\"), los estudiantes pueden recoger sus kits directamente, eliminando el costo de envío y garantizando entregas seguras.",
+      "id": "DO1",
+      "text": "Profesionalización de Marca mediante Contenido Educativo Digital. Reducir la baja penetración y reconocimiento inicial de TAOP KIT PRO (D2) utilizando plataformas digitales gratuitas y canales de difusión institucional (O3) para desarrollar contenido educativo constante relacionado con higiene preventiva, bienestar animal y cuidado responsable, construyendo progresivamente autoridad, recordación y posicionamiento empresarial."
     },
     {
-      id: "D2+O2",
-      text: "Neutralizar el impacto de los altos costos operativos que genera personalizar cada kit aprovechando la gran demanda y crecimiento del sector de mascotas. Al consolidar una comunidad de usuarios en la IUE, podemos generar compras de insumos en bloque y por volumen, negociando tarifas preferenciales con proveedores.",
+      "id": "DO2",
+      "text": "Concentración Comercial en Eventos Clave para Optimizar Tiempos. Superar la falta de tiempo diario para mercadeo (D5) concentrando las ventas en las ferias universitarias e institucionales de la IUE (O5), logrando en un solo día de alta exposición las ventas y los clientes que requerirían semanas de trabajo individual."
     },
     {
-      id: "D4+O5",
-      text: "Superar la desconfianza natural que genera ser una marca nueva y sin trayectoria en el mercado enfocándonos en la practicidad extrema. Al demostrarle a los estudiantes con datos y testimonios reales del campus que la app les ahorra tiempo real en sus rutinas diarias, la marca ganará reputación por su utilidad directa.",
+      "id": "DO3",
+      "text": "Uso de Canales Digitales Gratuitos para Eliminar la Necesidad de Local Físico. Compensar la falta de un espacio físico propio para el negocio (D4) operando al 100% a través de una tienda virtual en Instagram y catálogos digitales (O3), reduciendo los costos fijos a cero y atendiendo al cliente directamente en la pantalla de su celular."
     },
     {
-      id: "D5+O3",
-      text: "Compensar la escasez de presupuesto para marketing y expansión explotando las facilidades del entorno digital y la alta adopción tecnológica de los jóvenes. En lugar de pauta costosa, implementaremos estrategias de contenido orgánico, viralización y desafíos comunitarios dentro de las redes que ellos ya usan todos los días.",
+      "id": "DO4",
+      "text": "Fortalecimiento Operativo mediante Expansión Escalonada del Mercado. Aprovechar el crecimiento sostenido del mercado de mascotas (O2) para corregir la dependencia de proveedores y las limitaciones operativas actuales (D3), implementando un sistema progresivo de control de inventarios, búsqueda de proveedores alternos y planificación financiera que permita crecer sin comprometer estabilidad ni calidad."
     },
     {
-      id: "D6+O4",
-      text: "Reducir la peligrosa dependencia de terceros y la pérdida de control en los insumos firmando alianzas estratégicas con distribuidoras del sector veterinario. Esto nos garantiza prioridad en el abastecimiento de productos esenciales para los kits, stock seguro y un control de calidad certificado por profesionales.",
+      "id": "DO5",
+      "text": "Lanzamiento de Campañas Estacionales Sincronizadas con las Vacaciones. Aprovechar los picos de adopción y cuidado de mascotas en temporadas específicas (O6) para lanzar las campañas fuertes de TAOP justo en los periodos de vacaciones o semanas de receso, donde el equipo no tiene carga académica (D5) y puede dedicarse al 100% a la operación."
     },
     {
-      id: "D4+O6",
-      text: "Romper la barrera de entrada de ser una marca nueva posicionándonos como el canal de información verídica que combate la desinformación del mercado. Publicar guías y diagnósticos preventivos claros y validados científicamente en la app hará que los usuarios desconfiados nos vean rápido como un referente transparente y seguro.",
-    },
+      "id": "DO6",
+      "text": "Alianzas de Distribución con Tiendas Locales para Tener Puntos de Entrega. Solucionar la falta de un local comercial (D4) aliándose con veterinarias pequeñas o peluquerías caninas de Envigado que estén aprovechando el boom de mascotas (O6), usándolas como puntos físicos de distribución donde el cliente pueda recoger su TAOP KIT PRO"
+    }
   ],
-  st: [
+  "st": [
     {
-      id: "F1+A1",
-      text: "Utilizar la propuesta de valor integral del modelo \"Todo en Uno\" para competir con ventajas reales frente a monopolios digitales consolidados como Mercado Libre o tiendas tradicionales. Ellos son simples canales de venta fríos; nosotros ofrecemos personalización, manuales físicos pedagógicos y asesoría virtual guiada.",
+      "id": "FA1",
+      "text": "Diferenciación Técnica frente a Competidores de Bajo Costo. Utilizar la auditoría científica de insumos y el respaldo técnico del kit (F3) para enfrentar la competencia masiva y los productos genéricos del mercado (A1), posicionando a TAOP KIT PRO como una solución especializada enfocada en prevención, seguridad dermatológica y acompañamiento educativo, aumentando así el valor percibido por el consumidor."
     },
     {
-      id: "F2+A2",
-      text: "Apoyarse en el sello y respaldo profesional veterinario para contrarrestar la limitación de ingresos económicos de los estudiantes de la IUE. Al demostrarles que un kit preventivo guiado evita que cometan errores médicos costosos, el usuario percibirá el servicio como una inversión inteligente que cuida su bolsillo.",
+      "id": "FA2",
+      "text": "Educación Preventiva como Herramienta contra la Desinformación. Aprovechar el componente pedagógico y la metodología explicativa del kit (F2) para combatir la desinformación y los hábitos incorrectos de higiene animal presentes en el mercado (A6), desarrollando contenido técnico simplificado que fortalezca la confianza del cliente y convierta la educación en una ventaja competitiva sostenible."
     },
     {
-      id: "F3+A3",
-      text: "Aplicar las mecánicas de gamificación, recompensas por constancia y medallas de logro para combatir el riesgo de abandono por la saturación de aplicaciones en el celular. Hacer que la interacción diaria sea dinámica, divertida y satisfactoria evita que nuestra app sea percibida como una herramienta aburrida que deban borrar.",
+      "id": "FA3",
+      "text": "Diseñar el empaque e identidad visual de la TAOP KIT PRO (F1) con elementos gráficos complejos, etiquetas de seguridad o códigos QR únicos que hagan que cualquier intento de imitación barata en la universidad (A3) se vea inmediatamente como una copia falsa y ordinaria ante los ojos de la comunidad de la IUE."
     },
     {
-      id: "F5+A4",
-      text: "Explotar el sistema de personalización real interactiva (donde el usuario es el cocreador de su propio kit) como barrera competitiva ante la facilidad de copia del modelo por parte de empresas con más recursos. El vínculo emocional y la experiencia a la medida construida por el dueño de la mascota son imposibles de replicar con simple dinero.",
+      "id": "FA4",
+      "text": "Aprovechar la red de contactos directos, cercanía con clientes y capacidad de interacción personalizada del proyecto (F4) para fortalecer relaciones de confianza y sentido de comunidad frente al crecimiento de competidores e imitadores informales (A3), generando fidelización emocional y posicionando a TAOP KIT PRO como una marca auténtica, confiable y respaldada por experiencia real."
     },
     {
-      id: "F4+A6",
-      text: "Desplegar el acompañamiento educativo interactivo y los manuales físicos incluidos en cada caja para blindar al usuario ante regulaciones gubernamentales confusas o normativas de salud animal. Mantener al cliente perfectamente educado sobre el uso correcto de cada insumo garantiza el cumplimiento estricto de las normas vigentes.",
+      "id": "FA5",
+      "text": "Utilizar la estructura integral del kit y su facilidad de demostración práctica (F1) para enfrentar la desinformación y el desconocimiento sobre higiene preventiva animal presentes en el mercado (A6), realizando activaciones educativas, tutoriales y pruebas en vivo que permitan evidenciar directamente los beneficios del producto, aumentando la credibilidad y reduciendo la resistencia de compra."
     },
     {
-      id: "F6+A6",
-      text: "Aprovechar nuestra infraestructura operativa ágil de bajo costo tecnológico para absorber cambios imprevistos en normativas de datos o de salud sin que afecte el negocio. Al no depender de servidores costosos ni desarrollos complejos en esta etapa, el proyecto puede pivotar rápido y adaptarse legalmente sin tener que subirle las tarifas a los estudiantes.",
-    },
+      "id": "FA6",
+      "text": "Aprovechar la metodología educativa y el acompañamiento práctico incorporado en TAOP KIT PRO (F2) para enfrentar la creciente preferencia del mercado por soluciones rápidas y servicios externos especializados (A4), posicionando el kit como una alternativa eficiente de autocuidado doméstico que permita a los dueños mantener adecuadamente la higiene de sus mascotas desde casa, reduciendo gastos recurrentes en peluquerías caninas y fortaleciendo la percepción de autonomía, practicidad y ahorro inteligente."
+    }
   ],
-  wt: [
+  "wt": [
     {
-      id: "D3+A2",
-      text: "Reestructurar la escala de costos operativos de empaque y personalización para diseñar una línea exclusiva de \"Kits modulares express\" económicos. Esto nos permite ajustarnos estrictamente al bajo poder adquisitivo y presupuestos limitados de los estudiantes de la IUE, evitando que el precio final tumbe la demanda.",
+      "id": "DA1",
+      "text": "Automatización de Campañas de Re-fidelización contra el Tradicionalismo. Programar mensajes de seguimiento automático por WhatsApp a los clientes actuales para recordarles el mantenimiento del pelaje canino, combatiendo la tendencia del usuario a volver a sus marcas tradicionales por olvido (A5) sin que el equipo de trabajo tenga que gastar tiempo diario en llamadas o chats manuales (D5)."
     },
     {
-      id: "D2+A5",
-      text: "Desarrollar un protocolo logístico interno descentralizado que incluya mensajería local alternativa e independiente del Valle de Aburrá. De esta forma, si ocurren problemas externos de transporte masivo o bloqueos logísticos de las grandes agencias, las entregas de los kits del campus no se verán interrumpidas.",
+      "id": "DA2",
+      "text": "Reducir la dependencia total de las funciones en los integrantes del equipo y la sobrecarga operativa del proyecto (D1) frente al crecimiento de competidores e imitadores (A3), mediante la distribución clara de tareas entre los integrantes, planificación semanal de actividades y uso de herramientas básicas de organización digital, permitiendo mejorar la eficiencia del trabajo sin necesidad de contratar personal externo."
     },
     {
-      id: "D4+A1",
-      text: "Crear una identidad de marca comunitaria muy cercana, humana e integrada a la vida universitaria de la IUE para neutralizar la amenaza de la competencia consolidada. Las grandes corporaciones son percibidas como entes corporativos distantes; un proyecto nacido en las mismas aulas genera una lealtad local muy difícil de arrebatar.",
+      "id": "DA3",
+      "text": "Reducir el bajo reconocimiento inicial de TAOP KIT PRO (D2) frente a la fidelidad hacia marcas tradicionales del mercado (A5), mediante publicaciones constantes en redes sociales, contenido educativo sencillo y demostraciones reales del uso del kit, permitiendo aumentar la visibilidad y generar confianza sin requerir grandes inversiones publicitarias."
     },
     {
-      id: "D1+A3",
-      text: "Garantizar que el desarrollo técnico de la aplicación sea sumamente ligero, permitiendo la consulta de tareas en modo offline o mediante recordatorios directos automatizados vía canales nativos como WhatsApp. Esto reduce la dependencia estricta de internet constante y mitiga el peligro de que borren la app por falta de espacio.",
+      "id": "DA4",
+      "text": "Disminuir el riesgo de desorganización y saturación operativa del equipo (D5) frente al aumento de costos e inflación del mercado (A2), mediante compras planificadas, control básico de ingresos y gastos, y priorización de materiales realmente necesarios, permitiendo mantener estabilidad económica y evitar desperdicios de recursos."
     },
     {
-      id: "D6+A5",
-      text: "Diversificar la cartera de proveedores de insumos esenciales estableciendo al menos tres opciones de suministro locales. Esto nos permite descentralizar las compras y evitar que paros de transporte o fallas de producción de un único tercero dejen los kits vacíos o retrasen los envíos.",
+      "id": "DA5",
+      "text": "Sincronización de Logística Programada contra la Exigencia de Inmediatez. Implementar un sistema estricto de \"pedidos anticipados\" con entregas programadas únicamente en bloques horarios específicos en el campus. Así se combate la presión del e-commerce por envíos inmediatos (A4) y se protege el tiempo de estudio del equipo (D5), fijando reglas claras desde el principio."
     },
     {
-      id: "D5+A6",
-      text: "Optimizar la distribución del presupuesto limitado enfocándolo en el cumplimiento legal básico de la mano de los consultorios jurídicos de la misma universidad. Así mitigamos riesgos de multas o sanciones imprevistas por normativas de protección de datos o manejo de salud animal sin desangrar el capital de marketing.",
-    },
-  ],
+      "id": "DA6",
+      "text": "Enfoque en Nicho Hiperlocal para Evadir a los Gigantes del Mercado. Compensar la falta de infraestructura física (D4) ante el dominio de las multinacionales como Laika o el Éxito (A1) enfocando los esfuerzos comerciales exclusivamente en el nicho de la IUE y Envigado, donde los gigantes no tienen atención personalizada ni el factor de cercanía que ustedes sí poseen."
+    }
+  ]
 };

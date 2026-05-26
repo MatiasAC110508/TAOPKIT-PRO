@@ -50,12 +50,12 @@ export default function SwotSection() {
               Análisis estratégico interactivo. Haz clic en cada cuadrante para explorar las tácticas de integración que usaremos para mitigar riesgos y maximizar oportunidades en el mercado.
             </p>
             <a
-              href="/taop-dofa-matriz.pdf"
-              download="TAOP-KIT-PRO-Matriz-DOFA.pdf"
+              href="/taop-dofa-matriz.xlsx"
+              download="TAOP-KIT-PRO-Matriz-FODA.xlsx"
               className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-amber-500/20 transition-all duration-300 hover:from-amber-400 hover:to-amber-500 md:hover:scale-105"
             >
               <Download className="w-4 h-4" />
-              Descargar DOFA en PDF
+              Descargar FODA en Excel
             </a>
           </div>
         </FadeIn>
