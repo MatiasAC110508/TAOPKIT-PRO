@@ -1,7 +1,7 @@
 "use client";
 
 import { FadeIn } from "../Animations";
-import { Target, TrendingUp, Users, HeartHandshake } from "lucide-react";
+import { Target, TrendingUp, Users, HeartHandshake, Download } from "lucide-react";
 
 export default function BuyerPersonaSection() {
   return (
@@ -34,8 +34,51 @@ export default function BuyerPersonaSection() {
             </div>
           </FadeIn>
 
+          <FadeIn delay={0.1} className="w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  src: "/buyer.jpg",
+                  alt: "Perfil de Buyer Persona - Parte 1",
+                  downloadName: "Buyer_Persona_1.jpg",
+                  label: "Descargar",
+                },
+                {
+                  src: "/buyerimg2.jpeg",
+                  alt: "Perfil de Buyer Persona - Parte 2",
+                  downloadName: "Buyer_Persona_2.jpeg",
+                  label: "Descargar",
+                },
+                {
+                  src: "/buyerimage3.jpeg",
+                  alt: "Perfil de Buyer Persona - Parte 3",
+                  downloadName: "Buyer_Persona_3.jpeg",
+                  label: "Descargar",
+                },
+              ].map((img, index) => (
+                <div key={index} className="glass-card rounded-3xl p-5 md:p-6 border border-white/10 flex flex-col items-center h-full">
+                  <div className="w-full rounded-2xl overflow-hidden mb-6 border border-white/5 bg-black/20 flex-1 flex items-center justify-center">
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-auto max-h-[400px] object-contain hover:scale-[1.02] transition-transform duration-500 ease-in-out"
+                    />
+                  </div>
+                  <a
+                    href={img.src}
+                    download={img.downloadName}
+                    className="inline-flex items-center gap-2 px-6 py-3 w-full justify-center bg-gradient-to-r from-purple-500/80 to-pink-500/80 hover:from-purple-400 hover:to-pink-400 text-white font-semibold rounded-full transition-all shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:-translate-y-0.5 text-sm"
+                  >
+                    <Download className="w-4 h-4 shrink-0" />
+                    <span>{img.label}</span>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1 mt-4">
-            <FadeIn delay={0.1} className="h-full">
+            <FadeIn delay={0.2} className="h-full">
               <div className="glass-card rounded-3xl p-6 md:p-8 h-full border border-white/5 flex flex-col">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 mb-6">
                   <TrendingUp className="w-6 h-6" />
@@ -64,7 +107,7 @@ export default function BuyerPersonaSection() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.2} className="h-full">
+            <FadeIn delay={0.3} className="h-full">
               <div className="glass-card rounded-3xl p-6 md:p-8 h-full border border-white/5 flex flex-col">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 mb-6">
                   <HeartHandshake className="w-6 h-6" />
@@ -93,7 +136,7 @@ export default function BuyerPersonaSection() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.3} className="h-full">
+            <FadeIn delay={0.4} className="h-full">
               <div className="glass-card rounded-3xl p-6 md:p-8 h-full border border-white/5 flex flex-col">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 mb-6">
                   <Users className="w-6 h-6" />
