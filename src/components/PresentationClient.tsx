@@ -10,6 +10,7 @@ import ProductLevelsSection from "./sections/ProductLevelsSection";
 import OmnichannelSection from "./sections/OmnichannelSection";
 import ObjectivesSection from "./sections/ObjectivesSection";
 import SegmentationSection from "./sections/SegmentationSection";
+import BuyerPersonaSection from "./sections/BuyerPersonaSection";
 import SwotSection from "./sections/SwotSection";
 import ReferencesSection from "./sections/ReferencesSection";
 import { PawPrint } from "lucide-react";
@@ -29,6 +30,7 @@ export default function PresentationClient() {
         <PricingSection />
         <ObjectivesSection />
         <SegmentationSection />
+        <BuyerPersonaSection />
         <SwotSection />
         <ReferencesSection />
       </main>
