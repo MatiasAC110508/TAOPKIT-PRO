@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { FadeIn } from "../Animations";
-import { Target, TrendingUp, Users, HeartHandshake, Download } from "lucide-react";
+import { Target, TrendingUp, Users, HeartHandshake, Download, X } from "lucide-react";
 
 export default function BuyerPersonaSection() {
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+
   return (
     <section id="comprador" className="relative py-28 px-6 bg-[#071414] border-t border-white/5">
       <div className="max-w-6xl mx-auto">
@@ -57,16 +60,21 @@ export default function BuyerPersonaSection() {
                 },
               ].map((img, index) => (
                 <div key={index} className="glass-card rounded-3xl p-5 md:p-6 border border-white/10 flex flex-col items-center h-full">
-                  <div className="w-full rounded-2xl overflow-hidden mb-6 border border-white/5 bg-black/20 flex-1 flex items-center justify-center">
+                  <div 
+                    className="w-full rounded-2xl overflow-hidden mb-6 border border-white/5 bg-black/20 flex-1 flex items-center justify-center cursor-zoom-in group"
+                    onClick={() => setZoomedImage(img.src)}
+                  >
                     <img
                       src={img.src}
                       alt={img.alt}
-                      className="w-full h-auto max-h-[400px] object-contain hover:scale-[1.02] transition-transform duration-500 ease-in-out"
+                      className="w-full h-auto max-h-[400px] object-contain group-hover:scale-[1.02] transition-transform duration-500 ease-in-out"
                     />
                   </div>
                   <a
                     href={img.src}
                     download={img.downloadName}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 w-full justify-center bg-gradient-to-r from-purple-500/80 to-pink-500/80 hover:from-purple-400 hover:to-pink-400 text-white font-semibold rounded-full transition-all shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_rgba(168,85,247,0.5)] hover:-translate-y-0.5 text-sm"
                   >
                     <Download className="w-4 h-4 shrink-0" />
@@ -77,6 +85,7 @@ export default function BuyerPersonaSection() {
             </div>
           </FadeIn>
 
+          {/* Render rest of the component layout... -> Meta cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1 mt-4">
             <FadeIn delay={0.2} className="h-full">
               <div className="glass-card rounded-3xl p-6 md:p-8 h-full border border-white/5 flex flex-col">
@@ -167,6 +176,31 @@ export default function BuyerPersonaSection() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      {zoomedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-in fade-in duration-300"
+          onClick={() => setZoomedImage(null)}
+        >
+          <button 
+            onClick={() => setZoomedImage(null)}
+            className="absolute top-6 right-6 lg:top-10 lg:right-10 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-3 rounded-full backdrop-blur-md transition-all z-[110]"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <div 
+            className="relative max-w-7xl max-h-[90vh] w-full flex items-center justify-center p-2 lg:p-10 animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={zoomedImage} 
+              alt="Vista Ampliada" 
+              className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
