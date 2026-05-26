@@ -6,6 +6,52 @@ import { FadeIn } from "../Animations";
 import { Target } from "lucide-react";
 import { SegTabKey } from "../../types";
 import { segmentationData } from "../../data/segmentation";
+import SectionReferences from "../SectionReferences";
+
+const segmentationReferences: Record<SegTabKey, { label: string; href?: string }[]> = {
+  geographic: [
+    {
+      label:
+        "Economipedia. (2022). Segmentación de mercado. https://economipedia.com/definiciones/segmentacion-de-mercado.html",
+      href: "https://economipedia.com/definiciones/segmentacion-de-mercado.html",
+    },
+  ],
+  demographic: [
+    {
+      label:
+        "Economipedia. (2022). Segmentación demográfica: definición y concepto. https://economipedia.com/definiciones/segmentacion-demografica.html",
+      href: "https://economipedia.com/definiciones/segmentacion-demografica.html",
+    },
+    {
+      label:
+        "HubSpot. (2024). Segmentación demográfica: variables y ejemplos.",
+      href: "https://blog.hubspot.es/marketing/segmentacion-demografica",
+    },
+  ],
+  psychographic: [
+    {
+      label:
+        "HubSpot. (2024). Segmentación psicográfica: qué es y ejemplos.",
+      href: "https://blog.hubspot.es/marketing/segmentacion-psicografica",
+    },
+    {
+      label:
+        "Schiffman, L., y Wisenblit, J. (2015). Comportamiento del consumidor (11.ª ed.). Pearson Educación.",
+    },
+  ],
+  behavioral: [
+    {
+      label:
+        "Investopedia. (2024). Behavioral segmentation.",
+      href: "https://www.investopedia.com/terms/b/behavioral-segmentation.asp",
+    },
+    {
+      label:
+        "One.com. (2024). Guía para principiantes: público objetivo y segmentación.",
+      href: "https://www.one.com/es-es/marketing-digital/guia-para-principiantes-publico-objetivo",
+    },
+  ],
+};
 
 const segmentationContent: Record<SegTabKey, React.ReactNode> = {
   geographic: (
@@ -156,6 +202,12 @@ export default function SegmentationSection() {
                   <div className="flex-1">
                     {segmentationContent[activeTab]}
                   </div>
+
+                  <SectionReferences
+                    title={`Fuentes de segmentación ${activeData.title.toLowerCase()}`}
+                    references={segmentationReferences[activeTab]}
+                    className="mt-8"
+                  />
                 </motion.div>
               </AnimatePresence>
             </div>

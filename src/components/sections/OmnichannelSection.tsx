@@ -6,6 +6,7 @@ import { FadeIn, ScaleIn } from "../Animations";
 import { Globe, RefreshCw } from "lucide-react";
 import { CimCategoryKey } from "../../types";
 import { cimData, omnichannelChannels, userFlowSteps } from "../../data/omnichannel";
+import SectionReferences from "../SectionReferences";
 
 export default function OmnichannelSection() {
   const [activeTab, setActiveTab] = useState<CimCategoryKey>("advertising");
@@ -33,7 +34,7 @@ export default function OmnichannelSection() {
               Comunicaciones Integradas y Omnicanalidad
             </h2>
             <p className="text-teal-100/80 max-w-3xl mx-auto text-sm md:text-base leading-relaxed">
-              Diseñamos un ecosistema digital y físico sin interrupciones. Desde el primer impacto publicitario en Instagram hasta el seguimiento personalizado de recompra en WhatsApp.
+              TAOP KIT PRO manejará una estrategia donde todos los canales de comunicación, atención y venta estarán conectados para brindar una experiencia rápida, cómoda y personalizada.
             </p>
           </div>
         </FadeIn>
@@ -174,6 +175,22 @@ export default function OmnichannelSection() {
 
             </div>
           </div>
+        </FadeIn>
+
+        <FadeIn delay={0.25}>
+          <SectionReferences
+            className="max-w-5xl mx-auto"
+            references={[
+              {
+                label:
+                  "Kotler, P., y Armstrong, G. (2017). Fundamentos de marketing (13.ª ed.). Pearson Educación.",
+              },
+              {
+                label:
+                  "Stanton, W., Etzel, M., y Walker, B. (2007). Fundamentos de marketing (14.ª ed.). McGraw-Hill.",
+              },
+            ]}
+          />
         </FadeIn>
 
       </div>

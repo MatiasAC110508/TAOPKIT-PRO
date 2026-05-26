@@ -22,8 +22,8 @@ export default function TeamSection() {
               <strong className="text-white font-semibold">
                 Institución Universitaria de Envigado (IUE)
               </strong>
-              , unidos por el propósito de redefinir el bienestar animal mediante
-              la innovación y el mercadeo estratégico.
+              , unidos por un proyecto académico de mercadeo enfocado en crear una
+              solución práctica, organizada y confiable para el cuidado de mascotas.
             </p>
           </div>
         </FadeIn>
@@ -90,6 +90,7 @@ export default function TeamSection() {
             );
           })}
         </div>
+
       </div>
     </section>
   );

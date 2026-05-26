@@ -33,7 +33,7 @@ export default function ObjectivesSection() {
             </h3>
             <p className="text-teal-100/80 text-lg leading-relaxed">
               <strong className="text-white font-medium">Mejorar el cuidado y la organización</strong> de las mascotas mediante kits
-              personalizados e información confiable desde nuestra plataforma digital. 
+              personalizados e información confiable desde la página web. 
               <br /><br />
               <span className="inline-block px-4 py-1.5 rounded-full bg-teal-500/20 text-teal-300 text-sm font-bold border border-teal-500/30">
                 Meta Principal:
@@ -97,6 +97,7 @@ export default function ObjectivesSection() {
             </FadeIn>
           ))}
         </div>
+
       </div>
     </section>
   );

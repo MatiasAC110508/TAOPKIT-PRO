@@ -2,9 +2,6 @@ import { ReferenceItem } from "../types";
 
 export const projectReferences: ReferenceItem[] = [
   {
-    text: "Granados, M., Zapata, J. M., Farhang, Y., Torres, S., y grupo de trabajo. (2026). Desarrollo de producto: TAOP KIT PRO. Institución Universitaria de Envigado.",
-  },
-  {
     text: "Microsoft Forms. (2026). Encuesta sobre necesidades y cuidado de mascotas en estudiantes universitarios. Microsoft Corporation.",
     href: "https://forms.cloud.microsoft/",
   },
@@ -56,5 +53,24 @@ export const projectReferences: ReferenceItem[] = [
   {
     text: "One.com. (2024). Guía para principiantes: público objetivo y segmentación. https://www.one.com/es-es/marketing-digital/guia-para-principiantes-publico-objetivo",
     href: "https://www.one.com/es-es/marketing-digital/guia-para-principiantes-publico-objetivo",
+  },
+  {
+    text: "Schiffman, L., y Wisenblit, J. (2015). Comportamiento del consumidor (11.ª ed.). Pearson Educación.",
+  },
+  {
+    text: "chatgpt.com",
+    href: "https://chatgpt.com",
+  },
+  {
+    text: "OpenAI. (2026). ChatGPT (modelo GPT-5.5) [Modelo de lenguaje de inteligencia artificial]. https://chatgpt.com",
+    href: "https://chatgpt.com",
+  },
+  {
+    text: "gemini.google.com",
+    href: "https://gemini.google.com",
+  },
+  {
+    text: "Google. (2026). Gemini [Modelo de inteligencia artificial]. https://gemini.google.com",
+    href: "https://gemini.google.com",
   },
 ];

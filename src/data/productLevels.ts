@@ -1,13 +1,20 @@
 import { Sparkles, Star, Truck, Users } from "lucide-react";
 
+export const basicBenefits = [
+  "Mantener limpia a la mascota.",
+  "Controlar olores.",
+  "Mejorar la convivencia dentro del hogar.",
+  "Facilitar el cuidado diario del animal.",
+];
+
 export const includedProducts = [
-  "Champú especializado",
-  "Acondicionador suavizante",
-  "Loción aromática",
-  "Talco protector",
+  "Champú.",
+  "Acondicionador.",
+  "Loción.",
+  "Talco.",
   "Baño en seco",
-  "Crema dental canina",
-  "Cepillo de dientes de doble cerda",
+  "Crema dental.",
+  "Cepillo de dientes.",
 ];
 
 export const mainServices = [

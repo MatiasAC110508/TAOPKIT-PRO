@@ -78,6 +78,7 @@ export default function HeroSection() {
             </a>
           </div>
         </FadeIn>
+
       </div>
 
       {/* Scroll indicator */}

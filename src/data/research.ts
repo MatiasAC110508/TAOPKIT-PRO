@@ -8,18 +8,18 @@ export const researchLimitations = [
 export const researchFindings = [
   {
     title: "Higiene y Alimentación",
-    desc: "Muchos dueños batallan por mantener la constancia en el baño de su perro y en elegir alimentos/snacks saludables.",
+    desc: "Los encuestados identificaron problemas relacionados con alimentación e higiene dentro del cuidado general de sus mascotas.",
   },
   {
     title: "Falta de Tiempo",
-    desc: "Los estudiantes de la IUE viven horarios saturados de estudio y trabajo, lo que dificulta la búsqueda individualizada de productos.",
+    desc: "La falta de tiempo fue la principal limitación reportada por los estudiantes universitarios dueños de mascotas.",
   },
   {
     title: "Desconfianza en Internet",
-    desc: "El mercado digital está saturado de información falsa y productos genéricos de baja calidad que pueden dañar a las mascotas.",
+    desc: "Muchos usuarios expresaron desconfianza en productos ofrecidos por internet y dificultad para encontrar información clara y confiable.",
   },
   {
     title: "Gastos Ineficientes",
-    desc: "Los usuarios a menudo compran productos equivocados debido a la desinformación, resultando en pérdidas financieras y frustración.",
+    desc: "Algunos dueños gastan en soluciones que no funcionan, lo que genera pérdidas de dinero y frustración durante el proceso de cuidado.",
   },
 ];

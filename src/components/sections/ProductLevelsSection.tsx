@@ -15,11 +15,13 @@ import {
   Layers,
 } from "lucide-react";
 import { 
+  basicBenefits,
   includedProducts, 
   mainServices, 
   serviceFeatures, 
   differentiators,
 } from "../../data/productLevels";
+import SectionReferences from "../SectionReferences";
 
 export default function ProductLevelsSection() {
   const [activeLevel, setActiveLevel] = useState<1 | 2 | 3>(1);
@@ -68,7 +70,7 @@ export default function ProductLevelsSection() {
                   <h3 className={`font-bold text-lg mb-1 ${activeLevel === 1 ? "text-white" : "text-teal-100/70"}`}>
                     Nivel 1: Producto Básico
                   </h3>
-                  <p className="text-teal-200/60 text-sm">Los elementos tangibles y directos que componen el kit físico.</p>
+                  <p className="text-teal-200/60 text-sm">La necesidad central de higiene, bienestar y salud que satisface el kit.</p>
                 </div>
               </button>
 
@@ -89,7 +91,7 @@ export default function ProductLevelsSection() {
                   <h3 className={`font-bold text-lg mb-1 ${activeLevel === 2 ? "text-white" : "text-teal-100/70"}`}>
                     Nivel 2: Producto Real
                   </h3>
-                  <p className="text-teal-200/60 text-sm">Las características, diseño y funcionalidad de los servicios asociados.</p>
+                  <p className="text-teal-200/60 text-sm">El kit físico, sus productos incluidos, servicios y características.</p>
                 </div>
               </button>
 
@@ -133,13 +135,13 @@ export default function ProductLevelsSection() {
                   >
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-teal-500/20">
                       <Box className="w-8 h-8 text-teal-400" />
-                      <h3 className="text-2xl font-bold text-white">Bienes Tangibles</h3>
+                      <h3 className="text-2xl font-bold text-white">Necesidad a Satisfacer</h3>
                     </div>
                     <p className="text-teal-100/80 mb-6 text-sm leading-relaxed">
-                      El producto básico se compone de los bienes físicos diseñados para la higiene y el cuidado directo de la mascota.
+                      El principal beneficio de TAOP KIT PRO es satisfacer la necesidad de higiene, bienestar y salud de las mascotas.
                     </p>
                     <div className="grid sm:grid-cols-2 gap-3 flex-grow">
-                      {includedProducts.map((item, i) => (
+                      {basicBenefits.map((item, i) => (
                         <div key={i} className="flex items-center gap-3 bg-teal-950/30 border border-teal-500/10 p-3 rounded-xl">
                           <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
                           <span className="text-teal-100/90 text-sm">{item}</span>
@@ -160,10 +162,28 @@ export default function ProductLevelsSection() {
                   >
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-amber-500/20">
                       <Layers className="w-8 h-8 text-amber-400" />
-                      <h3 className="text-2xl font-bold text-white">Servicios y Características</h3>
+                      <h3 className="text-2xl font-bold text-white">Kit, Servicios y Características</h3>
                     </div>
                     
-                    <div className="grid md:grid-cols-2 gap-6 flex-grow">
+                    <p className="text-teal-100/80 mb-6 text-sm leading-relaxed">
+                      TAOP KIT PRO es un kit de higiene para mascotas con productos esenciales en un empaque práctico, resistente y fácil de transportar.
+                    </p>
+
+                    <div className="grid md:grid-cols-3 gap-6 flex-grow">
+                      <div>
+                        <h4 className="font-semibold text-amber-300 mb-4 flex items-center gap-2">
+                          <ChevronRight className="w-4 h-4" /> Productos
+                        </h4>
+                        <ul className="space-y-3">
+                          {includedProducts.map((item, i) => (
+                            <li key={i} className="flex items-start gap-2 text-sm text-teal-100/80">
+                              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1.5 shrink-0" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
                       <div>
                         <h4 className="font-semibold text-amber-300 mb-4 flex items-center gap-2">
                           <ChevronRight className="w-4 h-4" /> Servicios Principales
@@ -236,6 +256,21 @@ export default function ProductLevelsSection() {
             </div>
           </FadeIn>
         </div>
+
+        <FadeIn delay={0.25}>
+          <SectionReferences
+            references={[
+              {
+                label:
+                  "Kotler, P., y Armstrong, G. (2017). Fundamentos de marketing (13.ª ed.). Pearson Educación.",
+              },
+              {
+                label:
+                  "Stanton, W., Etzel, M., y Walker, B. (2007). Fundamentos de marketing (14.ª ed.). McGraw-Hill.",
+              },
+            ]}
+          />
+        </FadeIn>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { FadeIn, StaggerContainer, StaggerItem } from "../Animations";
 import { DollarSign, Package, Wrench, Calculator, Sparkles } from "lucide-react";
 import { costJustifications, productCosts, serviceCosts } from "../../data/pricing";
+import SectionReferences from "../SectionReferences";
 
 export default function PricingSection() {
   const [margin, setMargin] = useState(50); // 50% default margin
@@ -28,7 +29,7 @@ export default function PricingSection() {
               Inversión, Costos y Valor
             </h2>
             <p className="text-teal-100/80 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
-              Analizamos minuciosamente la estructura de costos de producción y mantenimiento tecnológico para proponer un precio competitivo.
+              Analizamos la estructura de costos del producto, los costos mensuales del servicio y el margen de ganancia sugerido para mantener el negocio.
             </p>
           </div>
         </FadeIn>
@@ -68,10 +69,10 @@ export default function PricingSection() {
 
               <div className="flex justify-between items-center pt-4 border-t border-teal-500/20">
                 <span className="text-white font-bold text-sm">
-                  Costo de Producción Unitario:
+                  Costo total aproximado:
                 </span>
                 <span className="text-xl font-bold text-teal-400">
-                  $70.000 COP
+                  $95.000 COP
                 </span>
               </div>
             </div>
@@ -112,7 +113,7 @@ export default function PricingSection() {
                   Costo Operativo Mensual:
                 </span>
                 <span className="text-xl font-bold text-amber-400">
-                  $350.000 COP
+                  $255.000 COP
                 </span>
               </div>
             </div>
@@ -129,7 +130,7 @@ export default function PricingSection() {
             </div>
             
             <p className="text-center text-teal-200/60 text-xs md:text-sm mb-8 max-w-xl mx-auto">
-              Ajustamos la fórmula teórica de Kotler & Armstrong. Modifica el margen de ganancia proyectado para ver cómo varía el precio de comercialización recomendado.
+              Para obtener ganancias y mantener el negocio, se puede aplicar un margen de ganancia del 40% al 50%. Modifica el margen proyectado para ver cómo varía el precio.
             </p>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -152,7 +153,7 @@ export default function PricingSection() {
                 
                 <div className="flex justify-between text-[10px] text-teal-200/40">
                   <span>30% (Margen Mínimo)</span>
-                  <span>40-50% (Sugerido por Kotler)</span>
+                  <span>40-50% (Sugerido)</span>
                   <span>60% (Margen Alto)</span>
                 </div>
               </div>
@@ -209,6 +210,22 @@ export default function PricingSection() {
               * Esto hace que el cliente perciba el producto como una solución completa y no simplemente como un paquete de productos para mascotas.
             </p>
           </div>
+        </FadeIn>
+
+        <FadeIn delay={0.3}>
+          <SectionReferences
+            className="max-w-4xl mx-auto"
+            references={[
+              {
+                label:
+                  "Kotler, P., y Armstrong, G. (2017). Fundamentos de marketing (13.ª ed.). Pearson Educación.",
+              },
+              {
+                label:
+                  "Stanton, W., Etzel, M., y Walker, B. (2007). Fundamentos de marketing (14.ª ed.). McGraw-Hill.",
+              },
+            ]}
+          />
         </FadeIn>
 
       </div>

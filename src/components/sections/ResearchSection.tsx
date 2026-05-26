@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FadeIn, ScaleIn } from "../Animations";
 import { Users, ExternalLink, BarChart3, ShieldAlert, Sparkles } from "lucide-react";
 import { researchFindings, researchLimitations } from "../../data/research";
+import SectionReferences from "../SectionReferences";
 
 export default function ResearchSection() {
   const formsUrl = process.env.NEXT_PUBLIC_FORMS_URL;
@@ -20,10 +21,10 @@ export default function ResearchSection() {
               Investigación de Mercado
             </span>
             <h2 className="text-3xl md:text-5xl font-bold gradient-text mb-6">
-              El Pulso de los Dueños de Mascotas
+              Necesidades de los Dueños de Mascotas
             </h2>
             <p className="text-teal-100/80 max-w-3xl mx-auto text-sm md:text-lg leading-relaxed">
-              Realizamos una encuesta a estudiantes universitarios de 18 a 25 años en el área metropolitana de Medellín para descubrir sus mayores retos de cuidado diario.
+              Con el fin de identificar las principales necesidades de los dueños de mascotas, se realizó una encuesta a estudiantes universitarios del área metropolitana de Medellín.
             </p>
           </div>
         </FadeIn>
@@ -39,7 +40,7 @@ export default function ResearchSection() {
               </div>
               <h3 className="text-2xl font-bold text-white mb-3">Estudio de Muestra</h3>
               <p className="text-teal-200/60 text-sm leading-relaxed mb-6">
-                Encuesta digital realizada a través de Microsoft Forms enfocada en hábitos de cuidado, limitaciones financieras y necesidades no resueltas.
+                Encuesta realizada mediante Microsoft Forms a personas dueñas de mascotas, enfocada en problemas de cuidado, limitaciones de tiempo y dinero, productos utilizados actualmente y soluciones ideales.
               </p>
             </div>
             
@@ -49,7 +50,7 @@ export default function ResearchSection() {
                 <span className="text-base md:text-lg text-teal-300 font-semibold">Participantes</span>
               </div>
               <div className="text-xs text-teal-200/40">
-                Jóvenes universitarios (18 a 25 años) • Dueños de mascotas (Perros/Gatos)
+                Estudiantes universitarios de 18 a 25 años • Principalmente dueños de mascotas
               </div>
             </div>
           </div>
@@ -67,7 +68,7 @@ export default function ResearchSection() {
                 </span>
               </div>
               <p className="text-teal-200/60 text-sm leading-relaxed mb-8">
-                Al preguntar a los estudiantes cuál es su mayor obstáculo al cuidar de su mascota, la falta de tiempo dominó las respuestas, seguida por el presupuesto.
+                Las principales limitaciones fueron tiempo, dinero, información y acceso; la falta de tiempo fue el obstáculo dominante.
               </p>
             </div>
 
@@ -124,7 +125,7 @@ export default function ResearchSection() {
               </div>
               <p className="text-teal-100/70 text-sm">
                 {hasFormsUrl
-                  ? "Puedes acceder al formulario oficial y su análisis en Microsoft Forms."
+                  ? "Puedes acceder al análisis oficial de Microsoft Forms usado como base metodológica."
                   : "El enlace del formulario no está disponible aquí. Puedes revisar las referencias y fuentes del estudio."}
               </p>
             </div>
@@ -146,6 +147,19 @@ export default function ResearchSection() {
               </a>
             )}
           </div>
+        </FadeIn>
+
+        <FadeIn delay={0.2}>
+          <SectionReferences
+            className="max-w-4xl mx-auto"
+            references={[
+              {
+                label:
+                  "Microsoft Forms. (2026). Encuesta sobre necesidades y cuidado de mascotas en estudiantes universitarios. Microsoft Corporation.",
+                href: "https://forms.cloud.microsoft/",
+              },
+            ]}
+          />
         </FadeIn>
 
       </div>

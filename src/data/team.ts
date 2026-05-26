@@ -6,11 +6,11 @@ export const teamMembers: TeamMember[] = [
     name: "Juan Miguel Zapata Montoya",
     role: "Co-fundador & Desarrollo de Producto",
     description:
-      "Estudiante de la Institución Universitaria de Envigado. Persona creativa, responsable y comprometida con el aprendizaje constante. Busca aportar una visión innovadora y disciplinada en cada reto del proyecto.",
+      "Estudiante de la Institución Universitaria de Envigado. Se considera una persona creativa, responsable y comprometida con cada meta que se propone. Le gusta aprender constantemente, desarrollar nuevas ideas y participar en proyectos donde pueda crecer personal y profesionalmente.",
     goals: [
-      "Construir un futuro exitoso con esfuerzo, disciplina y constancia.",
-      "Destacar por liderazgo, creatividad y capacidad de innovación.",
-      "Lograr estabilidad y dejar una huella positiva en su comunidad.",
+      "Construir un futuro exitoso a través del esfuerzo, la disciplina y la constancia.",
+      "Convertirse en una persona capaz de cumplir grandes metas, crecer profesionalmente y alcanzar estabilidad económica.",
+      "Destacar por creatividad, liderazgo y capacidad de innovar, dejando una huella positiva en cada proyecto.",
     ],
     image: "/collaboratos/juanmiguel.jpeg",
     icon: Compass,
@@ -22,11 +22,11 @@ export const teamMembers: TeamMember[] = [
     name: "Yashar Farhang Bermúdez",
     role: "Co-fundador & Estrategia de Mercadeo",
     description:
-      "21 años, estudiante de primer semestre de Mercadeo en la IUE. Apasionado de la lectura motivacional y el atletismo, lo que le aporta rigor y disciplina. De mente creativa, alegre y con enorme curiosidad por aprender.",
+      "21 años, estudiante de primer semestre de Mercadeo. En sus tiempos libres le gusta leer libros de motivación y salir a trotar, actividades que le ayudan a crecer como persona y mantener una buena disciplina. Se considera creativo, chistoso y con muchas ganas de aprender cosas nuevas.",
     goals: [
-      "Alcanzar el éxito profesional a través de la dedicación constante.",
-      "Brindar apoyo y bienestar a su madre mediante su desarrollo laboral.",
-      "Ser un profesional feliz, íntegro y agradecido con la vida.",
+      "Convertirse en una persona exitosa y poder ayudarle a su mamá para que no tenga que trabajar más.",
+      "Lograrlo siendo un buen profesional, con esfuerzo, dedicación y haciendo lo que realmente le gusta.",
+      "Alcanzar el éxito profesional y ser una persona feliz y agradecida con la vida.",
     ],
     image: "/collaboratos/yashar.jpeg",
     icon: Heart,
@@ -38,11 +38,11 @@ export const teamMembers: TeamMember[] = [
     name: "Sara Torres Valencia",
     role: "Co-fundador & Liderazgo y Dirección",
     description:
-      "Estudiante de primer semestre de Mercadeo en la IUE. Combina la carrera con la dirección de una orquesta, una banda de marcha y una escuela de música, desarrollando habilidades notables de liderazgo y gestión.",
+      "Estudiante de primer semestre de Mercadeo en la Institución Universitaria de Envigado. Actualmente trabaja en un proyecto enfocado en dirección, manejando una orquesta, una banda de marcha y una escuela de música, mientras fortalece sus habilidades artísticas, administrativas y de liderazgo.",
     goals: [
-      "Unir el mercadeo con el ámbito artístico y cultural.",
-      "Impulsar proyectos culturales con impacto comunitario positivo.",
-      "Crear espacios donde el talento y la creatividad puedan desarrollarse.",
+      "Unir el mercadeo con el ámbito artístico.",
+      "Impulsar proyectos culturales y musicales que generen impacto positivo en la comunidad.",
+      "Promover espacios donde el talento, la disciplina y la creatividad puedan crecer y desarrollarse.",
     ],
     image: "/collaboratos/Sara.jpeg",
     icon: Music,
@@ -54,11 +54,11 @@ export const teamMembers: TeamMember[] = [
     name: "Michelle Granados Botero",
     role: "Co-fundador & Ventas y Relaciones",
     description:
-      "17 años, estudiante de primer semestre de Mercadeo en la IUE. Responsable, comprometida y con excelente actitud para aprender. Cuenta con experiencia en ventas y destaca por sus habilidades de comunicación y atención al cliente.",
+      "17 años, estudiante de primer semestre de Mercadeo en la Institución Universitaria de Envigado. Es responsable, comprometida y tiene una excelente actitud para aprender y trabajar en equipo. Su experiencia en ventas le ha permitido desarrollar comunicación, atención al cliente y manejo de relaciones interpersonales.",
     goals: [
-      "Seguir aprendiendo y desarrollar nuevas habilidades en el área de mercadeo.",
-      "Desempeñarse eficientemente aportando una actitud positiva y compromiso.",
-      "Adquirir experiencia para crecer de manera integral, tanto personal como profesionalmente.",
+      "Seguir fortaleciendo sus conocimientos en mercadeo y adquirir experiencia laboral.",
+      "Desarrollar nuevas habilidades para desempeñarse eficientemente en el ámbito académico y laboral.",
+      "Aportar actitud positiva, compromiso y disposición para mejorar continuamente.",
     ],
     image: "/collaboratos/michelle.jpeg",
     icon: User,

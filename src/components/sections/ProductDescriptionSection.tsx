@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { FadeIn } from "../Animations";
 import { productHighlights } from "../../data/product";
+import SectionReferences from "../SectionReferences";
 
 export default function ProductDescriptionSection() {
   return (
@@ -40,12 +41,13 @@ export default function ProductDescriptionSection() {
                 </p>
               </div>
               <p>
-                Cada kit incluye
-                instrucciones claras y recomendaciones que ayudan a mejorar las
-                rutinas de cuidado y promueven un manejo más responsable. Además, 
-                incorpora elementos innovadores como <span className="text-amber-300 font-medium">recompensas, retos y
-                seguimiento</span> del bienestar de tu mascota, haciendo que la
-                experiencia sea mucho más <span className="text-coral-400 font-medium">dinámica y motivadora</span>.
+                Cada kit se adapta a necesidades específicas como higiene,
+                alimentación, salud y bienestar. Además, incluye instrucciones
+                claras y recomendaciones que ayudan a mejorar las rutinas de
+                cuidado, promueven un manejo más responsable e incorporan
+                elementos como <span className="text-amber-300 font-medium">recompensas, retos y
+                seguimiento</span> del bienestar de la mascota para hacer la
+                experiencia más <span className="text-coral-400 font-medium">dinámica y motivadora</span>.
               </p>
             </div>
           </FadeIn>
@@ -89,6 +91,23 @@ export default function ProductDescriptionSection() {
             );
           })}
         </div>
+
+        <FadeIn delay={0.2}>
+          <SectionReferences
+            references={[
+              {
+                label:
+                  "American Veterinary Medical Association. (s.f.). Pet care and animal welfare. Recuperado de https://www.avma.org",
+                href: "https://www.avma.org",
+              },
+              {
+                label:
+                  "World Small Animal Veterinary Association. (s.f.). Animal wellness and veterinary guidelines. Recuperado de https://wsava.org",
+                href: "https://wsava.org",
+              },
+            ]}
+          />
+        </FadeIn>
       </div>
     </section>
   );

@@ -157,6 +157,7 @@ export default function SwotSection() {
             <SwotDesktopTable swotData={swotData} onOpenModal={openModal} />
           </div>
         </FadeIn>
+
       </div>
 
       <SwotModal
