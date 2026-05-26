@@ -138,10 +138,10 @@ export default function SegmentationSection() {
           </div>
         </FadeIn>
 
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+        <div className="grid lg:grid-cols-12 gap-8 items-start min-w-0">
           
           {/* Tabs Navigation */}
-          <FadeIn direction="left" className="lg:col-span-5">
+          <FadeIn direction="left" className="min-w-0 lg:col-span-5">
             <div className="space-y-3">
               {(Object.keys(segmentationData) as SegTabKey[]).map((key) => {
                 const item = segmentationData[key];
@@ -152,7 +152,7 @@ export default function SegmentationSection() {
                   <button
                     key={key}
                     onClick={() => setActiveTab(key)}
-                    className={`w-full flex items-center gap-4 p-4 md:p-5 rounded-2xl font-semibold text-left transition-all duration-300 border ${
+                    className={`w-full min-w-0 overflow-hidden flex items-center gap-4 p-4 md:p-5 rounded-2xl font-semibold text-left transition-all duration-300 border ${
                       isActive
                         ? `bg-gradient-to-r ${item.gradient} border-transparent text-white shadow-lg shadow-black/25 md:scale-[1.02]`
                         : "glass-card mobile-safe-card border-white/5 text-teal-200/70 hover:text-white hover:bg-white/10 hover:border-white/10"
@@ -161,7 +161,7 @@ export default function SegmentationSection() {
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-colors ${isActive ? 'bg-white/20' : item.bgIcon}`}>
                       <Icon className={`w-6 h-6 ${isActive ? 'text-white' : item.color}`} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <span className="block text-base md:text-lg font-bold leading-tight mb-1">{item.title}</span>
                       <span className={`text-xs md:text-sm ${isActive ? 'text-white/80' : 'text-teal-200/50'}`}>
                         Variable {item.title.toLowerCase()}
@@ -174,7 +174,7 @@ export default function SegmentationSection() {
           </FadeIn>
 
           {/* Tab Content Area */}
-          <FadeIn direction="right" delay={0.15} className="lg:col-span-7">
+          <FadeIn direction="right" delay={0.15} className="min-w-0 lg:col-span-7">
             <div className="glass-card-strong render-layer rounded-3xl p-6 md:p-10 border border-white/10 min-h-[400px] flex flex-col shadow-2xl shadow-black/20 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -189,7 +189,7 @@ export default function SegmentationSection() {
                     <div className={`w-14 h-14 rounded-2xl ${activeData.bgIcon} flex items-center justify-center shrink-0`}>
                       <ActiveIcon className={`w-7 h-7 ${activeData.color}`} />
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">
                         {activeData.title}
                       </h3>
