@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { FadeIn } from "../Animations";
 import { Target, TrendingUp, Users, HeartHandshake, Download, X, Maximize2, ZoomIn, ZoomOut, RefreshCcw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +9,11 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
 export default function BuyerPersonaSection() {
   const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const images = [
     {
@@ -188,116 +194,119 @@ export default function BuyerPersonaSection() {
         </div>
       </div>
 
-      {/* Lightbox Modal (Framed style) */}
-      <AnimatePresence>
-        {zoomedImage && currentImageInfo && (
-          <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setZoomedImage(null)}
-              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-5xl bg-[#0b1717] rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col render-layer"
-            >
-              <TransformWrapper
-                initialScale={1}
-                minScale={0.5}
-                maxScale={4}
-                centerOnInit
-                wheel={{ step: 0.1 }}
+      {/* Lightbox Modal (Framed style with Portal) */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {zoomedImage && currentImageInfo && (
+            <div className="fixed inset-0 z-[999999] flex items-center justify-center p-4 md:p-8">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setZoomedImage(null)}
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative w-full max-w-5xl bg-[#0b1717] rounded-3xl border border-white/10 shadow-2xl overflow-hidden flex flex-col render-layer"
               >
-                {({ zoomIn, zoomOut, resetTransform }) => (
-                  <>
-                    <div className="p-4 md:p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 z-10 relative">
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
-                          <Maximize2 className="w-5 h-5 text-purple-400" />
-                        </div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white">
-                          Vista Ampliada
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        {/* Zoom Controls */}
-                        <div className="flex items-center gap-1 bg-white/5 rounded-full p-1 mr-2 border border-white/10">
-                          <button
-                            onClick={() => zoomOut()}
-                            className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white transition-colors"
-                            title="Alejar"
-                          >
-                            <ZoomOut className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => resetTransform()}
-                            className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white transition-colors"
-                            title="Restablecer"
-                          >
-                            <RefreshCcw className="w-4 h-4" />
-                          </button>
-                          <button
-                            onClick={() => zoomIn()}
-                            className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white transition-colors"
-                            title="Acercar"
-                          >
-                            <ZoomIn className="w-4 h-4" />
-                          </button>
-                        </div>
-
-                        <a
-                          href={currentImageInfo.src}
-                          download={currentImageInfo.downloadName}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-full hidden md:flex items-center gap-2 transition-colors text-sm"
-                        >
-                          <Download className="w-4 h-4" />
-                          Descargar
-                        </a>
-                        <button
-                          onClick={() => setZoomedImage(null)}
-                          className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-rose-400 hover:text-rose-300 transition-colors ml-2"
-                        >
-                          <X className="w-5 h-5" />
-                        </button>
-                      </div>
-                    </div>
-                    
-                    <div className="p-2 md:p-8 bg-black/40 flex items-center justify-center max-h-[75vh] overflow-hidden relative cursor-move">
-                      <TransformComponent wrapperClass="w-full h-full flex items-center justify-center">
-                        <img 
-                          src={zoomedImage} 
-                          alt={currentImageInfo.alt} 
-                          className="max-w-full h-auto max-h-[70vh] object-contain rounded-xl drop-shadow-2xl"
-                          draggable={false}
-                        />
-                      </TransformComponent>
-                    </div>
-                  </>
-                )}
-              </TransformWrapper>
-
-              <div className="p-4 border-t border-white/5 bg-black/20 text-center flex md:hidden justify-center">
-                <a
-                  href={currentImageInfo.src}
-                  download={currentImageInfo.downloadName}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full flex items-center gap-2 text-sm justify-center"
+                <TransformWrapper
+                  initialScale={1}
+                  minScale={0.5}
+                  maxScale={4}
+                  centerOnInit
+                  wheel={{ step: 0.1 }}
                 >
-                  <Download className="w-4 h-4" />
-                  Descargar Imagen
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
+                  {({ zoomIn, zoomOut, resetTransform }) => (
+                    <>
+                      <div className="p-4 md:p-6 bg-gradient-to-br from-purple-500/20 to-pink-500/20 border-b border-white/10 flex flex-wrap items-center justify-between gap-4 z-10 relative">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center">
+                            <Maximize2 className="w-5 h-5 text-purple-400" />
+                          </div>
+                          <h3 className="text-xl md:text-2xl font-bold text-white">
+                            Vista Ampliada
+                          </h3>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          {/* Zoom Controls */}
+                          <div className="flex items-center gap-1 bg-white/5 rounded-full p-1 mr-2 border border-white/10">
+                            <button
+                              onClick={() => zoomOut()}
+                              className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white transition-colors"
+                              title="Alejar"
+                            >
+                              <ZoomOut className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => resetTransform()}
+                              className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white transition-colors"
+                              title="Restablecer"
+                            >
+                              <RefreshCcw className="w-4 h-4" />
+                            </button>
+                            <button
+                              onClick={() => zoomIn()}
+                              className="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-white transition-colors"
+                              title="Acercar"
+                            >
+                              <ZoomIn className="w-4 h-4" />
+                            </button>
+                          </div>
+
+                          <a
+                            href={currentImageInfo.src}
+                            download={currentImageInfo.downloadName}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white font-semibold rounded-full hidden md:flex items-center gap-2 transition-colors text-sm"
+                          >
+                            <Download className="w-4 h-4" />
+                            Descargar
+                          </a>
+                          <button
+                            onClick={() => setZoomedImage(null)}
+                            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-rose-400 hover:text-rose-300 transition-colors ml-2"
+                          >
+                            <X className="w-5 h-5" />
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div className="p-2 md:p-8 bg-black/40 flex items-center justify-center max-h-[75vh] overflow-hidden relative cursor-move">
+                        <TransformComponent wrapperClass="w-full h-full flex items-center justify-center">
+                          <img 
+                            src={zoomedImage} 
+                            alt={currentImageInfo.alt} 
+                            className="max-w-full h-auto max-h-[70vh] object-contain rounded-xl drop-shadow-2xl"
+                            draggable={false}
+                          />
+                        </TransformComponent>
+                      </div>
+                    </>
+                  )}
+                </TransformWrapper>
+
+                <div className="p-4 border-t border-white/5 bg-black/20 text-center flex md:hidden justify-center">
+                  <a
+                    href={currentImageInfo.src}
+                    download={currentImageInfo.downloadName}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full flex items-center gap-2 text-sm justify-center"
+                  >
+                    <Download className="w-4 h-4" />
+                    Descargar Imagen
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }
